@@ -673,9 +673,18 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 text-white font-orbitron"
+            className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 font-orbitron inline-block"
             style={{ 
-              textShadow: '0 0 10px rgba(59, 130, 246, 0.3)'
+              background: 'linear-gradient(-45deg, #ffffff, #a0a0a0, #d0d0d0, #ffffff)',
+              backgroundSize: '400% 400%',
+              WebkitBackgroundClip: 'text',
+              backgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              textShadow: '0 2px 10px rgba(255, 255, 255, 0.3)',
+              letterSpacing: '2px',
+              animation: 'gradient 8s ease infinite',
+              padding: '0',
+              margin: '0 auto'
             }}
           >
             REVOLUTIONIZE YOUR WEB3 COMMUNITY
@@ -685,24 +694,27 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            className="text-xl md:text-2xl font-semibold mb-8 text-gray-300 flex justify-center items-center"
+            className="text-xl md:text-2xl font-semibold mb-8 flex justify-center items-center"
           >
-            <motion.span
-              animate={{ opacity: [0, 1, 1, 0] }}
-              transition={{ 
-                duration: 4, 
-                repeat: Infinity,
-                times: [0, 0.1, 0.9, 1]
-              }}
-              className="text-blue-400"
-            >
-              |
-            </motion.span>
+            
             <motion.span
               initial={{ width: 0 }}
               animate={{ width: 'auto' }}
               transition={{ duration: 1.5, delay: 0.5 }}
-              className="overflow-hidden whitespace-nowrap text-blue-400"
+              className="overflow-hidden whitespace-nowrap inline-block"
+              style={{
+                background: 'linear-gradient(-45deg, #4f9cf9, #a5c8ff, #6a8eff, #4f9cf9)',
+                backgroundSize: '400% 400%',
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                textShadow: '0 0 15px rgba(79, 156, 249, 0.5)',
+                fontWeight: 'bold',
+                letterSpacing: '1px',
+                animation: 'gradient 6s ease infinite',
+                padding: '0',
+                margin: '0'
+              }}
             >
               AI-POWERED COMMUNITY MANAGEMENT
             </motion.span>
@@ -1075,6 +1087,23 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      {/* Global styles for animations */}
+      <style jsx global>{`
+        @keyframes gradient {
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
+        }
+      `}</style>
     </main>
   );
 }
+
+

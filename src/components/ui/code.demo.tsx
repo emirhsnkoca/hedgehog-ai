@@ -11,7 +11,7 @@ export function SplineSceneBasic() {
   const [mainText, setMainText] = useState("");
   const [subText, setSubText] = useState("");
   const fullMainText = "";
-  const fullSubText = "Digital Army installing...";
+  const fullSubText = "";
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -75,7 +75,7 @@ export function SplineSceneBasic() {
               textRendering: 'geometricPrecision'
             }}
           >
-            {mainText}<span className="animate-blink">|</span>
+            {mainText}
           </h1>
         </div>
       </div>
@@ -89,7 +89,7 @@ export function SplineSceneBasic() {
             paddingBottom: '0.1em'
           }}
         >
-          {subText}<span className="animate-blink">|</span>
+          {subText}
         </div>
       </div>
 
