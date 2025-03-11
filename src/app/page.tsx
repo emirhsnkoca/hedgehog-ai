@@ -4,7 +4,7 @@ import { SplineSceneBasic } from "@/components/ui/code.demo";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Squares } from "@/components/ui/squares-background";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 // Feature card component
 const FeatureCard = ({ 
@@ -306,6 +306,13 @@ const FAQItem = ({
 };
 
 export default function Home() {
+  const [isClient, setIsClient] = useState(false);
+  
+  // Client tarafında olduğumuzu kontrol et
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   // For smooth scrolling
   const aboutRef = useRef<HTMLElement>(null);
   const featuresRef = useRef<HTMLElement>(null);
@@ -340,84 +347,84 @@ export default function Home() {
       color: "pink"
     }
   ];
-
-  // Milestone verileri
+  
+  // Milestones data
   const milestones = [
     {
-      quarter: "Q2",
-      year: "2024",
-      title: "AI Army MVP Launch",
+      quarter: "Q1",
+      year: "2023",
+      title: "Platform Foundation",
       items: [
-        "Initial Telegram integration",
-        "Core AI bot functionality",
-        "Basic user dashboard",
-        "Community management tools"
+        "Initial AI model training on Web3 and crypto concepts",
+        "Development of core AI persona framework",
+        "Alpha testing with select communities",
+        "Infrastructure setup for scalability"
       ],
       color: "blue",
       delay: 0.1
     },
     {
-      quarter: "Q3",
-      year: "2024",
-      title: "Smart Dashboard & Payments",
+      quarter: "Q2",
+      year: "2023",
+      title: "Beta Launch",
       items: [
-        "Advanced analytics dashboard",
-        "AI bot improvements and new features",
-        "Crypto payment integration",
-        "Enhanced user management"
+        "Public beta release with basic persona templates",
+        "Integration with Telegram and Discord",
+        "Implementation of basic analytics dashboard",
+        "Community feedback collection and iteration"
       ],
       color: "purple",
       delay: 0.2
     },
     {
-      quarter: "Q4",
-      year: "2024",
-      title: "Platform Expansion",
+      quarter: "Q3",
+      year: "2023",
+      title: "Advanced Features",
       items: [
-        "Advanced NLP-based AI capabilities",
-        "Discord bot integration",
-        "NFT utilities and integration",
-        "Expanded community tools"
+        "Enhanced AI training with community-specific data",
+        "Launch of custom persona creation tools",
+        "Advanced moderation and FUD detection capabilities",
+        "Multi-language support expansion"
       ],
       color: "green",
       delay: 0.3
     },
     {
-      quarter: "Q1",
-      year: "2025",
-      title: "Ecosystem Growth",
+      quarter: "Q4",
+      year: "2023",
+      title: "Ecosystem Expansion",
       items: [
-        "Multi-language support",
-        "Strategic ecosystem partnerships",
-        "New platform features and improvements",
-        "Enhanced security protocols"
+        "Integration with additional platforms (Twitter, Slack)",
+        "Launch of API for developer ecosystem",
+        "Advanced analytics and reporting features",
+        "Enterprise-grade security enhancements"
       ],
       color: "orange",
       delay: 0.4
     }
   ];
-
+  
   // FAQ data
   const faqs = [
     {
-      question: "AI Army'yi diğer topluluk yönetim araçlarından farklı kılan nedir?",
-      answer: "Hedgehog AI Army, Web3 ve kripto odaklı özel olarak eğitilmiş yapay zeka ile çalışır. Diğer araçların aksine, botlarımız sadece basit yanıtlar vermekle kalmaz, aynı zamanda topluluk üyeleriyle gerçek zamanlı etkileşime girer, kullanıcıları isimle anar, takip soruları sorar ve anlamlı konuşmalar başlatır. Ayrıca, özelleştirilebilir AI kişilikleri, otomatik moderasyon ve FUD kontrolü gibi özelliklere sahiptir."
+      question: "Meta AI Army nedir?",
+      answer: "Meta AI Army, Web3 ve kripto topluluklarınız için özel olarak tasarlanmış, yapay zeka destekli bir topluluk yönetim platformudur. Platformumuz, topluluğunuzu canlandırmak, moderasyon sağlamak ve üyelerinizle anlamlı etkileşimler oluşturmak için özelleştirilebilir AI personaları kullanır."
     },
     {
-      question: "AI botlarını Telegram grubuma nasıl entegre ederim?",
-      answer: "Entegrasyon süreci oldukça basittir. Hesabınızı oluşturduktan sonra, kontrol panelinizden 'Bot Ekle' seçeneğini seçin ve Telegram grubunuzun bağlantısını girin. Sistem size bir bot token'ı verecektir. Bu token'ı Telegram'da @BotFather ile paylaşarak botunuzu oluşturun ve ardından botunuzu grubunuza ekleyin. Tüm süreç için detaylı adım adım kılavuzumuz mevcuttur ve teknik destek ekibimiz her zaman yardıma hazırdır."
+      question: "AI personaları nasıl çalışır?",
+      answer: "AI personalarımız, doğal dil işleme ve makine öğrenimi teknolojilerini kullanarak topluluk sohbetlerine katılır. Her persona, belirli bir rol için tasarlanmıştır - örneğin, yeni üyeleri karşılayan bir Hoş Geldin Elçisi, teknik sorulara yanıt veren bir Bilgi Uzmanı veya tartışmaları canlandıran bir Topluluk Katalizörü. Bu personalar, kullanıcıları isimleriyle anabilir, sorular sorabilir ve gerçek zamanlı olarak yanıt verebilir."
     },
     {
-      question: "Hangi ödeme yöntemleri kullanılabilir?",
-      answer: "Hem geleneksel hem de kripto ödeme yöntemlerini destekliyoruz. Kredi kartı, banka havalesi gibi geleneksel yöntemlerin yanı sıra Bitcoin, Ethereum, Solana ve diğer popüler kripto para birimleriyle ödeme yapabilirsiniz. Kripto ödemelerde %10 indirim sunuyoruz ve aboneliklerinizi otomatik yenileme seçeneği de mevcuttur."
+      question: "Hangi platformları destekliyorsunuz?",
+      answer: "Şu anda Telegram ve Discord platformlarını tam entegrasyonla destekliyoruz. Twitter, Slack ve diğer popüler topluluk platformları için entegrasyonlar geliştirme aşamasındadır ve yakında kullanıma sunulacaktır."
     },
     {
-      question: "AI botlarımı özelleştirebilir miyim?",
-      answer: "Kesinlikle! Hedgehog AI Army'nin en güçlü özelliklerinden biri tam özelleştirme imkanıdır. Botlarınızın kişiliğini, yanıt tarzını ve bilgi tabanını özelleştirebilirsiniz. Heyecanlı Hype Oluşturuculardan analitik Şüphecilere ve dikkatli Moderatörlere kadar çeşitli AI kişilikleri oluşturabilirsiniz. Ayrıca, botlarınızın projenizin belirli yönlerine odaklanmasını sağlayabilir ve belirli anahtar kelimelere veya konulara nasıl yanıt vereceğini belirleyebilirsiniz."
+      question: "Meta AI Army'yi kendi topluluğuma nasıl entegre edebilirim?",
+      answer: "Entegrasyon süreci basittir. Platformumuza kaydolduktan sonra, size bir API anahtarı ve kolay kurulum talimatları sağlayacağız. Telegram veya Discord topluluğunuza bir bot eklemek kadar kolaydır. Daha sonra, yönetim panelimizi kullanarak personalarınızı özelleştirebilir ve davranışlarını yapılandırabilirsiniz."
     },
     {
-      question: "Aboneliğimi iptal edersem ne olur?",
-      answer: "Aboneliğinizi istediğiniz zaman iptal edebilirsiniz. İptal işlemi, mevcut fatura döneminin sonunda geçerli olur ve bu süre boyunca tüm hizmetlere erişiminiz devam eder. Fatura dönemi sona erdiğinde, botlarınız devre dışı kalır ancak yapılandırma ayarlarınız ve verileriniz 30 gün daha sistemimizde saklanır. Bu süre içinde aboneliğinizi yenilerseniz, kaldığınız yerden devam edebilirsiniz. 30 günün sonunda, verileriniz sistemden tamamen silinir."
+      question: "Fiyatlandırma nasıl çalışır?",
+      answer: "Farklı topluluk boyutları ve ihtiyaçları için tasarlanmış çeşitli fiyatlandırma planları sunuyoruz. Ücretsiz bir deneme sürümü, küçük topluluklar için uygun fiyatlı bir başlangıç planı ve daha büyük, daha aktif topluluklar için ölçeklenebilir premium planlar mevcuttur. Tam fiyatlandırma ayrıntıları için lütfen Fiyatlandırma sayfamızı ziyaret edin."
     }
   ];
 
@@ -507,51 +514,56 @@ export default function Home() {
       </motion.nav>
 
       {/* Hero Section */}
-      <section className="min-h-screen relative flex flex-col items-center justify-center pt-16">
+      <section className="min-h-screen relative flex flex-col items-center justify-center">
         {/* Background Effects */}
         <div className="absolute inset-0 overflow-hidden">
           {/* Grid background */}
           <div className="absolute inset-0 bg-[url('/grid.svg')] bg-repeat opacity-5"></div>
           
-          {/* Data streams effect */}
-          <div className="absolute inset-0">
-            {[...Array(20)].map((_, i) => (
-              <motion.div
-                key={i}
-                initial={{ 
-                  opacity: 0.1, 
-                  x: `${Math.random() * 100}%`, 
-                  y: -20, 
-                  height: `${Math.random() * 30 + 10}%` 
-                }}
-                animate={{ 
-                  y: '120%', 
-                  opacity: [0.1, 0.3, 0.1],
-                }}
-                transition={{ 
-                  duration: Math.random() * 10 + 10, 
-                  repeat: Infinity, 
-                  delay: Math.random() * 5,
-                  ease: "linear"
-                }}
-                className="absolute w-[1px] bg-gradient-to-b from-transparent via-blue-500/20 to-transparent"
-              />
-            ))}
-          </div>
+          {/* Data streams effect - Only render on client side */}
+          {isClient && (
+            <div className="absolute inset-0">
+              {[...Array(20)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ 
+                    opacity: 0.1, 
+                    x: `${(i * 5) % 100}%`, 
+                    y: -20, 
+                    height: `${(i % 3) * 10 + 10}%` 
+                  }}
+                  animate={{ 
+                    y: '120%', 
+                    opacity: [0.1, 0.3, 0.1],
+                  }}
+                  transition={{ 
+                    duration: (i % 5) + 10, 
+                    repeat: Infinity, 
+                    delay: i * 0.2,
+                    ease: "linear"
+                  }}
+                  className="absolute w-[1px] bg-gradient-to-b from-transparent via-blue-500/20 to-transparent"
+                />
+              ))}
+            </div>
+          )}
           
           {/* Glitch effect overlay */}
-          <motion.div 
-            className="absolute inset-0 bg-gradient-to-b from-[#050510]/0 via-[#050510]/50 to-[#050510]/0 opacity-30"
-            animate={{ 
-              opacity: [0.3, 0.4, 0.3],
-              backgroundPosition: ['0% 0%', '100% 100%', '0% 0%']
-            }}
-            transition={{ 
-              duration: 10, 
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          />
+          {isClient && (
+            <motion.div 
+              className="absolute inset-0 bg-gradient-to-b from-[#050510]/0 via-[#050510]/50 to-[#050510]/0"
+              style={{ opacity: 0.3 }}
+              animate={{ 
+                opacity: [0.3, 0.4, 0.3],
+                backgroundPosition: ['0% 0%', '100% 100%', '0% 0%']
+              }}
+              transition={{ 
+                duration: 10, 
+                repeat: Infinity,
+                ease: "linear"
+              }}
+            />
+          )}
           
           {/* Ambient glow */}
           <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-blue-900/10 filter blur-[100px]"></div>
@@ -594,17 +606,17 @@ export default function Home() {
                 key={i}
                 className="absolute w-1 h-1 bg-blue-400 rounded-full"
                 style={{
-                  left: `${Math.random() * 80 + 10}%`,
-                  top: `${Math.random() * 80 + 10}%`,
+                  left: `${10 + (i * 5)}%`,
+                  top: `${15 + (i * 5)}%`,
                 }}
                 animate={{ 
-                  x: [0, Math.random() * 40 - 20, 0],
-                  y: [0, Math.random() * 40 - 20, 0],
+                  x: [0, (i % 5) * 5, 0],
+                  y: [0, (i % 3) * 5, 0],
                   opacity: [0.4, 1, 0.4],
-                  scale: [1, Math.random() + 0.5, 1]
+                  scale: [1, 1 + (i % 5) * 0.1, 1]
                 }}
                 transition={{ 
-                  duration: Math.random() * 3 + 2, 
+                  duration: 2 + (i % 3), 
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
@@ -619,7 +631,11 @@ export default function Home() {
           <div className="absolute inset-0 pointer-events-none">
             <motion.div 
               className="absolute left-[35%] top-[50%] w-[100px] h-[200px] bg-blue-500/5 blur-md"
-              style={{ clipPath: 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)' }}
+              style={{ 
+                clipPath: 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)',
+                left: "35%",
+                top: "50%"
+              }}
               animate={{ 
                 opacity: [0.1, 0.3, 0.1],
                 x: [-10, 10, -10]
@@ -632,7 +648,11 @@ export default function Home() {
             />
             <motion.div 
               className="absolute right-[35%] top-[50%] w-[100px] h-[200px] bg-indigo-500/5 blur-md"
-              style={{ clipPath: 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)' }}
+              style={{ 
+                clipPath: 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)',
+                right: "35%",
+                top: "50%"
+              }}
               animate={{ 
                 opacity: [0.1, 0.3, 0.1],
                 x: [10, -10, 10]
@@ -667,7 +687,6 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             className="text-xl md:text-2xl font-semibold mb-8 text-gray-300 flex justify-center items-center"
           >
-            <span className="mr-2">META AI ARMY –</span>
             <motion.span
               animate={{ opacity: [0, 1, 1, 0] }}
               transition={{ 

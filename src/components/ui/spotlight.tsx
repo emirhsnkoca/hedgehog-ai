@@ -73,8 +73,8 @@ export function Spotlight({
       style={{
         width: size,
         height: size,
-        left: spotlightLeft,
-        top: spotlightTop,
+        left: typeof window !== 'undefined' ? spotlightLeft : '50%',
+        top: typeof window !== 'undefined' ? spotlightTop : '50%',
       }}
     />
   );

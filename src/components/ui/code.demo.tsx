@@ -2,16 +2,20 @@
 
 import { SplineScene } from "@/components/ui/splite";
 import { Card } from "@/components/ui/card"
-import { Spotlight } from "@/components/ui/spotlight"
-import { useEffect, useState } from 'react'
+import { useEffect, useState, lazy, Suspense } from 'react'
+
+// Spotlight bileşenini dinamik olarak import ediyoruz
+const Spotlight = lazy(() => import('@/components/ui/spotlight').then(mod => ({ default: mod.Spotlight })));
 
 export function SplineSceneBasic() {
   const [mainText, setMainText] = useState("");
   const [subText, setSubText] = useState("");
-  const fullMainText = "Meta AI Army";
+  const fullMainText = "";
   const fullSubText = "Digital Army";
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    setIsClient(true);
     let mainIndex = 0;
     let subIndex = 0;
     
@@ -52,10 +56,15 @@ export function SplineSceneBasic() {
 
       {/* Content layer - positioned above the 3D scene */}
       <div className="relative z-[1] flex flex-col h-screen items-center justify-start pt-32 text-center pointer-events-none">
-        <Spotlight
-          className="-top-40 left-0 md:left-60 md:-top-20"
-          size={400}
-        />
+        {/* Spotlight sadece istemci tarafında render edilmeli */}
+        {isClient && (
+          <Suspense fallback={null}>
+            <Spotlight
+              className="-top-40 left-0 md:left-60 md:-top-20"
+              size={400}
+            />
+          </Suspense>
+        )}
         <div className="relative mb-4 py-8">
           <h1 
             className="text-6xl md:text-8xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-[#ff1b6b] via-[#e02acd] to-[#7928ca] animate-gradient-x"
