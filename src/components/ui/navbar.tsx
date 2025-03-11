@@ -13,7 +13,7 @@ export function Navbar() {
             <div className="relative h-20 w-20">
               <Image
                 src="/hedgehog-logo-glow.png"
-                alt="Hedgehog AI"
+                alt="Meta AI Army"
                 width={96}
                 height={96}
                 className="object-contain transition-all duration-300 group-hover:scale-110"
@@ -21,7 +21,7 @@ export function Navbar() {
               />
             </div>
             <span className="text-[2rem] font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#ff1b6b] to-[#7928ca] transition-all duration-300 group-hover:opacity-80">
-              Hedgehog AI
+              Meta AI Army
             </span>
           </Link>
 
