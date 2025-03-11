@@ -429,71 +429,71 @@ export default function Home() {
   ];
 
   return (
-    <main className="relative bg-[#050510] text-white">
+    <main className="relative bg-[#000000] text-white">
       {/* Navbar - Semi-transparent, becomes darker on scroll */}
       <motion.nav 
         initial={{ backgroundColor: 'rgba(5, 5, 16, 0)' }}
-        animate={{ backgroundColor: 'rgba(5, 5, 16, 0.8)' }}
+        animate={{ backgroundColor: 'rgba(10, 10, 15, 0.9)' }}
         transition={{ duration: 0.5 }}
         className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm"
       >
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          {/* Logo */}
-          <div className="text-xl font-bold text-white flex items-center">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-600">META AI ARMY</span>
+        <div className="w-full px-4 py-5 flex justify-between items-center">
+          {/* Logo - Left aligned */}
+          <div className="text-2xl font-bold text-white flex items-center pl-4">
+            <span className="text-white font-orbitron tracking-widest uppercase">META AI ARMY</span>
           </div>
           
-          {/* Navigation Links - Hidden on mobile */}
-          <div className="hidden md:flex items-center gap-8">
+          {/* Navigation Links - Centered */}
+          <div className="hidden md:flex items-center gap-6 absolute left-1/2 transform -translate-x-1/2">
             <motion.button
               whileHover={{ y: -2, color: '#fff' }}
               onClick={() => aboutRef.current?.scrollIntoView({ behavior: 'smooth' })}
-              className="text-sm text-gray-300 hover:text-white transition-colors"
+              className="text-base font-medium text-gray-300 hover:text-white transition-colors font-orbitron uppercase"
             >
               About
             </motion.button>
             <motion.button
               whileHover={{ y: -2, color: '#fff' }}
               onClick={() => featuresRef.current?.scrollIntoView({ behavior: 'smooth' })}
-              className="text-sm text-gray-300 hover:text-white transition-colors"
+              className="text-base font-medium text-gray-300 hover:text-white transition-colors font-orbitron uppercase"
             >
               Features
             </motion.button>
             <motion.button
               whileHover={{ y: -2, color: '#fff' }}
               onClick={() => roadmapRef.current?.scrollIntoView({ behavior: 'smooth' })}
-              className="text-sm text-gray-300 hover:text-white transition-colors"
+              className="text-base font-medium text-gray-300 hover:text-white transition-colors font-orbitron uppercase"
             >
               Roadmap
             </motion.button>
             <motion.button
               whileHover={{ y: -2, color: '#fff' }}
               onClick={() => teamRef.current?.scrollIntoView({ behavior: 'smooth' })}
-              className="text-sm text-gray-300 hover:text-white transition-colors"
+              className="text-base font-medium text-gray-300 hover:text-white transition-colors font-orbitron uppercase"
             >
               Team
             </motion.button>
             <motion.button
               whileHover={{ y: -2, color: '#fff' }}
               onClick={() => faqRef.current?.scrollIntoView({ behavior: 'smooth' })}
-              className="text-sm text-gray-300 hover:text-white transition-colors"
+              className="text-base font-medium text-gray-300 hover:text-white transition-colors font-orbitron uppercase"
             >
               SSS
             </motion.button>
           </div>
           
-          {/* CTA Buttons */}
-          <div className="flex items-center gap-3">
+          {/* CTA Buttons - Right aligned */}
+          <div className="flex items-center gap-3 pr-4">
             <Link href="https://t.me/hedgehogaibot" target="_blank" rel="noopener noreferrer">
               <motion.button
                 whileHover={{ 
                   scale: 1.03, 
-                  boxShadow: "0 0 15px rgba(37, 99, 235, 0.5)" 
+                  boxShadow: "0 0 15px rgba(200, 200, 200, 0.3)" 
                 }}
                 whileTap={{ scale: 0.97 }}
-                className="px-4 py-2 bg-[#0a0a20] border border-blue-600/30 text-blue-400 rounded-md text-sm font-medium transition-all hover:text-white"
+                className="px-5 py-2.5 bg-[#1a1a1a] border border-gray-700 text-gray-300 rounded-md text-base font-medium transition-all hover:text-white font-orbitron uppercase"
               >
-                Join Demo
+                JOIN DEMO
               </motion.button>
             </Link>
             
@@ -501,10 +501,10 @@ export default function Home() {
               <motion.button
                 whileHover={{ 
                   scale: 1.03, 
-                  boxShadow: "0 0 15px rgba(37, 99, 235, 0.3)" 
+                  boxShadow: "0 0 15px rgba(200, 200, 200, 0.3)" 
                 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-4 py-2 bg-blue-600 text-white rounded-md text-sm font-medium transition-all"
+                className="px-5 py-2.5 bg-[#2a2a2a] text-white rounded-md text-base font-medium transition-all font-orbitron uppercase"
               >
                 Start Now
               </motion.button>
@@ -668,7 +668,7 @@ export default function Home() {
         </div>
         
         {/* Hero Content */}
-        <div className="container mx-auto px-4 text-center z-10 mt-4">
+        <div className="max-w-5xl mx-auto px-4 text-center z-10 mt-4">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -706,104 +706,6 @@ export default function Home() {
             >
               AI-POWERED COMMUNITY MANAGEMENT
             </motion.span>
-          </motion.div>
-          
-          {/* Main CTA Buttons */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center mt-8"
-          >
-            <Link href="https://t.me/hedgehogaibot" target="_blank" rel="noopener noreferrer">
-              <motion.button
-                whileHover={{ 
-                  scale: 1.05, 
-                  boxShadow: "0 0 20px rgba(37, 99, 235, 0.5)" 
-                }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-blue-600 rounded-md font-bold text-lg transition-all relative overflow-hidden group"
-              >
-                <span className="relative z-10">Join the Live Demo</span>
-                <motion.span 
-                  className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-600 z-0"
-                  animate={{ 
-                    x: ['-100%', '100%'],
-                  }}
-                  transition={{ 
-                    duration: 3, 
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                  style={{ opacity: 0.5 }}
-                />
-              </motion.button>
-            </Link>
-            
-            <Link href="/pricing">
-              <motion.button
-                whileHover={{ 
-                  scale: 1.05, 
-                  boxShadow: "0 0 15px rgba(37, 99, 235, 0.3)" 
-                }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-transparent border border-blue-600 rounded-md font-bold text-lg transition-all relative overflow-hidden"
-              >
-                <span className="relative z-10">Start Now</span>
-                <motion.span 
-                  className="absolute inset-0 bg-blue-600/10 z-0"
-                  initial={{ opacity: 0 }}
-                  whileHover={{ opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-                />
-              </motion.button>
-            </Link>
-          </motion.div>
-        </div>
-        
-        {/* Scroll indicator */}
-        <motion.div 
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 2 }}
-          onClick={() => aboutRef.current?.scrollIntoView({ behavior: 'smooth' })}
-        >
-          <span className="text-gray-400 text-sm">Scroll down</span>
-          <svg 
-            className="w-6 h-6 text-blue-500" 
-            fill="none" 
-            strokeWidth="2" 
-            viewBox="0 0 24 24" 
-            stroke="currentColor"
-          >
-            <path d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
-        </motion.div>
-      </section>
-
-      {/* Trusted By Section */}
-      <section className="py-20 bg-[#060611]">
-        <div className="container mx-auto px-4">
-          <motion.h3
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            className="text-center text-2xl font-semibold mb-12 text-gray-300"
-          >
-            TRUSTED BY
-          </motion.h3>
-          
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center"
-          >
-            {/* Partner Logos */}
-            <div className="h-12 w-32 bg-gray-800 rounded-lg flex items-center justify-center text-blue-400 font-bold">Solana</div>
-            <div className="h-12 w-32 bg-gray-800 rounded-lg flex items-center justify-center text-green-400 font-bold">Step Finance</div>
-            <div className="h-12 w-32 bg-gray-800 rounded-lg flex items-center justify-center text-purple-400 font-bold">Raydium</div>
-            <div className="h-12 w-32 bg-gray-800 rounded-lg flex items-center justify-center text-yellow-400 font-bold">Orca</div>
           </motion.div>
         </div>
       </section>

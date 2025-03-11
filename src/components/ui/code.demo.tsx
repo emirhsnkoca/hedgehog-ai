@@ -11,7 +11,7 @@ export function SplineSceneBasic() {
   const [mainText, setMainText] = useState("");
   const [subText, setSubText] = useState("");
   const fullMainText = "";
-  const fullSubText = "Digital Army";
+  const fullSubText = "Digital Army installing...";
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
