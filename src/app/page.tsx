@@ -430,6 +430,11 @@ export default function Home() {
 
   return (
     <main className="relative bg-[#000000] text-white">
+      {/* Orbitron font için stil */}
+      <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap');
+      `}</style>
+      
       {/* Navbar - Semi-transparent, becomes darker on scroll */}
       <motion.nav 
         initial={{ backgroundColor: 'rgba(5, 5, 16, 0)' }}
@@ -625,7 +630,7 @@ export default function Home() {
           </div>
           
           {/* Main 3D Robot */}
-          <SplineSceneBasic />
+      <SplineSceneBasic />
           
           {/* Holographic shadow robots */}
           <div className="absolute inset-0 pointer-events-none">
@@ -725,51 +730,70 @@ export default function Home() {
       {/* About Section */}
       <section ref={aboutRef} id="about" className="relative min-h-screen w-full bg-[#060606] overflow-hidden py-20">
         {/* Squares Background */}
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0 w-full h-full pointer-events-auto">
           <Squares
             direction="diagonal"
             speed={0.5}
             squareSize={40}
             borderColor="#333"
             hoverFillColor="#222"
+            className="absolute inset-0 w-full h-full"
           />
         </div>
 
         {/* Content */}
-        <div className="relative z-10 container mx-auto px-4">
+        <div className="relative z-10 container mx-auto px-4 pointer-events-none">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-4xl md:text-5xl font-bold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-600"
+            className="text-4xl md:text-5xl font-bold text-center mb-16 text-white pointer-events-none"
+            style={{ 
+              fontFamily: 'Orbitron, sans-serif',
+              textShadow: '0 0 10px rgba(150, 150, 150, 0.5)',
+              letterSpacing: '1px'
+            }}
           >
             About Meta AI Army
           </motion.h2>
 
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-4xl mx-auto pointer-events-none">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="bg-gray-900/30 backdrop-blur-sm p-8 rounded-xl border border-gray-800 mb-12"
+              whileHover={{ scale: 1.02, boxShadow: "0px 5px 15px rgba(255, 255, 255, 0.1)" }}
+              className="bg-gray-900/70 backdrop-blur-sm p-8 rounded-xl border border-gray-800 mb-12 pointer-events-auto"
             >
-              <p className="text-gray-300 text-lg leading-relaxed mb-6">
-                Meta AI Army is a cutting-edge AI-powered community management platform designed specifically for Web3 projects. Our solution helps blockchain projects, DAOs, and crypto communities build engaged, informed, and active communities.
+              <p className="text-gray-200 text-lg leading-relaxed mb-6">
+                <span className="font-bold">Meta AI Army</span> is a cutting-edge AI-powered community management platform designed specifically for 
+                <span className="font-bold"> Web3 projects</span>. Our solution helps blockchain projects, DAOs, and crypto communities build engaged, informed, and active communities.
               </p>
-              <p className="text-gray-300 text-lg leading-relaxed">
-                With advanced natural language processing and machine learning capabilities, our AI bots understand the nuances of blockchain technology, tokenomics, and the unique language of the crypto ecosystem, providing intelligent and context-aware interactions that keep your community engaged and informed.
+              <p className="text-gray-200 text-lg leading-relaxed">
+                With advanced natural language processing and machine learning capabilities, our AI bots understand the 
+                <span className="font-bold"> nuances of blockchain technology</span>, tokenomics, and the unique language of the crypto ecosystem, providing intelligent and context-aware interactions that keep your community engaged and informed.
               </p>
             </motion.div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pointer-events-none">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-                className="bg-gray-900/30 backdrop-blur-sm p-6 rounded-xl border border-gray-800"
+                whileHover={{ scale: 1.03, boxShadow: "0px 5px 15px rgba(255, 255, 255, 0.1)" }}
+                className="bg-gray-900/60 backdrop-blur-sm p-6 rounded-xl border border-gray-800 pointer-events-auto"
               >
-                <h3 className="text-xl font-bold mb-3 text-blue-400">Our Mission</h3>
-                <p className="text-gray-400">
+                <h3 className="text-xl font-bold mb-3 text-white relative inline-block">
+                  Our Mission
+                  <motion.span 
+                    className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-500"
+                    initial={{ width: 0 }}
+                    whileInView={{ width: '100%' }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    viewport={{ once: true }}
+                  />
+                </h3>
+                <p className="text-gray-300">
                   To revolutionize community management in the Web3 space by providing AI-powered tools that create vibrant, engaged, and well-informed communities.
                 </p>
               </motion.div>
@@ -778,10 +802,20 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-                className="bg-gray-900/30 backdrop-blur-sm p-6 rounded-xl border border-gray-800"
+                whileHover={{ scale: 1.03, boxShadow: "0px 5px 15px rgba(255, 255, 255, 0.1)" }}
+                className="bg-gray-900/60 backdrop-blur-sm p-6 rounded-xl border border-gray-800 pointer-events-auto"
               >
-                <h3 className="text-xl font-bold mb-3 text-purple-400">Our Vision</h3>
-                <p className="text-gray-400">
+                <h3 className="text-xl font-bold mb-3 text-white relative inline-block">
+                  Our Vision
+                  <motion.span 
+                    className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-500"
+                    initial={{ width: 0 }}
+                    whileInView={{ width: '100%' }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    viewport={{ once: true }}
+                  />
+                </h3>
+                <p className="text-gray-300">
                   A future where Web3 communities thrive through intelligent, automated engagement that enhances human connection rather than replacing it.
                 </p>
               </motion.div>

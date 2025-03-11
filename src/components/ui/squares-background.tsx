@@ -38,8 +38,16 @@ export function Squares({
     canvas.style.background = "#060606"
 
     const resizeCanvas = () => {
-      canvas.width = canvas.offsetWidth
-      canvas.height = canvas.offsetHeight
+      // Ensure canvas covers the entire viewport
+      const container = canvas.parentElement
+      if (container) {
+        canvas.width = container.offsetWidth
+        canvas.height = container.offsetHeight
+      } else {
+        canvas.width = window.innerWidth
+        canvas.height = window.innerHeight
+      }
+      
       numSquaresX.current = Math.ceil(canvas.width / squareSize) + 1
       numSquaresY.current = Math.ceil(canvas.height / squareSize) + 1
     }
@@ -74,6 +82,7 @@ export function Squares({
         }
       }
 
+      // Soften the edges with a gradient
       const gradient = ctx.createRadialGradient(
         canvas.width / 2,
         canvas.height / 2,
@@ -126,6 +135,12 @@ export function Squares({
       const mouseX = event.clientX - rect.left
       const mouseY = event.clientY - rect.top
 
+      // Ensure mouseX and mouseY are within canvas bounds
+      if (mouseX < 0 || mouseX > canvas.width || mouseY < 0 || mouseY > canvas.height) {
+        setHoveredSquare(null)
+        return
+      }
+
       const startX = Math.floor(gridOffset.current.x / squareSize) * squareSize
       const startY = Math.floor(gridOffset.current.y / squareSize) * squareSize
 
@@ -143,9 +158,28 @@ export function Squares({
       setHoveredSquare(null)
     }
 
+    // Global mouse move event to capture all mouse movements
+    const handleGlobalMouseMove = (event: MouseEvent) => {
+      // Check if mouse is within canvas bounds
+      const rect = canvas.getBoundingClientRect()
+      const mouseX = event.clientX - rect.left
+      const mouseY = event.clientY - rect.top
+      
+      if (
+        mouseX >= 0 && 
+        mouseX <= canvas.width && 
+        mouseY >= 0 && 
+        mouseY <= canvas.height
+      ) {
+        handleMouseMove(event)
+      } else {
+        setHoveredSquare(null)
+      }
+    }
+
     // Event listeners
     window.addEventListener("resize", resizeCanvas)
-    canvas.addEventListener("mousemove", handleMouseMove)
+    window.addEventListener("mousemove", handleGlobalMouseMove)
     canvas.addEventListener("mouseleave", handleMouseLeave)
 
     // Initial setup
@@ -155,7 +189,7 @@ export function Squares({
     // Cleanup
     return () => {
       window.removeEventListener("resize", resizeCanvas)
-      canvas.removeEventListener("mousemove", handleMouseMove)
+      window.removeEventListener("mousemove", handleGlobalMouseMove)
       canvas.removeEventListener("mouseleave", handleMouseLeave)
       if (requestRef.current) {
         cancelAnimationFrame(requestRef.current)
@@ -167,6 +201,7 @@ export function Squares({
     <canvas
       ref={canvasRef}
       className={`w-full h-full border-none block ${className}`}
+      style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
     />
   )
 } 
