@@ -422,12 +422,229 @@ export default function Home() {
   ];
 
   return (
-    <main className="relative bg-black text-white">
+    <main className="relative bg-[#050510] text-white">
+      {/* Navbar - Semi-transparent, becomes darker on scroll */}
+      <motion.nav 
+        initial={{ backgroundColor: 'rgba(5, 5, 16, 0)' }}
+        animate={{ backgroundColor: 'rgba(5, 5, 16, 0.8)' }}
+        transition={{ duration: 0.5 }}
+        className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm"
+      >
+        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+          {/* Logo */}
+          <div className="text-xl font-bold text-white flex items-center">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-600">META AI ARMY</span>
+          </div>
+          
+          {/* Navigation Links - Hidden on mobile */}
+          <div className="hidden md:flex items-center gap-8">
+            <motion.button
+              whileHover={{ y: -2, color: '#fff' }}
+              onClick={() => aboutRef.current?.scrollIntoView({ behavior: 'smooth' })}
+              className="text-sm text-gray-300 hover:text-white transition-colors"
+            >
+              About
+            </motion.button>
+            <motion.button
+              whileHover={{ y: -2, color: '#fff' }}
+              onClick={() => featuresRef.current?.scrollIntoView({ behavior: 'smooth' })}
+              className="text-sm text-gray-300 hover:text-white transition-colors"
+            >
+              Features
+            </motion.button>
+            <motion.button
+              whileHover={{ y: -2, color: '#fff' }}
+              onClick={() => roadmapRef.current?.scrollIntoView({ behavior: 'smooth' })}
+              className="text-sm text-gray-300 hover:text-white transition-colors"
+            >
+              Roadmap
+            </motion.button>
+            <motion.button
+              whileHover={{ y: -2, color: '#fff' }}
+              onClick={() => teamRef.current?.scrollIntoView({ behavior: 'smooth' })}
+              className="text-sm text-gray-300 hover:text-white transition-colors"
+            >
+              Team
+            </motion.button>
+            <motion.button
+              whileHover={{ y: -2, color: '#fff' }}
+              onClick={() => faqRef.current?.scrollIntoView({ behavior: 'smooth' })}
+              className="text-sm text-gray-300 hover:text-white transition-colors"
+            >
+              SSS
+            </motion.button>
+          </div>
+          
+          {/* CTA Buttons */}
+          <div className="flex items-center gap-3">
+            <Link href="https://t.me/hedgehogaibot" target="_blank" rel="noopener noreferrer">
+              <motion.button
+                whileHover={{ 
+                  scale: 1.03, 
+                  boxShadow: "0 0 15px rgba(37, 99, 235, 0.5)" 
+                }}
+                whileTap={{ scale: 0.97 }}
+                className="px-4 py-2 bg-[#0a0a20] border border-blue-600/30 text-blue-400 rounded-md text-sm font-medium transition-all hover:text-white"
+              >
+                Join Demo
+              </motion.button>
+            </Link>
+            
+            <Link href="/pricing">
+              <motion.button
+                whileHover={{ 
+                  scale: 1.03, 
+                  boxShadow: "0 0 15px rgba(37, 99, 235, 0.3)" 
+                }}
+                whileTap={{ scale: 0.95 }}
+                className="px-4 py-2 bg-blue-600 text-white rounded-md text-sm font-medium transition-all"
+              >
+                Start Now
+              </motion.button>
+            </Link>
+          </div>
+        </div>
+      </motion.nav>
+
       {/* Hero Section */}
-      <section className="min-h-screen relative flex flex-col items-center justify-center">
-        {/* 3D Robot */}
-        <div className="w-full h-[60vh] relative">
+      <section className="min-h-screen relative flex flex-col items-center justify-center pt-16">
+        {/* Background Effects */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Grid background */}
+          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-repeat opacity-5"></div>
+          
+          {/* Data streams effect */}
+          <div className="absolute inset-0">
+            {[...Array(20)].map((_, i) => (
+              <motion.div
+                key={i}
+                initial={{ 
+                  opacity: 0.1, 
+                  x: `${Math.random() * 100}%`, 
+                  y: -20, 
+                  height: `${Math.random() * 30 + 10}%` 
+                }}
+                animate={{ 
+                  y: '120%', 
+                  opacity: [0.1, 0.3, 0.1],
+                }}
+                transition={{ 
+                  duration: Math.random() * 10 + 10, 
+                  repeat: Infinity, 
+                  delay: Math.random() * 5,
+                  ease: "linear"
+                }}
+                className="absolute w-[1px] bg-gradient-to-b from-transparent via-blue-500/20 to-transparent"
+              />
+            ))}
+          </div>
+          
+          {/* Glitch effect overlay */}
+          <motion.div 
+            className="absolute inset-0 bg-gradient-to-b from-[#050510]/0 via-[#050510]/50 to-[#050510]/0 opacity-30"
+            animate={{ 
+              opacity: [0.3, 0.4, 0.3],
+              backgroundPosition: ['0% 0%', '100% 100%', '0% 0%']
+            }}
+            transition={{ 
+              duration: 10, 
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          />
+          
+          {/* Ambient glow */}
+          <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-blue-900/10 filter blur-[100px]"></div>
+        </div>
+        
+        {/* 3D Robot with effects */}
+        <div className="w-full h-[60vh] relative mt-16">
+          {/* Shadow robots effect */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <motion.div 
+              className="absolute w-[300px] h-[300px] bg-blue-900/5 rounded-full filter blur-[50px]"
+              animate={{ 
+                scale: [1, 1.1, 1],
+                opacity: [0.3, 0.5, 0.3]
+              }}
+              transition={{ 
+                duration: 4, 
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+            
+            {/* Energy pulse effect */}
+            <motion.div 
+              className="absolute w-[400px] h-[400px] border-2 border-blue-500/10 rounded-full"
+              animate={{ 
+                scale: [1, 1.5, 1],
+                opacity: [0.1, 0, 0.1]
+              }}
+              transition={{ 
+                duration: 3, 
+                repeat: Infinity,
+                ease: "easeOut"
+              }}
+            />
+            
+            {/* Floating data particles */}
+            {[...Array(15)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-1 h-1 bg-blue-400 rounded-full"
+                style={{
+                  left: `${Math.random() * 80 + 10}%`,
+                  top: `${Math.random() * 80 + 10}%`,
+                }}
+                animate={{ 
+                  x: [0, Math.random() * 40 - 20, 0],
+                  y: [0, Math.random() * 40 - 20, 0],
+                  opacity: [0.4, 1, 0.4],
+                  scale: [1, Math.random() + 0.5, 1]
+                }}
+                transition={{ 
+                  duration: Math.random() * 3 + 2, 
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+            ))}
+          </div>
+          
+          {/* Main 3D Robot */}
           <SplineSceneBasic />
+          
+          {/* Holographic shadow robots */}
+          <div className="absolute inset-0 pointer-events-none">
+            <motion.div 
+              className="absolute left-[35%] top-[50%] w-[100px] h-[200px] bg-blue-500/5 blur-md"
+              style={{ clipPath: 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)' }}
+              animate={{ 
+                opacity: [0.1, 0.3, 0.1],
+                x: [-10, 10, -10]
+              }}
+              transition={{ 
+                duration: 8, 
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+            <motion.div 
+              className="absolute right-[35%] top-[50%] w-[100px] h-[200px] bg-indigo-500/5 blur-md"
+              style={{ clipPath: 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)' }}
+              animate={{ 
+                opacity: [0.1, 0.3, 0.1],
+                x: [10, -10, 10]
+              }}
+              transition={{ 
+                duration: 8, 
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 1
+              }}
+            />
+          </div>
         </div>
         
         {/* Hero Content */}
@@ -436,21 +653,43 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-blue-600"
+            className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 text-white font-orbitron"
+            style={{ 
+              textShadow: '0 0 10px rgba(59, 130, 246, 0.3)'
+            }}
           >
             REVOLUTIONIZE YOUR WEB3 COMMUNITY
           </motion.h1>
           
-          <motion.h2
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            className="text-xl md:text-3xl font-semibold mb-8 text-gray-300"
+            className="text-xl md:text-2xl font-semibold mb-8 text-gray-300 flex justify-center items-center"
           >
-            META AI ARMY – AI-POWERED COMMUNITY MANAGEMENT
-          </motion.h2>
+            <span className="mr-2">META AI ARMY –</span>
+            <motion.span
+              animate={{ opacity: [0, 1, 1, 0] }}
+              transition={{ 
+                duration: 4, 
+                repeat: Infinity,
+                times: [0, 0.1, 0.9, 1]
+              }}
+              className="text-blue-400"
+            >
+              |
+            </motion.span>
+            <motion.span
+              initial={{ width: 0 }}
+              animate={{ width: 'auto' }}
+              transition={{ duration: 1.5, delay: 0.5 }}
+              className="overflow-hidden whitespace-nowrap text-blue-400"
+            >
+              AI-POWERED COMMUNITY MANAGEMENT
+            </motion.span>
+          </motion.div>
           
-          {/* CTA Buttons */}
+          {/* Main CTA Buttons */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -459,86 +698,68 @@ export default function Home() {
           >
             <Link href="https://t.me/hedgehogaibot" target="_blank" rel="noopener noreferrer">
               <motion.button
-                whileHover={{ scale: 1.05, boxShadow: "0 0 15px rgba(147, 51, 234, 0.5)" }}
+                whileHover={{ 
+                  scale: 1.05, 
+                  boxShadow: "0 0 20px rgba(37, 99, 235, 0.5)" 
+                }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full font-bold text-lg transition-all"
+                className="px-8 py-4 bg-blue-600 rounded-md font-bold text-lg transition-all relative overflow-hidden group"
               >
-                Join the Live Demo
+                <span className="relative z-10">Join the Live Demo</span>
+                <motion.span 
+                  className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-600 z-0"
+                  animate={{ 
+                    x: ['-100%', '100%'],
+                  }}
+                  transition={{ 
+                    duration: 3, 
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                  style={{ opacity: 0.5 }}
+                />
               </motion.button>
             </Link>
             
             <Link href="/pricing">
               <motion.button
-                whileHover={{ scale: 1.05, boxShadow: "0 0 15px rgba(59, 130, 246, 0.5)" }}
+                whileHover={{ 
+                  scale: 1.05, 
+                  boxShadow: "0 0 15px rgba(37, 99, 235, 0.3)" 
+                }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-transparent border-2 border-blue-600 rounded-full font-bold text-lg transition-all"
+                className="px-8 py-4 bg-transparent border border-blue-600 rounded-md font-bold text-lg transition-all relative overflow-hidden"
               >
-                Start Now
+                <span className="relative z-10">Start Now</span>
+                <motion.span 
+                  className="absolute inset-0 bg-blue-600/10 z-0"
+                  initial={{ opacity: 0 }}
+                  whileHover={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                />
               </motion.button>
             </Link>
           </motion.div>
         </div>
         
-        {/* Navigation Buttons */}
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-6">
-          {/* Scroll indicator */}
-          <motion.div 
-            className="flex flex-col items-center gap-2 cursor-pointer"
-            animate={{ y: [0, 10, 0] }}
-            transition={{ repeat: Infinity, duration: 2 }}
-            onClick={() => aboutRef.current?.scrollIntoView({ behavior: 'smooth' })}
+        {/* Scroll indicator */}
+        <motion.div 
+          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ repeat: Infinity, duration: 2 }}
+          onClick={() => aboutRef.current?.scrollIntoView({ behavior: 'smooth' })}
+        >
+          <span className="text-gray-400 text-sm">Scroll down</span>
+          <svg 
+            className="w-6 h-6 text-blue-500" 
+            fill="none" 
+            strokeWidth="2" 
+            viewBox="0 0 24 24" 
+            stroke="currentColor"
           >
-            <span className="text-gray-400 text-sm">Scroll down</span>
-            <svg 
-              className="w-6 h-6 text-gray-400" 
-              fill="none" 
-              strokeWidth="2" 
-              viewBox="0 0 24 24" 
-              stroke="currentColor"
-            >
-              <path d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
-          </motion.div>
-          
-          {/* Quick navigation */}
-          <div className="flex gap-4">
-            <motion.button
-              whileHover={{ scale: 1.1, y: -2 }}
-              onClick={() => aboutRef.current?.scrollIntoView({ behavior: 'smooth' })}
-              className="text-sm text-gray-400 hover:text-white transition-colors"
-            >
-              About
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.1, y: -2 }}
-              onClick={() => featuresRef.current?.scrollIntoView({ behavior: 'smooth' })}
-              className="text-sm text-gray-400 hover:text-white transition-colors"
-            >
-              Features
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.1, y: -2 }}
-              onClick={() => roadmapRef.current?.scrollIntoView({ behavior: 'smooth' })}
-              className="text-sm text-gray-400 hover:text-white transition-colors"
-            >
-              Roadmap
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.1, y: -2 }}
-              onClick={() => teamRef.current?.scrollIntoView({ behavior: 'smooth' })}
-              className="text-sm text-gray-400 hover:text-white transition-colors"
-            >
-              Team
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.1, y: -2 }}
-              onClick={() => faqRef.current?.scrollIntoView({ behavior: 'smooth' })}
-              className="text-sm text-gray-400 hover:text-white transition-colors"
-            >
-              SSS
-            </motion.button>
-          </div>
-        </div>
+            <path d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+        </motion.div>
       </section>
 
       {/* Trusted By Section */}
