@@ -8,14 +8,14 @@ import { useEffect, useState } from 'react'
 export function SplineSceneBasic() {
   const [mainText, setMainText] = useState("");
   const [subText, setSubText] = useState("");
-  const fullMainText = "Hedgehog AI Bot";
-  const fullSubText = "AI Assistant";
+  const fullMainText = "Meta AI Army";
+  const fullSubText = "Digital Army";
 
   useEffect(() => {
     let mainIndex = 0;
     let subIndex = 0;
     
-    // Ana başlık için daktilo efekti - 80ms'ye düşürdüm
+    // Typewriter effect for main title - reduced to 80ms
     const mainInterval = setInterval(() => {
       if (mainIndex <= fullMainText.length) {
         setMainText(fullMainText.slice(0, mainIndex));
@@ -23,7 +23,7 @@ export function SplineSceneBasic() {
       } else {
         clearInterval(mainInterval);
         
-        // Alt yazı için daktilo efekti - 50ms'ye düşürdüm
+        // Typewriter effect for subtitle - reduced to 60ms
         const subInterval = setInterval(() => {
           if (subIndex <= fullSubText.length) {
             setSubText(fullSubText.slice(0, subIndex));

@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Hedgehog AI - Yapay Zeka Destekli Kod Asistanı",
-  description: "Hedgehog AI, yapay zeka destekli kod geliştirme asistanı. Hızlı, güvenli ve akıllı.",
+  title: "Meta AI Army - AI-Powered Code Assistant",
+  description: "Meta AI Army, an AI-powered code development assistant. Fast, secure, and intelligent.",
 };
 
 export default function RootLayout({
