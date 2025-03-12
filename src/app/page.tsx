@@ -31,8 +31,14 @@ const FeatureCard = ({
         y: -5,
         boxShadow: `0 0 30px rgba(150, 150, 150, 0.2)`
       }}
-      className={`bg-[#0a0a1a]/60 backdrop-blur-sm p-8 rounded-none border border-gray-800 relative group overflow-hidden`}
+      className="bg-[#0a0a0a]/80 backdrop-blur-sm p-8 border-0 relative group overflow-hidden"
     >
+      {/* Robotic border */}
+      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-500 to-transparent"></div>
+      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-500 to-transparent"></div>
+      <div className="absolute top-0 left-0 h-full w-[1px] bg-gradient-to-b from-transparent via-gray-500 to-transparent"></div>
+      <div className="absolute top-0 right-0 h-full w-[1px] bg-gradient-to-b from-transparent via-gray-500 to-transparent"></div>
+      
       {/* Robotic corner elements */}
       <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-gray-500 opacity-50 group-hover:opacity-100 group-hover:border-white group-hover:w-10 group-hover:h-10 transition-all duration-300"></div>
       <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-gray-500 opacity-50 group-hover:opacity-100 group-hover:border-white group-hover:w-10 group-hover:h-10 transition-all duration-300"></div>
@@ -40,20 +46,33 @@ const FeatureCard = ({
       <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-gray-500 opacity-50 group-hover:opacity-100 group-hover:border-white group-hover:w-10 group-hover:h-10 transition-all duration-300"></div>
       
       {/* Background glow effect */}
-      <div className="absolute -inset-1 bg-gradient-to-r from-transparent via-gray-800 to-transparent opacity-0 group-hover:opacity-20 blur-xl transition-all duration-700"></div>
+      <div className="absolute -inset-1 bg-gradient-to-r from-transparent via-gray-800 to-transparent opacity-0 group-hover:opacity-30 blur-xl transition-all duration-700"></div>
       
       {/* Circuit board pattern on hover */}
       <div 
-        className="absolute inset-0 opacity-0 group-hover:opacity-15 transition-opacity duration-500"
+        className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10 H 90 V 90 H 10 Z' fill='none' stroke='rgba(150, 150, 150, 0.1)' stroke-width='0.5'/%3E%3Cpath d='M30 10 V 90 M 70 10 V 90 M 10 30 H 90 M 10 70 H 90' stroke='rgba(150, 150, 150, 0.1)' stroke-width='0.5'/%3E%3Ccircle cx='10' cy='10' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='90' cy='10' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='10' cy='90' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='90' cy='90' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='10' cy='30' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='10' cy='70' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='30' cy='10' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='70' cy='10' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='30' cy='90' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='70' cy='90' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='90' cy='30' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='90' cy='70' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3C/svg%3E")`,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10 H 90 V 90 H 10 Z' fill='none' stroke='rgba(200, 200, 200, 0.2)' stroke-width='0.5'/%3E%3Cpath d='M30 10 V 90 M 70 10 V 90 M 10 30 H 90 M 10 70 H 90' stroke='rgba(200, 200, 200, 0.2)' stroke-width='0.5'/%3E%3Ccircle cx='10' cy='10' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='90' cy='10' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='10' cy='90' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='90' cy='90' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='10' cy='30' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='10' cy='70' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='30' cy='10' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='70' cy='10' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='30' cy='90' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='70' cy='90' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='90' cy='30' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='90' cy='70' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3C/svg%3E")`,
           backgroundSize: '50px 50px'
         }}
       ></div>
       
-      {/* Scanline effect on hover */}
+      {/* Scanline effect */}
       <motion.div
-        className="absolute left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-400 to-transparent opacity-0 group-hover:opacity-70"
+        className="absolute left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-white to-transparent opacity-30"
+        animate={{
+          top: ["0%", "100%", "0%"],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "linear"
+        }}
+      ></motion.div>
+      
+      {/* Additional scanlines on hover */}
+      <motion.div
+        className="absolute left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-70"
         style={{ top: '30%' }}
         animate={{
           y: [0, 5, 0],
@@ -67,7 +86,7 @@ const FeatureCard = ({
       ></motion.div>
       
       <motion.div
-        className="absolute left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-400 to-transparent opacity-0 group-hover:opacity-70"
+        className="absolute left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-70"
         style={{ top: '60%' }}
         animate={{
           y: [0, -5, 0],
@@ -85,10 +104,10 @@ const FeatureCard = ({
       <div className="relative mb-6 inline-block">
         <div className="text-5xl text-white relative z-10">{icon}</div>
         <motion.div 
-          className="absolute -inset-1 rounded-full bg-white opacity-0 group-hover:opacity-20 blur-md"
+          className="absolute -inset-1 rounded-full bg-white opacity-0 group-hover:opacity-30 blur-md"
           animate={{ 
             scale: [1, 1.2, 1],
-            opacity: [0, 0.2, 0]
+            opacity: [0, 0.3, 0]
           }}
           transition={{ 
             duration: 2,
@@ -111,7 +130,7 @@ const FeatureCard = ({
       </p>
       
       {/* Digital noise effect on hover */}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-10 mix-blend-screen pointer-events-none transition-opacity duration-300">
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-15 mix-blend-screen pointer-events-none transition-opacity duration-300">
         {[...Array(20)].map((_, i) => (
           <div 
             key={`noise-${i}`}
@@ -121,19 +140,11 @@ const FeatureCard = ({
               height: '1px',
               left: `${(i * 5) % 100}%`,
               top: `${(i * 7) % 100}%`,
-              opacity: 0.2,
-              boxShadow: '0 0 2px rgba(255, 255, 255, 0.5)'
+              opacity: 0.3,
+              boxShadow: '0 0 2px rgba(255, 255, 255, 0.7)'
             }}
           />
         ))}
-      </div>
-      
-      {/* Animated border on hover */}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-500 to-transparent"></div>
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-500 to-transparent"></div>
-        <div className="absolute top-0 left-0 w-px h-full bg-gradient-to-b from-transparent via-gray-500 to-transparent"></div>
-        <div className="absolute top-0 right-0 w-px h-full bg-gradient-to-b from-transparent via-gray-500 to-transparent"></div>
       </div>
     </motion.div>
   );
@@ -400,25 +411,25 @@ export default function Home() {
       icon: "🎭",
       title: "Custom AI Personas",
       description: "Create unique AI personalities for your community - from enthusiastic Hype Generators to analytical Skeptics and vigilant Moderators. Each persona is designed to engage your community in different ways.",
-      color: "purple"
+      color: "gray"
     },
     {
       icon: "💬",
       title: "Real-Time Engagement",
       description: "Our AI bots respond dynamically to community discussions, mentioning users by name, asking follow-up questions, and sparking meaningful conversations.",
-      color: "blue"
+      color: "gray"
     },
     {
       icon: "🛡️",
       title: "Automated Moderation & FUD Control",
       description: "Protect your community with AI-driven moderation that detects and addresses misinformation in real-time. Our system identifies potential FUD and responds with accurate information.",
-      color: "cyan"
+      color: "gray"
     },
     {
       icon: "🚀",
       title: "Web3 & Crypto-Specific AI",
       description: "Our AI is specifically trained on Web3 and cryptocurrency concepts, capable of discussing tokenomics, project roadmaps, technical implementations, and investment strategies.",
-      color: "pink"
+      color: "gray"
     }
   ];
   
@@ -901,17 +912,17 @@ export default function Home() {
           
           {/* Floating particles */}
           <div className="absolute inset-0">
-            {[...Array(20)].map((_, i) => (
+            {[...Array(15)].map((_, i) => (
               <motion.div
                 key={`particle-${i}`}
                 className="absolute w-1 h-1 rounded-full bg-gray-400"
                 style={{
                   left: `${(i * 5) % 100}%`,
                   top: `${(i * 5) % 100}%`,
-                  opacity: 0.4
+                  opacity: 0.2
                 }}
                 animate={{
-                  opacity: [0.2, 0.5, 0.2],
+                  opacity: [0.1, 0.3, 0.1],
                   scale: [1, 1.5, 1],
                   y: [0, -10, 0]
                 }}
@@ -952,14 +963,14 @@ export default function Home() {
               <div 
                 className="absolute inset-0 opacity-0 group-hover:opacity-15 transition-opacity duration-500"
                 style={{
-                  backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10 H 90 V 90 H 10 Z' fill='none' stroke='rgba(150, 150, 150, 0.1)' stroke-width='0.5'/%3E%3Cpath d='M30 10 V 90 M 70 10 V 90 M 10 30 H 90 M 10 70 H 90' stroke='rgba(150, 150, 150, 0.1)' stroke-width='0.5'/%3E%3Ccircle cx='10' cy='10' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='90' cy='10' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='10' cy='90' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='90' cy='90' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='10' cy='30' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='10' cy='70' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='30' cy='10' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='70' cy='10' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='30' cy='90' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='70' cy='90' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='90' cy='30' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='90' cy='70' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3C/svg%3E")`,
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10 H 90 V 90 H 10 Z' fill='none' stroke='rgba(200, 200, 200, 0.2)' stroke-width='0.5'/%3E%3Cpath d='M30 10 V 90 M 70 10 V 90 M 10 30 H 90 M 10 70 H 90' stroke='rgba(200, 200, 200, 0.2)' stroke-width='0.5'/%3E%3Ccircle cx='10' cy='10' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='90' cy='10' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='10' cy='90' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='90' cy='90' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='10' cy='30' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='10' cy='70' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='30' cy='10' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='70' cy='10' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='30' cy='90' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='70' cy='90' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='90' cy='30' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='90' cy='70' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3C/svg%3E")`,
                   backgroundSize: '50px 50px'
                 }}
               ></div>
               
               {/* Animated scan line */}
               <motion.div
-                className="absolute left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-gray-400 to-transparent group-hover:opacity-80 group-hover:via-gray-300 group-hover:h-[3px] group-hover:shadow-[0_0_5px_rgba(255,255,255,0.3)] transition-all duration-300"
+                className="absolute left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-white to-transparent group-hover:opacity-80 group-hover:via-gray-300 group-hover:h-[3px] group-hover:shadow-[0_0_5px_rgba(255,255,255,0.3)] transition-all duration-300"
                 animate={{
                   top: ["0%", "100%", "0%"],
                 }}
@@ -973,7 +984,7 @@ export default function Home() {
               
               {/* Additional scanlines on hover */}
               <motion.div
-                className="absolute left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-400 to-transparent opacity-0 group-hover:opacity-70"
+                className="absolute left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-70"
                 style={{ top: '33%' }}
                 animate={{
                   y: [0, 5, 0],
@@ -987,7 +998,7 @@ export default function Home() {
               ></motion.div>
               
               <motion.div
-                className="absolute left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-400 to-transparent opacity-0 group-hover:opacity-70"
+                className="absolute left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-70"
                 style={{ top: '66%' }}
                 animate={{
                   y: [0, -5, 0],
@@ -1002,7 +1013,7 @@ export default function Home() {
               ></motion.div>
               
               {/* Digital noise effect on hover */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-10 mix-blend-screen pointer-events-none transition-opacity duration-300">
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-15 mix-blend-screen pointer-events-none transition-opacity duration-300">
                 {[...Array(30)].map((_, i) => (
                   <div 
                     key={`noise-${i}`}
@@ -1012,8 +1023,8 @@ export default function Home() {
                       height: '1px',
                       left: `${(i * 3) % 100}%`,
                       top: `${(i * 5) % 100}%`,
-                      opacity: 0.2,
-                      boxShadow: '0 0 2px rgba(255, 255, 255, 0.5)'
+                      opacity: 0.3,
+                      boxShadow: '0 0 2px rgba(255, 255, 255, 0.7)'
                     }}
                   />
                 ))}
@@ -1046,14 +1057,27 @@ export default function Home() {
                 <div 
                   className="absolute inset-0 opacity-0 group-hover:opacity-15 transition-opacity duration-500"
                   style={{
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10 H 90 V 90 H 10 Z' fill='none' stroke='rgba(150, 150, 150, 0.1)' stroke-width='0.5'/%3E%3Cpath d='M30 10 V 90 M 70 10 V 90 M 10 30 H 90 M 10 70 H 90' stroke='rgba(150, 150, 150, 0.1)' stroke-width='0.5'/%3E%3Ccircle cx='10' cy='10' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='90' cy='10' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='10' cy='90' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='90' cy='90' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='10' cy='30' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='10' cy='70' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='30' cy='10' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='70' cy='10' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='30' cy='90' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='70' cy='90' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='90' cy='30' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='90' cy='70' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3C/svg%3E")`,
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10 H 90 V 90 H 10 Z' fill='none' stroke='rgba(200, 200, 200, 0.2)' stroke-width='0.5'/%3E%3Cpath d='M30 10 V 90 M 70 10 V 90 M 10 30 H 90 M 10 70 H 90' stroke='rgba(200, 200, 200, 0.2)' stroke-width='0.5'/%3E%3Ccircle cx='10' cy='10' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='90' cy='10' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='10' cy='90' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='90' cy='90' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='10' cy='30' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='10' cy='70' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='30' cy='10' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='70' cy='10' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='30' cy='90' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='70' cy='90' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='90' cy='30' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='90' cy='70' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3C/svg%3E")`,
                     backgroundSize: '50px 50px'
                   }}
                 ></div>
                 
                 {/* Scanline effect on hover */}
                 <motion.div
-                  className="absolute left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-400 to-transparent opacity-0 group-hover:opacity-70"
+                  className="absolute left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-white to-transparent group-hover:opacity-80 group-hover:via-gray-300 group-hover:h-[3px] group-hover:shadow-[0_0_5px_rgba(255,255,255,0.3)] transition-all duration-300"
+                  animate={{
+                    top: ["0%", "100%", "0%"],
+                  }}
+                  transition={{
+                    duration: 8,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                  style={{ opacity: 0.5 }}
+                ></motion.div>
+                
+                <motion.div
+                  className="absolute left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-70"
                   style={{ top: '33%' }}
                   animate={{
                     y: [0, 5, 0],
@@ -1067,7 +1091,7 @@ export default function Home() {
                 ></motion.div>
                 
                 <motion.div
-                  className="absolute left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-400 to-transparent opacity-0 group-hover:opacity-70"
+                  className="absolute left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-70"
                   style={{ top: '66%' }}
                   animate={{
                     y: [0, -5, 0],
@@ -1095,7 +1119,7 @@ export default function Home() {
                 ></motion.div>
                 
                 {/* Digital noise effect on hover */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-10 mix-blend-screen pointer-events-none transition-opacity duration-300">
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-15 mix-blend-screen pointer-events-none transition-opacity duration-300">
                   {[...Array(30)].map((_, i) => (
                     <div 
                       key={`noise-${i}`}
@@ -1105,8 +1129,8 @@ export default function Home() {
                         height: '1px',
                         left: `${(i * 3) % 100}%`,
                         top: `${(i * 5) % 100}%`,
-                        opacity: 0.2,
-                        boxShadow: '0 0 2px rgba(255, 255, 255, 0.5)'
+                        opacity: 0.3,
+                        boxShadow: '0 0 2px rgba(255, 255, 255, 0.7)'
                       }}
                     />
                   ))}
@@ -1136,14 +1160,27 @@ export default function Home() {
                 <div 
                   className="absolute inset-0 opacity-0 group-hover:opacity-15 transition-opacity duration-500"
                   style={{
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10 H 90 V 90 H 10 Z' fill='none' stroke='rgba(150, 150, 150, 0.1)' stroke-width='0.5'/%3E%3Cpath d='M30 10 V 90 M 70 10 V 90 M 10 30 H 90 M 10 70 H 90' stroke='rgba(150, 150, 150, 0.1)' stroke-width='0.5'/%3E%3Ccircle cx='10' cy='10' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='90' cy='10' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='10' cy='90' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='90' cy='90' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='10' cy='30' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='10' cy='70' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='30' cy='10' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='70' cy='10' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='30' cy='90' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='70' cy='90' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='90' cy='30' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='90' cy='70' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3C/svg%3E")`,
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10 H 90 V 90 H 10 Z' fill='none' stroke='rgba(200, 200, 200, 0.2)' stroke-width='0.5'/%3E%3Cpath d='M30 10 V 90 M 70 10 V 90 M 10 30 H 90 M 10 70 H 90' stroke='rgba(200, 200, 200, 0.2)' stroke-width='0.5'/%3E%3Ccircle cx='10' cy='10' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='90' cy='10' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='10' cy='90' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='90' cy='90' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='10' cy='30' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='10' cy='70' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='30' cy='10' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='70' cy='10' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='30' cy='90' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='70' cy='90' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='90' cy='30' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3Ccircle cx='90' cy='70' r='2' fill='rgba(200, 200, 200, 0.3)'/%3E%3C/svg%3E")`,
                     backgroundSize: '50px 50px'
                   }}
                 ></div>
                 
                 {/* Scanline effect on hover */}
                 <motion.div
-                  className="absolute left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-400 to-transparent opacity-0 group-hover:opacity-70"
+                  className="absolute left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-white to-transparent group-hover:opacity-80 group-hover:via-gray-300 group-hover:h-[3px] group-hover:shadow-[0_0_5px_rgba(255,255,255,0.3)] transition-all duration-300"
+                  animate={{
+                    top: ["0%", "100%", "0%"],
+                  }}
+                  transition={{
+                    duration: 8,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                  style={{ opacity: 0.5 }}
+                ></motion.div>
+                
+                <motion.div
+                  className="absolute left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-70"
                   style={{ top: '33%' }}
                   animate={{
                     y: [0, 5, 0],
@@ -1157,7 +1194,7 @@ export default function Home() {
                 ></motion.div>
                 
                 <motion.div
-                  className="absolute left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-400 to-transparent opacity-0 group-hover:opacity-70"
+                  className="absolute left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-70"
                   style={{ top: '66%' }}
                   animate={{
                     y: [0, -5, 0],
@@ -1185,7 +1222,7 @@ export default function Home() {
                 ></motion.div>
                 
                 {/* Digital noise effect on hover */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-10 mix-blend-screen pointer-events-none transition-opacity duration-300">
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-15 mix-blend-screen pointer-events-none transition-opacity duration-300">
                   {[...Array(30)].map((_, i) => (
                     <div 
                       key={`noise-${i}`}
@@ -1195,8 +1232,8 @@ export default function Home() {
                         height: '1px',
                         left: `${(i * 3) % 100}%`,
                         top: `${(i * 5) % 100}%`,
-                        opacity: 0.2,
-                        boxShadow: '0 0 2px rgba(255, 255, 255, 0.5)'
+                        opacity: 0.3,
+                        boxShadow: '0 0 2px rgba(255, 255, 255, 0.7)'
                       }}
                     />
                   ))}
@@ -1215,11 +1252,11 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section ref={featuresRef} id="features" className="relative py-24 bg-[#050510] overflow-hidden">
+      <section ref={featuresRef} id="features" className="relative py-24 bg-[#050505] overflow-hidden">
         {/* Background grid */}
         <div className="absolute inset-0 z-0 opacity-10">
           <div className="absolute inset-0" style={{ 
-            backgroundImage: 'linear-gradient(to right, rgba(150, 150, 150, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(150, 150, 150, 0.1) 1px, transparent 1px)',
+            backgroundImage: 'linear-gradient(to right, rgba(200, 200, 200, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(200, 200, 200, 0.1) 1px, transparent 1px)',
             backgroundSize: '40px 40px'
           }}></div>
           
@@ -1269,6 +1306,29 @@ export default function Home() {
               }}
             />
           ))}
+          
+          {/* Floating particles */}
+          {[...Array(15)].map((_, i) => (
+            <motion.div
+              key={`particle-${i}`}
+              className="absolute w-1 h-1 rounded-full bg-gray-400"
+              style={{
+                left: `${(i * 5) % 100}%`,
+                top: `${(i * 5) % 100}%`,
+                opacity: 0.3
+              }}
+              animate={{
+                opacity: [0.1, 0.4, 0.1],
+                scale: [1, 1.5, 1],
+                y: [0, -10, 0]
+              }}
+              transition={{
+                duration: 2 + (i % 3),
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+          ))}
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
@@ -1278,16 +1338,41 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 relative inline-block">
-              <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-white"
-                style={{ 
-                  fontFamily: 'Space Mono, monospace',
-                  textShadow: '0 0 15px rgba(255, 255, 255, 0.3)'
-                }}>
-                Powerful Features
-              </span>
-              <motion.span 
-                className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gray-400 to-transparent"
+            <div className="relative inline-block mb-6">
+              <motion.div
+                className="absolute -inset-1 bg-gradient-to-r from-transparent via-gray-700 to-transparent opacity-50 blur-md"
+                animate={{
+                  backgroundPosition: ["0% 0%", "100% 0%", "0% 0%"]
+                }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+              />
+              <h2 className="text-4xl md:text-5xl font-bold relative z-10">
+                <motion.span 
+                  className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-white"
+                  style={{ 
+                    fontFamily: 'Space Mono, monospace',
+                    textShadow: '0 0 15px rgba(255, 255, 255, 0.3)'
+                  }}
+                  animate={{
+                    backgroundPosition: ["0% 0%", "100% 0%", "0% 0%"]
+                  }}
+                  transition={{
+                    duration: 5,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                >
+                  POWERFUL FEATURES
+                </motion.span>
+              </h2>
+              
+              {/* Animated underline */}
+              <motion.div 
+                className="absolute -bottom-2 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-white to-transparent"
                 animate={{
                   opacity: [0.3, 0.8, 0.3],
                   width: ["0%", "100%", "0%"],
@@ -1299,12 +1384,37 @@ export default function Home() {
                   ease: "easeInOut"
                 }}
               />
-            </h2>
-            <p className="text-xl text-gray-300 mb-8 leading-relaxed" style={{ fontFamily: 'Roboto Mono, monospace' }}>
+              
+              {/* Corner elements */}
+              <div className="absolute top-0 left-0 w-5 h-5 border-t-2 border-l-2 border-gray-500"></div>
+              <div className="absolute top-0 right-0 w-5 h-5 border-t-2 border-r-2 border-gray-500"></div>
+              <div className="absolute bottom-0 left-0 w-5 h-5 border-b-2 border-l-2 border-gray-500"></div>
+              <div className="absolute bottom-0 right-0 w-5 h-5 border-b-2 border-r-2 border-gray-500"></div>
+            </div>
+            
+            <motion.p 
+              className="text-xl text-gray-300 mb-8 leading-relaxed" 
+              style={{ fontFamily: 'Roboto Mono, monospace' }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.3 }}
+            >
               Discover how Meta AI Army transforms your Web3 community engagement with
               <span className="text-white font-bold"> advanced AI capabilities</span>
-            </p>
-            <div className="w-24 h-1 bg-gradient-to-r from-transparent via-gray-400 to-transparent mx-auto"></div>
+            </motion.p>
+            
+            <motion.div 
+              className="w-24 h-1 bg-gradient-to-r from-transparent via-white to-transparent mx-auto"
+              animate={{
+                opacity: [0.5, 1, 0.5],
+                width: ["30%", "100%", "30%"]
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            ></motion.div>
           </motion.div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

@@ -322,7 +322,7 @@ export default function AboutPage() {
                       <FaTwitter size={18} />
                     </a>
                   )}
-                </div>
+        </div>
               </motion.div>
             ))}
           </motion.div>
