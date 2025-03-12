@@ -1,10 +1,11 @@
 "use client"
 
 import { SplineSceneBasic } from "@/components/ui/code.demo";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Squares } from "@/components/ui/squares-background";
 import Link from "next/link";
-import { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
+import AboutHeader from "@/components/about/AboutHeader";
 
 // Feature card component
 const FeatureCard = ({ 
@@ -28,38 +29,111 @@ const FeatureCard = ({
       viewport={{ once: true }}
       whileHover={{ 
         y: -5,
-        boxShadow: `0 0 30px rgba(${
-          color === "purple" ? "168, 85, 247" : 
-          color === "blue" ? "59, 130, 246" :
-          color === "cyan" ? "34, 211, 238" :
-          "236, 72, 153"
-        }, 0.2)`
+        boxShadow: `0 0 30px rgba(150, 150, 150, 0.2)`
       }}
-      className={`bg-[#0a0a1a]/60 backdrop-blur-sm p-8 rounded-xl border border-gray-800 relative group overflow-hidden`}
+      className={`bg-[#0a0a1a]/60 backdrop-blur-sm p-8 rounded-none border border-gray-800 relative group overflow-hidden`}
     >
+      {/* Robotic corner elements */}
+      <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-gray-500 opacity-50 group-hover:opacity-100 group-hover:border-white group-hover:w-10 group-hover:h-10 transition-all duration-300"></div>
+      <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-gray-500 opacity-50 group-hover:opacity-100 group-hover:border-white group-hover:w-10 group-hover:h-10 transition-all duration-300"></div>
+      <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-gray-500 opacity-50 group-hover:opacity-100 group-hover:border-white group-hover:w-10 group-hover:h-10 transition-all duration-300"></div>
+      <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-gray-500 opacity-50 group-hover:opacity-100 group-hover:border-white group-hover:w-10 group-hover:h-10 transition-all duration-300"></div>
+      
       {/* Background glow effect */}
       <div className="absolute -inset-1 bg-gradient-to-r from-transparent via-gray-800 to-transparent opacity-0 group-hover:opacity-20 blur-xl transition-all duration-700"></div>
       
-      {/* Icon */}
-      <div className={`text-5xl mb-6 ${
-        color === "purple" ? "text-purple-500" : 
-        color === "blue" ? "text-blue-500" :
-        color === "cyan" ? "text-cyan-500" :
-        "text-pink-500"
-      }`}>{icon}</div>
+      {/* Circuit board pattern on hover */}
+      <div 
+        className="absolute inset-0 opacity-0 group-hover:opacity-15 transition-opacity duration-500"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10 H 90 V 90 H 10 Z' fill='none' stroke='rgba(150, 150, 150, 0.1)' stroke-width='0.5'/%3E%3Cpath d='M30 10 V 90 M 70 10 V 90 M 10 30 H 90 M 10 70 H 90' stroke='rgba(150, 150, 150, 0.1)' stroke-width='0.5'/%3E%3Ccircle cx='10' cy='10' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='90' cy='10' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='10' cy='90' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='90' cy='90' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='10' cy='30' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='10' cy='70' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='30' cy='10' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='70' cy='10' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='30' cy='90' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='70' cy='90' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='90' cy='30' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='90' cy='70' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3C/svg%3E")`,
+          backgroundSize: '50px 50px'
+        }}
+      ></div>
+      
+      {/* Scanline effect on hover */}
+      <motion.div
+        className="absolute left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-400 to-transparent opacity-0 group-hover:opacity-70"
+        style={{ top: '30%' }}
+        animate={{
+          y: [0, 5, 0],
+          opacity: [0, 0.7, 0],
+        }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          ease: "linear"
+        }}
+      ></motion.div>
+      
+      <motion.div
+        className="absolute left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-400 to-transparent opacity-0 group-hover:opacity-70"
+        style={{ top: '60%' }}
+        animate={{
+          y: [0, -5, 0],
+          opacity: [0, 0.7, 0],
+        }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          ease: "linear",
+          delay: 1.5
+        }}
+      ></motion.div>
+      
+      {/* Icon with robotic glow */}
+      <div className="relative mb-6 inline-block">
+        <div className="text-5xl text-white relative z-10">{icon}</div>
+        <motion.div 
+          className="absolute -inset-1 rounded-full bg-white opacity-0 group-hover:opacity-20 blur-md"
+          animate={{ 
+            scale: [1, 1.2, 1],
+            opacity: [0, 0.2, 0]
+          }}
+          transition={{ 
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+      </div>
       
       {/* Title */}
-      <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-400 transition-all duration-300">{title}</h3>
+      <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-400 transition-all duration-300" 
+        style={{ fontFamily: 'Space Mono, monospace' }}>
+        {title}
+      </h3>
       
       {/* Description */}
-      <p className="text-gray-400 leading-relaxed">{description}</p>
+      <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors duration-300"
+        style={{ fontFamily: 'Roboto Mono, monospace' }}>
+        {description}
+      </p>
+      
+      {/* Digital noise effect on hover */}
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-10 mix-blend-screen pointer-events-none transition-opacity duration-300">
+        {[...Array(20)].map((_, i) => (
+          <div 
+            key={`noise-${i}`}
+            className="absolute bg-white"
+            style={{
+              width: '1px',
+              height: '1px',
+              left: `${(i * 5) % 100}%`,
+              top: `${(i * 7) % 100}%`,
+              opacity: 0.2,
+              boxShadow: '0 0 2px rgba(255, 255, 255, 0.5)'
+            }}
+          />
+        ))}
+      </div>
       
       {/* Animated border on hover */}
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        <div className={`absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-${color}-500 to-transparent`}></div>
-        <div className={`absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-${color}-500 to-transparent`}></div>
-        <div className={`absolute top-0 left-0 w-px h-full bg-gradient-to-b from-transparent via-${color}-500 to-transparent`}></div>
-        <div className={`absolute top-0 right-0 w-px h-full bg-gradient-to-b from-transparent via-${color}-500 to-transparent`}></div>
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-500 to-transparent"></div>
+        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-500 to-transparent"></div>
+        <div className="absolute top-0 left-0 w-px h-full bg-gradient-to-b from-transparent via-gray-500 to-transparent"></div>
+        <div className="absolute top-0 right-0 w-px h-full bg-gradient-to-b from-transparent via-gray-500 to-transparent"></div>
       </div>
     </motion.div>
   );
@@ -428,6 +502,48 @@ export default function Home() {
     }
   ];
 
+  // About section expanded states
+  const [aboutExpanded, setAboutExpanded] = useState(false);
+  const [missionExpanded, setMissionExpanded] = useState(false);
+  const [visionExpanded, setVisionExpanded] = useState(false);
+  
+  // About section active section tracking
+  const [activeAboutSection, setActiveAboutSection] = useState(0);
+  const aboutSectionRefs = [
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null)
+  ];
+  
+  // Function to scroll to a specific about section
+  const scrollToAboutSection = (index: number) => {
+    aboutSectionRefs[index]?.current?.scrollIntoView({ 
+      behavior: 'smooth',
+      block: 'start'
+    });
+  };
+  
+  // Check which about section is in view
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + window.innerHeight / 2;
+      
+      aboutSectionRefs.forEach((ref, index) => {
+        if (ref.current) {
+          const offsetTop = ref.current.offsetTop;
+          const height = ref.current.offsetHeight;
+          
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + height) {
+            setActiveAboutSection(index);
+          }
+        }
+      });
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <main className="relative bg-[#000000] text-white">
       {/* Orbitron font için stil */}
@@ -728,72 +844,278 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section ref={aboutRef} id="about" className="relative min-h-screen w-full bg-[#060606] overflow-hidden py-20">
-        {/* Squares Background */}
-        <div className="absolute inset-0 z-0 w-full h-full pointer-events-auto">
-          <Squares
-            direction="diagonal"
-            speed={0.5}
-            squareSize={40}
-            borderColor="#333"
-            hoverFillColor="#222"
-            className="absolute inset-0 w-full h-full"
-          />
+      <section ref={aboutRef} id="about" className="relative min-h-screen w-full bg-[#050505] overflow-hidden py-20">
+        {/* Background Effects */}
+        <div className="absolute inset-0 z-0">
+          {/* Grid background */}
+          <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5"></div>
+          
+          {/* Animated circuit lines */}
+          <div className="absolute inset-0">
+            {[...Array(5)].map((_, i) => (
+              <motion.div
+                key={`circuit-h-${i}`}
+                className="absolute h-[1px] bg-gradient-to-r from-transparent via-gray-500 to-transparent"
+                style={{
+                  top: `${15 + i * 20}%`,
+                  left: 0,
+                  right: 0,
+                  opacity: 0.2
+                }}
+                animate={{
+                  opacity: [0.1, 0.3, 0.1],
+                  backgroundPosition: ["0% 0%", "100% 0%", "0% 0%"]
+                }}
+                transition={{
+                  duration: 8,
+                  repeat: Infinity,
+                  ease: "linear",
+                  delay: i * 0.5
+                }}
+              />
+            ))}
+            
+            {[...Array(5)].map((_, i) => (
+              <motion.div
+                key={`circuit-v-${i}`}
+                className="absolute w-[1px] bg-gradient-to-b from-transparent via-gray-500 to-transparent"
+                style={{
+                  left: `${15 + i * 20}%`,
+                  top: 0,
+                  bottom: 0,
+                  opacity: 0.2
+                }}
+                animate={{
+                  opacity: [0.1, 0.3, 0.1],
+                  backgroundPosition: ["0% 0%", "0% 100%", "0% 0%"]
+                }}
+                transition={{
+                  duration: 8,
+                  repeat: Infinity,
+                  ease: "linear",
+                  delay: i * 0.5
+                }}
+              />
+            ))}
+          </div>
+          
+          {/* Floating particles */}
+          <div className="absolute inset-0">
+            {[...Array(20)].map((_, i) => (
+              <motion.div
+                key={`particle-${i}`}
+                className="absolute w-1 h-1 rounded-full bg-gray-400"
+                style={{
+                  left: `${(i * 5) % 100}%`,
+                  top: `${(i * 5) % 100}%`,
+                  opacity: 0.4
+                }}
+                animate={{
+                  opacity: [0.2, 0.5, 0.2],
+                  scale: [1, 1.5, 1],
+                  y: [0, -10, 0]
+                }}
+                transition={{
+                  duration: 2 + (i % 3),
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+            ))}
+          </div>
         </div>
 
         {/* Content */}
-        <div className="relative z-10 container mx-auto px-4 pointer-events-none">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-4xl md:text-5xl font-bold text-center mb-16 text-white pointer-events-none"
-            style={{ 
-              fontFamily: 'Orbitron, sans-serif',
-              textShadow: '0 0 10px rgba(150, 150, 150, 0.5)',
-              letterSpacing: '1px'
-            }}
-          >
-            About Meta AI Army
-          </motion.h2>
-
-          <div className="max-w-4xl mx-auto pointer-events-none">
+        <div className="relative z-10 container mx-auto px-4">
+          <AboutHeader />
+          
+          <div className="max-w-4xl mx-auto mt-16">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              whileHover={{ scale: 1.02, boxShadow: "0px 5px 15px rgba(255, 255, 255, 0.1)" }}
-              className="bg-gray-900/70 backdrop-blur-sm p-8 rounded-xl border border-gray-800 mb-12 pointer-events-auto"
+              className="relative bg-[#0A0A0A] p-8 border border-gray-800 mb-12 overflow-hidden group"
             >
-              <p className="text-gray-200 text-lg leading-relaxed mb-6">
-                <span className="font-bold">Meta AI Army</span> is a cutting-edge AI-powered community management platform designed specifically for 
-                <span className="font-bold"> Web3 projects</span>. Our solution helps blockchain projects, DAOs, and crypto communities build engaged, informed, and active communities.
+              {/* Robotic border effect */}
+              <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-500 to-transparent transition-all duration-300 group-hover:via-gray-300 group-hover:opacity-80"></div>
+              <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-500 to-transparent transition-all duration-300 group-hover:via-gray-300 group-hover:opacity-80"></div>
+              <div className="absolute top-0 left-0 h-full w-[1px] bg-gradient-to-b from-transparent via-gray-500 to-transparent transition-all duration-300 group-hover:via-gray-300 group-hover:opacity-80"></div>
+              <div className="absolute top-0 right-0 h-full w-[1px] bg-gradient-to-b from-transparent via-gray-500 to-transparent transition-all duration-300 group-hover:via-gray-300 group-hover:opacity-80"></div>
+              
+              {/* Corner dots */}
+              <div className="absolute top-0 left-0 w-2 h-2 bg-gray-500 rounded-full transition-all duration-300 group-hover:bg-gray-300 group-hover:w-3 group-hover:h-3 group-hover:shadow-[0_0_5px_rgba(255,255,255,0.5)]"></div>
+              <div className="absolute top-0 right-0 w-2 h-2 bg-gray-500 rounded-full transition-all duration-300 group-hover:bg-gray-300 group-hover:w-3 group-hover:h-3 group-hover:shadow-[0_0_5px_rgba(255,255,255,0.5)]"></div>
+              <div className="absolute bottom-0 left-0 w-2 h-2 bg-gray-500 rounded-full transition-all duration-300 group-hover:bg-gray-300 group-hover:w-3 group-hover:h-3 group-hover:shadow-[0_0_5px_rgba(255,255,255,0.5)]"></div>
+              <div className="absolute bottom-0 right-0 w-2 h-2 bg-gray-500 rounded-full transition-all duration-300 group-hover:bg-gray-300 group-hover:w-3 group-hover:h-3 group-hover:shadow-[0_0_5px_rgba(255,255,255,0.5)]"></div>
+              
+              {/* Circuit board pattern on hover */}
+              <div 
+                className="absolute inset-0 opacity-0 group-hover:opacity-15 transition-opacity duration-500"
+                style={{
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10 H 90 V 90 H 10 Z' fill='none' stroke='rgba(150, 150, 150, 0.1)' stroke-width='0.5'/%3E%3Cpath d='M30 10 V 90 M 70 10 V 90 M 10 30 H 90 M 10 70 H 90' stroke='rgba(150, 150, 150, 0.1)' stroke-width='0.5'/%3E%3Ccircle cx='10' cy='10' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='90' cy='10' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='10' cy='90' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='90' cy='90' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='10' cy='30' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='10' cy='70' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='30' cy='10' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='70' cy='10' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='30' cy='90' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='70' cy='90' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='90' cy='30' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='90' cy='70' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3C/svg%3E")`,
+                  backgroundSize: '50px 50px'
+                }}
+              ></div>
+              
+              {/* Animated scan line */}
+              <motion.div
+                className="absolute left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-gray-400 to-transparent group-hover:opacity-80 group-hover:via-gray-300 group-hover:h-[3px] group-hover:shadow-[0_0_5px_rgba(255,255,255,0.3)] transition-all duration-300"
+                animate={{
+                  top: ["0%", "100%", "0%"],
+                }}
+                transition={{
+                  duration: 8,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+                style={{ opacity: 0.5 }}
+              ></motion.div>
+              
+              {/* Additional scanlines on hover */}
+              <motion.div
+                className="absolute left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-400 to-transparent opacity-0 group-hover:opacity-70"
+                style={{ top: '33%' }}
+                animate={{
+                  y: [0, 5, 0],
+                  opacity: [0, 0.7, 0],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+              ></motion.div>
+              
+              <motion.div
+                className="absolute left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-400 to-transparent opacity-0 group-hover:opacity-70"
+                style={{ top: '66%' }}
+                animate={{
+                  y: [0, -5, 0],
+                  opacity: [0, 0.7, 0],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "linear",
+                  delay: 1.5
+                }}
+              ></motion.div>
+              
+              {/* Digital noise effect on hover */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-10 mix-blend-screen pointer-events-none transition-opacity duration-300">
+                {[...Array(30)].map((_, i) => (
+                  <div 
+                    key={`noise-${i}`}
+                    className="absolute bg-white"
+                    style={{
+                      width: '1px',
+                      height: '1px',
+                      left: `${(i * 3) % 100}%`,
+                      top: `${(i * 5) % 100}%`,
+                      opacity: 0.2,
+                      boxShadow: '0 0 2px rgba(255, 255, 255, 0.5)'
+                    }}
+                  />
+                ))}
+              </div>
+              
+              <p className="text-gray-300 text-lg leading-relaxed mb-6 relative z-10 group-hover:text-gray-100 transition-colors duration-300" style={{ fontFamily: 'Roboto Mono, monospace', letterSpacing: '0.5px' }}>
+                <span className="text-white font-bold group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-300 transition-all duration-300">META AI ARMY</span> is a cutting-edge AI-powered community management platform designed specifically for 
+                <span className="text-white font-bold group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-300 transition-all duration-300"> Web3 projects</span>. Our solution helps blockchain projects, DAOs, and crypto communities build engaged, informed, and active communities.
               </p>
-              <p className="text-gray-200 text-lg leading-relaxed">
+              <p className="text-gray-300 text-lg leading-relaxed relative z-10 group-hover:text-gray-100 transition-colors duration-300" style={{ fontFamily: 'Roboto Mono, monospace', letterSpacing: '0.5px' }}>
                 With advanced natural language processing and machine learning capabilities, our AI bots understand the 
-                <span className="font-bold"> nuances of blockchain technology</span>, tokenomics, and the unique language of the crypto ecosystem, providing intelligent and context-aware interactions that keep your community engaged and informed.
+                <span className="text-white font-bold group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-300 transition-all duration-300"> nuances of blockchain technology</span>, tokenomics, and the unique language of the crypto ecosystem, providing intelligent and context-aware interactions that keep your community engaged and informed.
               </p>
             </motion.div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pointer-events-none">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-                whileHover={{ scale: 1.03, boxShadow: "0px 5px 15px rgba(255, 255, 255, 0.1)" }}
-                className="bg-gray-900/60 backdrop-blur-sm p-6 rounded-xl border border-gray-800 pointer-events-auto"
+                className="relative bg-[#0A0A0A] p-8 border border-gray-800 overflow-hidden group"
               >
-                <h3 className="text-xl font-bold mb-3 text-white relative inline-block">
-                  Our Mission
-                  <motion.span 
-                    className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-500"
-                    initial={{ width: 0 }}
-                    whileInView={{ width: '100%' }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    viewport={{ once: true }}
-                  />
+                {/* Robotic elements */}
+                <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-gray-500 opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-gray-500 opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-gray-500 opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-gray-500 opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                {/* Circuit board pattern on hover */}
+                <div 
+                  className="absolute inset-0 opacity-0 group-hover:opacity-15 transition-opacity duration-500"
+                  style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10 H 90 V 90 H 10 Z' fill='none' stroke='rgba(150, 150, 150, 0.1)' stroke-width='0.5'/%3E%3Cpath d='M30 10 V 90 M 70 10 V 90 M 10 30 H 90 M 10 70 H 90' stroke='rgba(150, 150, 150, 0.1)' stroke-width='0.5'/%3E%3Ccircle cx='10' cy='10' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='90' cy='10' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='10' cy='90' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='90' cy='90' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='10' cy='30' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='10' cy='70' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='30' cy='10' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='70' cy='10' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='30' cy='90' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='70' cy='90' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='90' cy='30' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='90' cy='70' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3C/svg%3E")`,
+                    backgroundSize: '50px 50px'
+                  }}
+                ></div>
+                
+                {/* Scanline effect on hover */}
+                <motion.div
+                  className="absolute left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-400 to-transparent opacity-0 group-hover:opacity-70"
+                  style={{ top: '33%' }}
+                  animate={{
+                    y: [0, 5, 0],
+                    opacity: [0, 0.7, 0],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                ></motion.div>
+                
+                <motion.div
+                  className="absolute left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-400 to-transparent opacity-0 group-hover:opacity-70"
+                  style={{ top: '66%' }}
+                  animate={{
+                    y: [0, -5, 0],
+                    opacity: [0, 0.7, 0],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "linear",
+                    delay: 1.5
+                  }}
+                ></motion.div>
+                
+                {/* Animated glow on hover */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-gray-800/0 via-gray-800/10 to-gray-800/0 opacity-0 group-hover:opacity-100"
+                  animate={{ 
+                    backgroundPosition: ["0% 0%", "100% 0%", "0% 0%"] 
+                  }}
+                  transition={{ 
+                    duration: 3, 
+                    repeat: Infinity, 
+                    ease: "linear" 
+                  }}
+                ></motion.div>
+                
+                {/* Digital noise effect on hover */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-10 mix-blend-screen pointer-events-none transition-opacity duration-300">
+                  {[...Array(30)].map((_, i) => (
+                    <div 
+                      key={`noise-${i}`}
+                      className="absolute bg-white"
+                      style={{
+                        width: '1px',
+                        height: '1px',
+                        left: `${(i * 3) % 100}%`,
+                        top: `${(i * 5) % 100}%`,
+                        opacity: 0.2,
+                        boxShadow: '0 0 2px rgba(255, 255, 255, 0.5)'
+                      }}
+                    />
+                  ))}
+                </div>
+                
+                <h3 className="text-2xl font-bold mb-4 border-b border-gray-800 pb-2 text-white relative z-10 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-400 transition-all duration-300" style={{ fontFamily: 'Space Mono, monospace', letterSpacing: '2px' }}>
+                  OUR MISSION
                 </h3>
-                <p className="text-gray-300">
+                <p className="text-gray-300 relative z-10 group-hover:text-gray-100 transition-colors duration-300" style={{ fontFamily: 'Roboto Mono, monospace', fontSize: '0.95rem' }}>
                   To revolutionize community management in the Web3 space by providing AI-powered tools that create vibrant, engaged, and well-informed communities.
                 </p>
               </motion.div>
@@ -802,20 +1124,88 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-                whileHover={{ scale: 1.03, boxShadow: "0px 5px 15px rgba(255, 255, 255, 0.1)" }}
-                className="bg-gray-900/60 backdrop-blur-sm p-6 rounded-xl border border-gray-800 pointer-events-auto"
+                className="relative bg-[#0A0A0A] p-8 border border-gray-800 overflow-hidden group"
               >
-                <h3 className="text-xl font-bold mb-3 text-white relative inline-block">
-                  Our Vision
-                  <motion.span 
-                    className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-500"
-                    initial={{ width: 0 }}
-                    whileInView={{ width: '100%' }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    viewport={{ once: true }}
-                  />
+                {/* Robotic elements */}
+                <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-gray-500 opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-gray-500 opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-gray-500 opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-gray-500 opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                {/* Circuit board pattern on hover */}
+                <div 
+                  className="absolute inset-0 opacity-0 group-hover:opacity-15 transition-opacity duration-500"
+                  style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10 H 90 V 90 H 10 Z' fill='none' stroke='rgba(150, 150, 150, 0.1)' stroke-width='0.5'/%3E%3Cpath d='M30 10 V 90 M 70 10 V 90 M 10 30 H 90 M 10 70 H 90' stroke='rgba(150, 150, 150, 0.1)' stroke-width='0.5'/%3E%3Ccircle cx='10' cy='10' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='90' cy='10' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='10' cy='90' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='90' cy='90' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='10' cy='30' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='10' cy='70' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='30' cy='10' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='70' cy='10' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='30' cy='90' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='70' cy='90' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='90' cy='30' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='90' cy='70' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3C/svg%3E")`,
+                    backgroundSize: '50px 50px'
+                  }}
+                ></div>
+                
+                {/* Scanline effect on hover */}
+                <motion.div
+                  className="absolute left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-400 to-transparent opacity-0 group-hover:opacity-70"
+                  style={{ top: '33%' }}
+                  animate={{
+                    y: [0, 5, 0],
+                    opacity: [0, 0.7, 0],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                ></motion.div>
+                
+                <motion.div
+                  className="absolute left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-400 to-transparent opacity-0 group-hover:opacity-70"
+                  style={{ top: '66%' }}
+                  animate={{
+                    y: [0, -5, 0],
+                    opacity: [0, 0.7, 0],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "linear",
+                    delay: 1.5
+                  }}
+                ></motion.div>
+                
+                {/* Animated glow on hover */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-gray-800/0 via-gray-800/10 to-gray-800/0 opacity-0 group-hover:opacity-100"
+                  animate={{ 
+                    backgroundPosition: ["0% 0%", "100% 0%", "0% 0%"] 
+                  }}
+                  transition={{ 
+                    duration: 3, 
+                    repeat: Infinity, 
+                    ease: "linear" 
+                  }}
+                ></motion.div>
+                
+                {/* Digital noise effect on hover */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-10 mix-blend-screen pointer-events-none transition-opacity duration-300">
+                  {[...Array(30)].map((_, i) => (
+                    <div 
+                      key={`noise-${i}`}
+                      className="absolute bg-white"
+                      style={{
+                        width: '1px',
+                        height: '1px',
+                        left: `${(i * 3) % 100}%`,
+                        top: `${(i * 5) % 100}%`,
+                        opacity: 0.2,
+                        boxShadow: '0 0 2px rgba(255, 255, 255, 0.5)'
+                      }}
+                    />
+                  ))}
+                </div>
+                
+                <h3 className="text-2xl font-bold mb-4 border-b border-gray-800 pb-2 text-white relative z-10 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-400 transition-all duration-300" style={{ fontFamily: 'Space Mono, monospace', letterSpacing: '2px' }}>
+                  OUR VISION
                 </h3>
-                <p className="text-gray-300">
+                <p className="text-gray-300 relative z-10 group-hover:text-gray-100 transition-colors duration-300" style={{ fontFamily: 'Roboto Mono, monospace', fontSize: '0.95rem' }}>
                   A future where Web3 communities thrive through intelligent, automated engagement that enhances human connection rather than replacing it.
                 </p>
               </motion.div>
@@ -829,9 +1219,56 @@ export default function Home() {
         {/* Background grid */}
         <div className="absolute inset-0 z-0 opacity-10">
           <div className="absolute inset-0" style={{ 
-            backgroundImage: 'linear-gradient(to right, rgba(59, 130, 246, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(59, 130, 246, 0.1) 1px, transparent 1px)',
+            backgroundImage: 'linear-gradient(to right, rgba(150, 150, 150, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(150, 150, 150, 0.1) 1px, transparent 1px)',
             backgroundSize: '40px 40px'
           }}></div>
+          
+          {/* Animated circuit lines */}
+          {[...Array(5)].map((_, i) => (
+            <motion.div
+              key={`circuit-h-${i}`}
+              className="absolute h-[1px] bg-gradient-to-r from-transparent via-gray-500 to-transparent"
+              style={{
+                top: `${15 + i * 20}%`,
+                left: 0,
+                right: 0,
+                opacity: 0.2
+              }}
+              animate={{
+                opacity: [0.1, 0.3, 0.1],
+                backgroundPosition: ["0% 0%", "100% 0%", "0% 0%"]
+              }}
+              transition={{
+                duration: 8,
+                repeat: Infinity,
+                ease: "linear",
+                delay: i * 0.5
+              }}
+            />
+          ))}
+          
+          {[...Array(5)].map((_, i) => (
+            <motion.div
+              key={`circuit-v-${i}`}
+              className="absolute w-[1px] bg-gradient-to-b from-transparent via-gray-500 to-transparent"
+              style={{
+                left: `${15 + i * 20}%`,
+                top: 0,
+                bottom: 0,
+                opacity: 0.2
+              }}
+              animate={{
+                opacity: [0.1, 0.3, 0.1],
+                backgroundPosition: ["0% 0%", "0% 100%", "0% 0%"]
+              }}
+              transition={{
+                duration: 8,
+                repeat: Infinity,
+                ease: "linear",
+                delay: i * 0.5
+              }}
+            />
+          ))}
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
@@ -841,13 +1278,33 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-500">
-              Powerful Features
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 relative inline-block">
+              <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-white"
+                style={{ 
+                  fontFamily: 'Space Mono, monospace',
+                  textShadow: '0 0 15px rgba(255, 255, 255, 0.3)'
+                }}>
+                Powerful Features
+              </span>
+              <motion.span 
+                className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gray-400 to-transparent"
+                animate={{
+                  opacity: [0.3, 0.8, 0.3],
+                  width: ["0%", "100%", "0%"],
+                  left: ["50%", "0%", "50%"]
+                }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
             </h2>
-            <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-              Discover how Meta AI Army transforms your Web3 community engagement with advanced AI capabilities
+            <p className="text-xl text-gray-300 mb-8 leading-relaxed" style={{ fontFamily: 'Roboto Mono, monospace' }}>
+              Discover how Meta AI Army transforms your Web3 community engagement with
+              <span className="text-white font-bold"> advanced AI capabilities</span>
             </p>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto"></div>
+            <div className="w-24 h-1 bg-gradient-to-r from-transparent via-gray-400 to-transparent mx-auto"></div>
           </motion.div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -857,7 +1314,7 @@ export default function Home() {
                 icon={feature.icon}
                 title={feature.title}
                 description={feature.description}
-                color={feature.color}
+                color="gray"
                 delay={index * 0.1}
               />
             ))}
@@ -1099,7 +1556,7 @@ export default function Home() {
                     boxShadow: "0 0 20px rgba(56, 189, 248, 0.3)",
                   }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-md font-medium text-lg transition-all"
+                  className="px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-md font-medium transition-all"
                 >
                   Try Demo
                 </motion.button>

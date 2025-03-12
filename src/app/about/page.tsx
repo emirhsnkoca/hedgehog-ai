@@ -1,223 +1,429 @@
 'use client'
 
-import React, { useEffect } from 'react';
-import GravityComponent from '@/components/ui/gravity';
-import { FaRobot, FaCode, FaLightbulb, FaRocket, FaShieldAlt, FaUsers } from 'react-icons/fa';
+import React from 'react';
 import { motion } from 'framer-motion';
+import { FaLinkedin, FaGithub, FaTwitter } from 'react-icons/fa';
 
-// Özel font için stil ekleyelim
+// Özel font için stil
 const fontStyle = `
-  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&display=swap');
 `;
 
-const features = [
-  {
-    id: '1',
-    title: 'Yapay Zeka Destekli',
-    description: 'En son yapay zeka teknolojileri ile güçlendirilmiş, akıllı ve öğrenen bir asistan.',
-    icon: <FaRobot className="w-6 h-6" />,
-  },
-  {
-    id: '2',
-    title: 'Kod Geliştirme',
-    description: 'Hızlı ve etkili kod geliştirme desteği, otomatik tamamlama ve hata düzeltme.',
-    icon: <FaCode className="w-6 h-6" />,
-  },
-  {
-    id: '3',
-    title: 'Akıllı Öneriler',
-    description: 'Projenize özel akıllı öneriler ve en iyi uygulama tavsiyeleri.',
-    icon: <FaLightbulb className="w-6 h-6" />,
-  },
-  {
-    id: '4',
-    title: 'Hızlı Entegrasyon',
-    description: 'Mevcut projelerinize kolay ve hızlı entegrasyon imkanı.',
-    icon: <FaRocket className="w-6 h-6" />,
-  },
-  {
-    id: '5',
-    title: 'Güvenlik Odaklı',
-    description: 'En yüksek güvenlik standartları ile korunan verileriniz ve kodlarınız.',
-    icon: <FaShieldAlt className="w-6 h-6" />,
-  },
-  {
-    id: '6',
-    title: 'Topluluk Desteği',
-    description: 'Aktif geliştirici topluluğu ve sürekli güncellenen özellikler.',
-    icon: <FaUsers className="w-6 h-6" />,
-  },
+// Teknoloji kartları için veri
+const technologies = [
+  { id: 1, name: 'YAPAY ZEKA', description: 'Gelişmiş doğal dil işleme ve makine öğrenimi algoritmaları' },
+  { id: 2, name: 'BLOCKCHAIN', description: 'Güvenli ve şeffaf işlemler için dağıtık defter teknolojisi' },
+  { id: 3, name: 'WEB3', description: 'Merkeziyetsiz internet için yeni nesil web teknolojileri' },
+  { id: 4, name: 'TOPLULUK', description: 'Aktif ve etkileşimli topluluk yönetim araçları' }
 ];
 
-// Misyon ve Vizyon içeriği
-const missionVision = [
-  {
-    id: 'mission',
-    title: 'Misyonumuz',
-    content: 'Yapay zeka teknolojilerini kullanarak yazılım geliştirme süreçlerini daha verimli, daha hızlı ve daha erişilebilir hale getirmek. Hedgehog AI olarak, her seviyedeki geliştiricinin potansiyelini en üst düzeye çıkarmasına yardımcı olmayı hedefliyoruz.'
+// Ekip üyeleri için veri
+const teamMembers = [
+  { 
+    id: 1, 
+    name: 'AHMET YILMAZ', 
+    role: 'KURUCU & CTO', 
+    bio: 'Yapay zeka ve blockchain alanında 10+ yıl deneyim',
+    social: { linkedin: '#', github: '#', twitter: '#' }
   },
-  {
-    id: 'vision',
-    title: 'Vizyonumuz',
-    content: 'Yapay zeka destekli kod geliştirme asistanları alanında lider olmak ve yazılım geliştirme süreçlerini demokratikleştirerek herkesin fikirlerini hayata geçirebilmesini sağlamak. Teknolojinin gücünü herkes için erişilebilir kılmayı amaçlıyoruz.'
+  { 
+    id: 2, 
+    name: 'ZEYNEP KAYA', 
+    role: 'YAPAY ZEKA MÜHENDİSİ', 
+    bio: 'Doğal dil işleme ve makine öğrenimi uzmanı',
+    social: { linkedin: '#', github: '#' }
+  },
+  { 
+    id: 3, 
+    name: 'MEHMET DEMİR', 
+    role: 'BLOCKCHAIN GELİŞTİRİCİ', 
+    bio: 'Smart contract ve dApp geliştirme konusunda uzman',
+    social: { linkedin: '#', twitter: '#' }
+  },
+  { 
+    id: 4, 
+    name: 'AYŞE YILDIZ', 
+    role: 'TOPLULUK YÖNETİCİSİ', 
+    bio: 'Dijital topluluk yönetimi ve kullanıcı deneyimi tasarımcısı',
+    social: { linkedin: '#', twitter: '#' }
   }
 ];
 
 // Animasyon varyantları
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: { duration: 0.6 }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
   }
 };
 
-const cardHover = {
-  rest: { scale: 1, boxShadow: "0px 0px 0px rgba(255, 255, 255, 0.1)" },
-  hover: { 
-    scale: 1.02, 
-    boxShadow: "0px 5px 15px rgba(255, 255, 255, 0.15)",
-    transition: { duration: 0.3 }
-  }
+const itemVariant = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
 };
 
 export default function AboutPage() {
-  // Sayfa yüklendiğinde animasyon için
-  useEffect(() => {
-    // Arka plan parçacıkları için gerekirse buraya kod eklenebilir
-  }, []);
-
   return (
-    <div className="min-h-screen bg-black text-white py-16 relative overflow-hidden">
-      {/* Arka plan grid efekti */}
-      <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10"></div>
+    <div className="min-h-screen bg-[#050505] text-white">
+      <style>{fontStyle}</style>
       
-      {/* Hareketli parçacıklar */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(20)].map((_, i) => (
-          <div 
-            key={i}
-            className="absolute w-1 h-1 bg-gray-500 rounded-full opacity-20"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              animation: `float ${5 + Math.random() * 10}s linear infinite`,
-              animationDelay: `${Math.random() * 5}s`
-            }}
-          />
-        ))}
+      {/* Grid arka plan */}
+      <div className="fixed inset-0 z-0">
+        <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black"></div>
       </div>
       
-      <div className="container mx-auto px-4 relative z-10">
-        {/* Başlık Bölümü */}
+      {/* Ana içerik */}
+      <div className="relative z-10 container mx-auto px-4 py-20">
+        {/* Başlık bölümü */}
         <motion.div 
-          className="text-center mb-16"
+          className="text-center mb-24"
           initial="hidden"
           animate="visible"
           variants={fadeIn}
         >
-          <style>{fontStyle}</style>
-          <motion.h1 
-            className="text-4xl md:text-6xl font-bold mb-4 text-white"
+          <h1 
+            className="text-5xl md:text-7xl font-bold mb-6"
             style={{ 
-              fontFamily: 'Orbitron, sans-serif',
-              textShadow: '0 0 10px rgba(150, 150, 150, 0.5)'
+              fontFamily: 'Space Mono, monospace',
+              letterSpacing: '3px',
+              textShadow: '0 0 10px rgba(255, 255, 255, 0.2)'
             }}
           >
-            Hedgehog AI Hakkında
-          </motion.h1>
-          <motion.p 
-            className="text-lg text-gray-300 max-w-2xl mx-auto"
-            variants={fadeIn}
+            META AI ARMY - YENİ TASARIM
+          </h1>
+          <p 
+            className="text-lg text-gray-400 max-w-2xl mx-auto"
+            style={{ 
+              fontFamily: 'Roboto Mono, monospace',
+              letterSpacing: '1px'
+            }}
           >
-            Geleceğin kod geliştirme asistanı ile tanışın. Yapay zeka destekli, güvenli ve hızlı.
-          </motion.p>
+            YAPAY ZEKA DESTEKLİ TOPLULUK YÖNETİM PLATFORMU
+          </p>
         </motion.div>
         
-        {/* Ana Açıklama Bölümü */}
+        {/* Ana açıklama bölümü */}
         <motion.div 
-          className="mb-16"
+          className="mb-24 max-w-4xl mx-auto"
           initial="hidden"
           animate="visible"
           variants={fadeIn}
-          whileHover="hover"
         >
-          <div className="bg-gray-900/70 backdrop-blur-sm p-8 rounded-lg border border-gray-800 max-w-4xl mx-auto">
-            <p className="text-gray-200 leading-relaxed">
-              <span className="font-bold">Hedgehog AI</span>, yazılım geliştirme süreçlerinizi dönüştürmek için tasarlanmış, 
-              <span className="font-bold"> yapay zeka destekli bir kod asistanıdır</span>. 
-              Modern yazılım geliştirme ihtiyaçlarını karşılamak üzere geliştirilmiş olan asistanımız, 
-              <span className="font-bold"> en son teknolojileri</span> kullanarak size hızlı, güvenilir ve akıllı bir kodlama deneyimi sunar.
-              Hedgehog AI ile projelerinizi daha hızlı tamamlayın, kod kalitesini artırın ve yazılım geliştirme süreçlerinizi optimize edin.
+          <div className="bg-[#0A0A0A] p-8 border border-gray-800">
+            <p 
+              className="text-gray-300 leading-relaxed"
+              style={{ 
+                fontFamily: 'Roboto Mono, monospace',
+                letterSpacing: '0.5px'
+              }}
+            >
+              <span className="text-white font-bold">META AI ARMY</span>, Web3 ve kripto topluluklarınız için özel olarak tasarlanmış, 
+              <span className="text-white font-bold"> yapay zeka destekli bir topluluk yönetim platformudur</span>. 
+              Blockchain projeleri, DAO'lar ve kripto toplulukları için geliştirilmiş olan platformumuz, 
+              <span className="text-white font-bold"> ileri düzey doğal dil işleme</span> kullanarak topluluğunuzu daha aktif ve bilgili hale getirir.
             </p>
           </div>
         </motion.div>
         
-        {/* Misyon ve Vizyon Bölümü */}
-        <div className="grid md:grid-cols-2 gap-8 mb-16">
-          {missionVision.map((item, index) => (
-            <motion.div
-              key={item.id}
-              className="bg-gray-900/60 backdrop-blur-sm p-6 rounded-lg border border-gray-800"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={{
-                hidden: { opacity: 0, y: 50 },
-                visible: { 
-                  opacity: 1, 
-                  y: 0,
-                  transition: { 
-                    duration: 0.5,
-                    delay: index * 0.2
-                  }
-                }
-              }}
-              whileHover="hover"
-            >
-              <h2 className="text-2xl font-bold text-white mb-2 relative inline-block">
-                {item.title}
-                <motion.span 
-                  className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-500"
-                  initial={{ width: 0 }}
-                  whileInView={{ width: '100%' }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  viewport={{ once: true }}
-                />
-              </h2>
-              <p className="text-gray-300">{item.content}</p>
-            </motion.div>
-          ))}
-        </div>
-        
-        {/* Özellikler Bölümü */}
-        <motion.div
+        {/* Misyon ve Vizyon bölümü */}
+        <motion.div 
+          className="grid md:grid-cols-2 gap-8 mb-24"
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
+          animate="visible"
+          variants={staggerContainer}
+        >
+          <motion.div 
+            className="bg-[#0A0A0A] p-8 border border-gray-800"
+            variants={itemVariant}
+          >
+            <h2 
+              className="text-2xl font-bold mb-4 border-b border-gray-800 pb-2"
+              style={{ 
+                fontFamily: 'Space Mono, monospace',
+                letterSpacing: '2px'
+              }}
+            >
+              MİSYONUMUZ
+            </h2>
+            <p 
+              className="text-gray-300"
+              style={{ 
+                fontFamily: 'Roboto Mono, monospace',
+                fontSize: '0.95rem'
+              }}
+            >
+              Web3 topluluklarını güçlendirmek ve blockchain projelerinin başarısını artırmak için yapay zeka destekli topluluk yönetim araçları geliştirmek. Toplulukları daha aktif, bilgili ve etkileşimli hale getirerek projelerin büyümesine katkıda bulunmak.
+            </p>
+          </motion.div>
+          
+          <motion.div 
+            className="bg-[#0A0A0A] p-8 border border-gray-800"
+            variants={itemVariant}
+          >
+            <h2 
+              className="text-2xl font-bold mb-4 border-b border-gray-800 pb-2"
+              style={{ 
+                fontFamily: 'Space Mono, monospace',
+                letterSpacing: '2px'
+              }}
+            >
+              VİZYONUMUZ
+            </h2>
+            <p 
+              className="text-gray-300"
+              style={{ 
+                fontFamily: 'Roboto Mono, monospace',
+                fontSize: '0.95rem'
+              }}
+            >
+              Web3 ekosisteminde topluluk yönetimi için tercih edilen platform olmak. Yapay zeka teknolojilerini kullanarak toplulukların insan bağlantısını güçlendirmek, otomatik moderasyon ve içerik üretimi ile topluluk yöneticilerinin işini kolaylaştırmak.
+            </p>
+          </motion.div>
+        </motion.div>
+        
+        {/* Teknolojiler bölümü */}
+        <motion.div 
+          className="mb-24"
+          initial="hidden"
+          animate="visible"
           variants={fadeIn}
         >
-          <GravityComponent items={features} className="bg-black/30" />
+          <h2 
+            className="text-3xl font-bold text-center mb-12"
+            style={{ 
+              fontFamily: 'Space Mono, monospace',
+              letterSpacing: '2px'
+            }}
+          >
+            TEKNOLOJİLERİMİZ
+          </h2>
+          
+          <motion.div 
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+            variants={staggerContainer}
+            initial="hidden"
+            animate="visible"
+          >
+            {technologies.map((tech) => (
+              <motion.div 
+                key={tech.id}
+                className="bg-[#0A0A0A] p-6 border border-gray-800 hover:border-gray-700 transition-colors"
+                variants={itemVariant}
+              >
+                <h3 
+                  className="text-xl font-bold mb-3"
+                  style={{ 
+                    fontFamily: 'Space Mono, monospace',
+                    letterSpacing: '1px'
+                  }}
+                >
+                  {tech.name}
+                </h3>
+                <p 
+                  className="text-gray-400"
+                  style={{ 
+                    fontFamily: 'Roboto Mono, monospace',
+                    fontSize: '0.9rem'
+                  }}
+                >
+                  {tech.description}
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
+        
+        {/* Ekip bölümü */}
+        <motion.div 
+          className="mb-24"
+          initial="hidden"
+          animate="visible"
+          variants={fadeIn}
+        >
+          <h2 
+            className="text-3xl font-bold text-center mb-12"
+            style={{ 
+              fontFamily: 'Space Mono, monospace',
+              letterSpacing: '2px'
+            }}
+          >
+            EKİBİMİZ
+          </h2>
+          
+          <motion.div 
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+            variants={staggerContainer}
+            initial="hidden"
+            animate="visible"
+          >
+            {teamMembers.map((member) => (
+              <motion.div 
+                key={member.id}
+                className="bg-[#0A0A0A] p-6 border border-gray-800 hover:border-gray-700 transition-colors"
+                variants={itemVariant}
+              >
+                <div className="w-20 h-20 mx-auto mb-4 bg-gray-800 flex items-center justify-center">
+                  <span className="text-2xl font-bold">{member.name.charAt(0)}</span>
+                </div>
+                
+                <h3 
+                  className="text-center text-lg font-bold mb-1"
+                  style={{ 
+                    fontFamily: 'Space Mono, monospace',
+                    letterSpacing: '1px'
+                  }}
+                >
+                  {member.name}
+                </h3>
+                
+                <p 
+                  className="text-center text-gray-500 mb-3"
+                  style={{ 
+                    fontFamily: 'Roboto Mono, monospace',
+                    fontSize: '0.8rem'
+                  }}
+                >
+                  {member.role}
+                </p>
+                
+                <p 
+                  className="text-center text-gray-400 mb-4"
+                  style={{ 
+                    fontFamily: 'Roboto Mono, monospace',
+                    fontSize: '0.9rem'
+                  }}
+                >
+                  {member.bio}
+                </p>
+                
+                <div className="flex justify-center space-x-3">
+                  {member.social.linkedin && (
+                    <a href={member.social.linkedin} className="text-gray-500 hover:text-gray-300 transition-colors">
+                      <FaLinkedin size={18} />
+                    </a>
+                  )}
+                  {member.social.github && (
+                    <a href={member.social.github} className="text-gray-500 hover:text-gray-300 transition-colors">
+                      <FaGithub size={18} />
+                    </a>
+                  )}
+                  {member.social.twitter && (
+                    <a href={member.social.twitter} className="text-gray-500 hover:text-gray-300 transition-colors">
+                      <FaTwitter size={18} />
+                    </a>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
+        
+        {/* İletişim bölümü */}
+        <motion.div 
+          className="max-w-2xl mx-auto"
+          initial="hidden"
+          animate="visible"
+          variants={fadeIn}
+        >
+          <h2 
+            className="text-3xl font-bold text-center mb-12"
+            style={{ 
+              fontFamily: 'Space Mono, monospace',
+              letterSpacing: '2px'
+            }}
+          >
+            İLETİŞİM
+          </h2>
+          
+          <div className="bg-[#0A0A0A] p-8 border border-gray-800">
+            <form className="space-y-6">
+              <div>
+                <label 
+                  htmlFor="name" 
+                  className="block mb-2 text-gray-400"
+                  style={{ 
+                    fontFamily: 'Space Mono, monospace',
+                    fontSize: '0.9rem'
+                  }}
+                >
+                  İSİM
+                </label>
+                <input 
+                  type="text" 
+                  id="name" 
+                  className="w-full bg-[#121212] border border-gray-800 p-3 text-white focus:outline-none focus:border-gray-700"
+                  style={{ 
+                    fontFamily: 'Roboto Mono, monospace'
+                  }}
+                />
+              </div>
+              
+              <div>
+                <label 
+                  htmlFor="email" 
+                  className="block mb-2 text-gray-400"
+                  style={{ 
+                    fontFamily: 'Space Mono, monospace',
+                    fontSize: '0.9rem'
+                  }}
+                >
+                  E-POSTA
+                </label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  className="w-full bg-[#121212] border border-gray-800 p-3 text-white focus:outline-none focus:border-gray-700"
+                  style={{ 
+                    fontFamily: 'Roboto Mono, monospace'
+                  }}
+                />
+              </div>
+              
+              <div>
+                <label 
+                  htmlFor="message" 
+                  className="block mb-2 text-gray-400"
+                  style={{ 
+                    fontFamily: 'Space Mono, monospace',
+                    fontSize: '0.9rem'
+                  }}
+                >
+                  MESAJ
+                </label>
+                <textarea 
+                  id="message" 
+                  rows={4} 
+                  className="w-full bg-[#121212] border border-gray-800 p-3 text-white focus:outline-none focus:border-gray-700"
+                  style={{ 
+                    fontFamily: 'Roboto Mono, monospace'
+                  }}
+                ></textarea>
+              </div>
+              
+              <button 
+                type="submit" 
+                className="w-full bg-gray-800 hover:bg-gray-700 text-white p-3 transition-colors"
+                style={{ 
+                  fontFamily: 'Space Mono, monospace',
+                  letterSpacing: '1px'
+                }}
+              >
+                GÖNDER
+              </button>
+            </form>
+          </div>
         </motion.div>
       </div>
-      
-      {/* Animasyon için global stiller */}
-      <style jsx global>{`
-        @keyframes float {
-          0% {
-            transform: translateY(0) translateX(0);
-            opacity: 0;
-          }
-          50% {
-            opacity: 0.2;
-          }
-          100% {
-            transform: translateY(-100vh) translateX(100px);
-            opacity: 0;
-          }
-        }
-      `}</style>
     </div>
   );
 } 

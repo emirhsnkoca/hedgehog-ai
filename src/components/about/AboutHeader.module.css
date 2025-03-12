@@ -1,0 +1,364 @@
+.container {
+  padding: 2rem 0;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.roboticBorder {
+  position: relative;
+  padding: 3rem 2rem;
+  border: 1px solid rgba(150, 150, 150, 0.3);
+  background-color: rgba(10, 10, 10, 0.7);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(150, 150, 150, 0.1);
+  overflow: hidden;
+  transition: all 0.5s ease;
+}
+
+.roboticBorder:hover {
+  border-color: rgba(220, 220, 220, 0.7);
+  box-shadow: 0 0 30px rgba(100, 100, 100, 0.3), inset 0 0 15px rgba(150, 150, 150, 0.2);
+  background-color: rgba(15, 15, 15, 0.8);
+}
+
+.roboticBorder:hover .scanline {
+  opacity: 0.9;
+  animation-duration: 1.5s;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.9), transparent);
+  height: 3px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+}
+
+.roboticBorder:hover .cornerTL,
+.roboticBorder:hover .cornerTR,
+.roboticBorder:hover .cornerBL,
+.roboticBorder:hover .cornerBR {
+  border-color: rgba(255, 255, 255, 0.9);
+  width: 30px;
+  height: 30px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+}
+
+/* Corner elements for robotic look */
+.cornerTL, .cornerTR, .cornerBL, .cornerBR {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-color: rgba(200, 200, 200, 0.5);
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.cornerTL {
+  top: 0;
+  left: 0;
+  border-top: 2px solid;
+  border-left: 2px solid;
+}
+
+.cornerTR {
+  top: 0;
+  right: 0;
+  border-top: 2px solid;
+  border-right: 2px solid;
+}
+
+.cornerBL {
+  bottom: 0;
+  left: 0;
+  border-bottom: 2px solid;
+  border-left: 2px solid;
+}
+
+.cornerBR {
+  bottom: 0;
+  right: 0;
+  border-bottom: 2px solid;
+  border-right: 2px solid;
+}
+
+/* Scanline effect */
+.scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, rgba(150, 150, 150, 0.5), transparent);
+  opacity: 0.5;
+  animation: scanline 3s linear infinite;
+  z-index: 1;
+  transition: opacity 0.3s ease, animation-duration 0.3s ease;
+}
+
+@keyframes scanline {
+  0% {
+    top: 0%;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+/* Additional scanlines on hover */
+.roboticBorder:hover::before,
+.roboticBorder:hover::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(200, 200, 200, 0.7), transparent);
+  z-index: 1;
+  animation: scanlineAlt 4s linear infinite;
+}
+
+.roboticBorder:hover::before {
+  top: 33%;
+  animation-delay: -1s;
+}
+
+.roboticBorder:hover::after {
+  top: 66%;
+  animation-delay: -2s;
+}
+
+@keyframes scanlineAlt {
+  0% {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+}
+
+.titleContainer {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.roboticLetter {
+  position: relative;
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.roboticBorder:hover .roboticLetter {
+  background: linear-gradient(90deg, #ffffff, #a0a0a0, #ffffff);
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent !important;
+  animation: holographicGlow 3s ease infinite;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+  transform: translateY(-2px);
+  transition: transform 0.3s ease;
+}
+
+.roboticLetter::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: rgba(150, 150, 150, 0.3);
+  transition: all 0.3s ease;
+}
+
+.roboticBorder:hover .roboticLetter::after {
+  background-color: rgba(200, 200, 200, 0.7);
+  height: 2px;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.divider {
+  height: 2px;
+  background: linear-gradient(to right, transparent, rgba(150, 150, 150, 0.5), transparent);
+  margin: 1.5rem auto;
+  transition: all 0.3s ease;
+}
+
+.roboticBorder:hover .divider {
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.9), transparent);
+  height: 3px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+}
+
+.subtitleContainer {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.roboticBorder:hover .subtitleContainer span {
+  color: #e0e0e0 !important;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+  letter-spacing: 1.5px;
+  transition: all 0.3s ease;
+}
+
+/* Circuit board pattern on hover */
+.roboticBorder::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10 H 90 V 90 H 10 Z' fill='none' stroke='rgba(150, 150, 150, 0.1)' stroke-width='0.5'/%3E%3Cpath d='M30 10 V 90 M 70 10 V 90 M 10 30 H 90 M 10 70 H 90' stroke='rgba(150, 150, 150, 0.1)' stroke-width='0.5'/%3E%3Ccircle cx='10' cy='10' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='90' cy='10' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='10' cy='90' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='90' cy='90' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='10' cy='30' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='10' cy='70' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='30' cy='10' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='70' cy='10' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='30' cy='90' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='70' cy='90' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='90' cy='30' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3Ccircle cx='90' cy='70' r='2' fill='rgba(150, 150, 150, 0.2)'/%3E%3C/svg%3E");
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.roboticBorder:hover::before {
+  opacity: 0.15;
+}
+
+/* Pulse animation for robotic effect */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(150, 150, 150, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(150, 150, 150, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(150, 150, 150, 0);
+  }
+}
+
+/* Glitch effect on hover */
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.roboticBorder:hover .roboticLetter:nth-child(3n) {
+  animation: glitch 0.3s ease infinite alternate-reverse;
+}
+
+.roboticBorder:hover .roboticLetter:nth-child(3n+1) {
+  animation: glitch 0.4s ease infinite alternate-reverse;
+  animation-delay: 0.1s;
+}
+
+/* Legacy styles for compatibility */
+.heading, .paragraph {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.heading.visible, .paragraph.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.heading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+  transition-delay: 0.2s;
+}
+
+.paragraph {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  transition-delay: 0.4s;
+}
+
+/* Pulse animation for title on hover */
+@keyframes titlePulse {
+  0% {
+    opacity: 0.8;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+  50% {
+    opacity: 1;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.4);
+  }
+  100% {
+    opacity: 0.8;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+}
+
+.roboticBorder:hover .titleContainer {
+  transform: perspective(500px) rotateX(5deg);
+  transition: transform 0.5s ease;
+}
+
+/* Add holographic glow effect */
+@keyframes holographicGlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Ensure all letters have the same animation */
+.roboticBorder:hover .roboticLetter:nth-child(3n),
+.roboticBorder:hover .roboticLetter:nth-child(3n+1) {
+  animation: holographicGlow 3s ease infinite;
+}
+
+/* Add 3D effect to letters on hover */
+.roboticBorder:hover .titleContainer {
+  transform: perspective(500px) rotateX(5deg);
+  transition: transform 0.5s ease;
+}
+
+/* Enhanced divider effect */
+.roboticBorder:hover .divider {
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.9), transparent);
+  height: 3px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+}
+
+/* Enhanced corner effects */
+.roboticBorder:hover .cornerTL,
+.roboticBorder:hover .cornerTR,
+.roboticBorder:hover .cornerBL,
+.roboticBorder:hover .cornerBR {
+  border-color: rgba(255, 255, 255, 0.9);
+  width: 30px;
+  height: 30px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+} 

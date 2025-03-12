@@ -1,0 +1,161 @@
+.container {
+  display: flex;
+  position: relative;
+  min-height: 100vh;
+}
+
+.progressIndicator {
+  position: fixed;
+  left: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+  height: 300px;
+  justify-content: space-between;
+}
+
+.progressItem {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin: 0.5rem 0;
+  position: relative;
+  z-index: 2;
+}
+
+.progressDot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #333333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.75rem;
+  background-color: #000000;
+  transition: all 0.3s ease;
+}
+
+.progressInner {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+}
+
+.progressLabel {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.875rem;
+  color: #808080;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.progressItem.active .progressDot {
+  border-color: #FFFFFF;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.progressItem.active .progressLabel {
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+.progressLine {
+  position: absolute;
+  left: 12px;
+  top: 24px;
+  width: 2px;
+  background: linear-gradient(to bottom, #333333, #FFFFFF);
+  z-index: 1;
+}
+
+.sectionsContainer {
+  flex: 1;
+  margin-left: 8rem;
+  padding: 2rem 0;
+}
+
+.section {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem 0;
+  max-width: 800px;
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 2rem;
+  font-family: 'Roboto', sans-serif;
+  position: relative;
+  display: inline-block;
+}
+
+.sectionTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background-color: #FFFFFF;
+}
+
+.sectionContent {
+  color: #808080;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+  
+  .progressIndicator {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 1rem 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    transform: none;
+    z-index: 100;
+  }
+  
+  .progressLine {
+    display: none;
+  }
+  
+  .progressItem {
+    flex-direction: column;
+    margin: 0;
+  }
+  
+  .progressDot {
+    margin-right: 0;
+    margin-bottom: 0.5rem;
+  }
+  
+  .sectionsContainer {
+    margin-left: 0;
+    padding-top: 4rem;
+  }
+  
+  .section {
+    min-height: auto;
+    padding: 3rem 1rem;
+  }
+} 

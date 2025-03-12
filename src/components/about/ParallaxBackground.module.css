@@ -1,0 +1,136 @@
+.parallaxContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(5, 5, 10, 0.98), rgba(2, 5, 10, 0.99));
+}
+
+.layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+}
+
+/* Background grid layer */
+.gridPoint {
+  position: absolute;
+  border-radius: 0; /* Kare şeklinde noktalar */
+  background: rgba(150, 150, 150, 0.1);
+  box-shadow: 0 0 5px rgba(150, 150, 150, 0.2);
+  will-change: transform, opacity;
+}
+
+.gridLines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(to right, rgba(50, 50, 50, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(50, 50, 50, 0.07) 1px, transparent 1px);
+  background-size: 30px 30px;
+  opacity: 0.4;
+}
+
+/* Middle layer particles */
+.particle {
+  position: absolute;
+  border-radius: 0; /* Kare şeklinde parçacıklar */
+  background: rgba(180, 180, 180, 0.12);
+  box-shadow: 0 0 8px rgba(180, 180, 180, 0.2);
+  will-change: transform, opacity;
+}
+
+/* Foreground light points */
+.lightPoint {
+  position: absolute;
+  border-radius: 0; /* Kare şeklinde ışık noktaları */
+  background: rgba(220, 220, 220, 0.15);
+  box-shadow: 
+    0 0 10px rgba(220, 220, 220, 0.3),
+    0 0 20px rgba(220, 220, 220, 0.1);
+  will-change: transform, opacity, scale;
+}
+
+/* Digital rain effect */
+.digitalRain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.2;
+}
+
+.rainColumn {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 1px;
+}
+
+.rainDrop {
+  position: absolute;
+  width: 1px;
+  height: 15px;
+  background: linear-gradient(to bottom, 
+    rgba(180, 180, 180, 0), 
+    rgba(180, 180, 180, 0.8), 
+    rgba(180, 180, 180, 0)
+  );
+  will-change: transform, opacity;
+}
+
+/* Holographic glow effects */
+.parallaxContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(150, 150, 150, 0.03),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.parallaxContainer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(45deg, rgba(150, 150, 150, 0.02) 0%, transparent 70%),
+    linear-gradient(135deg, rgba(100, 100, 100, 0.02) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Media queries for responsive behavior */
+@media (max-width: 768px) {
+  .gridLines {
+    background-size: 20px 20px;
+  }
+  
+  .rainColumn {
+    width: 1px;
+  }
+  
+  .rainDrop {
+    width: 1px;
+    height: 8px;
+  }
+} 
