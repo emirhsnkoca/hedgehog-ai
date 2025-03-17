@@ -6,6 +6,7 @@ import { Squares } from "@/components/ui/squares-background";
 import Link from "next/link";
 import React, { useRef, useState, useEffect } from "react";
 import AboutHeader from "@/components/about/AboutHeader";
+import DisplayCards from "@/components/ui/display-cards";
 
 // Feature card component
 const FeatureCard = ({ 
@@ -330,69 +331,12 @@ const FAQItem = ({
 
 // Features section
 const Features = () => {
-  // Feature tipi tanımı
-  type FeatureSize = "large" | "medium" | "small";
-  
-  interface Feature {
-    icon: string;
-    title: string;
-    description: string;
-    color: string;
-    size: FeatureSize;
-  }
-  
-  // Features data
-  const features: Feature[] = [
-    {
-      icon: "01",
-      title: "AI MODERATION",
-      description: "Automated content moderation with advanced AI algorithms to maintain community standards and filter inappropriate content.",
-      color: "gray",
-      size: "large"
-    },
-    {
-      icon: "02",
-      title: "ANALYTICS DASHBOARD",
-      description: "Comprehensive analytics to track community growth, engagement metrics, and user behavior patterns.",
-      color: "gray",
-      size: "medium"
-    },
-    {
-      icon: "03",
-      title: "SMART NOTIFICATIONS",
-      description: "Intelligent notification system that prioritizes important updates and personalizes alerts based on user preferences.",
-      color: "gray",
-      size: "medium"
-    },
-    {
-      icon: "04",
-      title: "MULTI-PLATFORM INTEGRATION",
-      description: "Seamless integration with popular Web3 platforms, wallets, and social media channels for unified community management.",
-      color: "gray",
-      size: "large"
-    },
-    {
-      icon: "05",
-      title: "SECURE AUTHENTICATION",
-      description: "Enhanced security protocols with wallet-based authentication and encryption for data protection.",
-      color: "gray",
-      size: "medium"
-    },
-    {
-      icon: "06",
-      title: "TARGETED CAMPAIGNS",
-      description: "Create and manage targeted marketing campaigns with AI-powered audience segmentation and performance tracking.",
-      color: "gray",
-      size: "medium"
-    }
-  ];
-
   return (
-    <section id="features" className="relative py-24 bg-[#050505]">
+    <section id="features" className="relative min-h-screen flex flex-col justify-center bg-[#050505]">
       {/* Simple subtle gradient background */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#050505] to-[#0a0a0a] opacity-80"></div>
       
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 relative z-10 py-20">
         {/* Section header */}
         <div className="text-center mb-16 relative">
           <motion.div
@@ -435,47 +379,48 @@ const Features = () => {
           </motion.p>
         </div>
         
-        {/* Features grid - improved layout with offset and different sizes */}
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-            {features.map((feature, index) => {
-              // Farklı boyutlar ve konumlar için sınıflar
-              const sizeClasses = {
-                large: "md:col-span-8 md:row-span-2",
-                medium: "md:col-span-4",
-                small: "md:col-span-4"
-              };
-              
-              // Offset pozisyonları için özel sınıflar
-              const offsetClasses = [
-                "", // İlk kart için offset yok
-                "md:col-start-5", // İkinci kart için offset
-                "md:col-start-9", // Üçüncü kart için offset
-                "md:col-start-1", // Dördüncü kart için offset
-                "md:col-start-9", // Beşinci kart için offset
-                "md:col-start-5", // Altıncı kart için offset
-              ];
-              
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className={`${sizeClasses[feature.size]} ${offsetClasses[index]}`}
-                >
-                  <FeatureCard
-                    icon={feature.icon}
-                    title={feature.title}
-                    description={feature.description}
-                    color={feature.color}
-                    delay={index * 0.1}
-                  />
-                </motion.div>
-              );
-            })}
-          </div>
+        {/* DisplayCards bileşeni */}
+        <div className="mb-20">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: true }}
+          >
+            <div className="flex justify-center">
+              <div className="w-full max-w-4xl">
+                <DisplayCards cards={[
+                  {
+                    icon: <span className="text-white">01</span>,
+                    title: "AI MODERATION",
+                    description: "Advanced AI algorithms for content moderation",
+                    date: "Real-time",
+                    iconClassName: "text-white",
+                    titleClassName: "text-white",
+                    className: "[grid-area:stack] hover:-translate-y-10 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration:700 hover:grayscale-0 before:left-0 before:top-0",
+                  },
+                  {
+                    icon: <span className="text-white">02</span>,
+                    title: "ANALYTICS DASHBOARD",
+                    description: "Comprehensive community metrics",
+                    date: "Real-time data",
+                    iconClassName: "text-white",
+                    titleClassName: "text-white",
+                    className: "[grid-area:stack] translate-x-12 translate-y-10 hover:-translate-y-1 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration:700 hover:grayscale-0 before:left-0 before:top-0",
+                  },
+                  {
+                    icon: <span className="text-white">03</span>,
+                    title: "SMART NOTIFICATIONS",
+                    description: "Intelligent alert system",
+                    date: "Personalized",
+                    iconClassName: "text-white",
+                    titleClassName: "text-white",
+                    className: "[grid-area:stack] translate-x-24 translate-y-20 hover:translate-y-10",
+                  }
+                ]} />
+              </div>
+            </div>
+          </motion.div>
         </div>
         
         {/* Simple status indicator */}
@@ -1366,11 +1311,90 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section ref={featuresRef} id="features" className="relative py-24 bg-[#050505]">
+      <section ref={featuresRef} id="features" className="relative min-h-screen flex flex-col justify-center bg-[#050505] overflow-hidden">
         {/* Simple subtle gradient background */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#050505] to-[#0a0a0a] opacity-80"></div>
         
-        <div className="container mx-auto px-4 relative z-10">
+        {/* Animated circuit lines */}
+        <div className="absolute inset-0 opacity-20">
+          {[...Array(10)].map((_, i) => (
+            <motion.div
+              key={`circuit-${i}`}
+              className="absolute bg-gradient-to-r from-transparent via-gray-500 to-transparent"
+              style={{
+                height: '1px',
+                width: `${50 + i * 5}%`,
+                left: `${(i * 5) % 50}%`,
+                top: `${(i * 10) % 100}%`,
+              }}
+              animate={{
+                x: [0, 100, 0],
+                opacity: [0.1, 0.5, 0.1],
+              }}
+              transition={{
+                duration: 10 + i,
+                repeat: Infinity,
+                ease: "linear",
+                delay: i * 0.5
+              }}
+            />
+          ))}
+          {[...Array(10)].map((_, i) => (
+            <motion.div
+              key={`circuit-v-${i}`}
+              className="absolute bg-gradient-to-b from-transparent via-gray-500 to-transparent"
+              style={{
+                width: '1px',
+                height: `${30 + i * 5}%`,
+                left: `${(i * 10) % 100}%`,
+                top: `${(i * 5) % 70}%`,
+              }}
+              animate={{
+                y: [0, 50, 0],
+                opacity: [0.1, 0.3, 0.1],
+              }}
+              transition={{
+                duration: 8 + i,
+                repeat: Infinity,
+                ease: "linear",
+                delay: i * 0.3
+              }}
+            />
+          ))}
+        </div>
+        
+        {/* Floating particles */}
+        <div className="absolute inset-0 opacity-30">
+          {[...Array(20)].map((_, i) => (
+            <motion.div
+              key={`particle-${i}`}
+              className="absolute w-1 h-1 bg-white rounded-full"
+              style={{
+                left: `${(i * 5) % 100}%`,
+                top: `${(i * 5) % 100}%`,
+                boxShadow: '0 0 2px rgba(255, 255, 255, 0.8)'
+              }}
+              animate={{
+                y: [0, -30, 0],
+                opacity: [0.3, 0.8, 0.3],
+              }}
+              transition={{
+                duration: 2 + (i % 3),
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: i * 0.2
+              }}
+            />
+          ))}
+        </div>
+        
+        {/* Corner decorations */}
+        <div className="absolute top-0 left-0 w-[100px] h-[100px] border-t-2 border-l-2 border-gray-700 opacity-50"></div>
+        <div className="absolute top-0 right-0 w-[100px] h-[100px] border-t-2 border-r-2 border-gray-700 opacity-50"></div>
+        <div className="absolute bottom-0 left-0 w-[100px] h-[100px] border-b-2 border-l-2 border-gray-700 opacity-50"></div>
+        <div className="absolute bottom-0 right-0 w-[100px] h-[100px] border-b-2 border-r-2 border-gray-700 opacity-50"></div>
+        
+        <div className="container mx-auto px-4 relative z-10 py-20">
           {/* Section header */}
           <div className="text-center mb-16 relative">
             <motion.div
@@ -1413,53 +1437,71 @@ export default function Home() {
             </motion.p>
           </div>
           
-          {/* Features grid - improved layout with offset and different sizes */}
-          <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-              {features.map((feature, index) => {
-                // Farklı boyutlar ve konumlar için sınıflar
-                const sizeClasses = {
-                  large: "md:col-span-8 md:row-span-2",
-                  medium: "md:col-span-4",
-                  small: "md:col-span-4"
-                };
-                
-                // Offset pozisyonları için özel sınıflar
-                const offsetClasses = [
-                  "", // İlk kart için offset yok
-                  "md:col-start-5", // İkinci kart için offset
-                  "md:col-start-9", // Üçüncü kart için offset
-                  "md:col-start-1", // Dördüncü kart için offset
-                  "md:col-start-9", // Beşinci kart için offset
-                  "md:col-start-5", // Altıncı kart için offset
-                ];
-                
-                return (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    className={`${sizeClasses[feature.size]} ${offsetClasses[index]}`}
-                  >
-                    <FeatureCard
-                      icon={feature.icon}
-                      title={feature.title}
-                      description={feature.description}
-                      color={feature.color}
-                      delay={index * 0.1}
-                    />
-                  </motion.div>
-                );
-              })}
-            </div>
+          {/* DisplayCards bileşeni */}
+          <div className="mb-20">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              {/* Horizontal scan line */}
+              <motion.div 
+                className="absolute left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white to-transparent"
+                style={{ top: '50%', opacity: 0.2, zIndex: 20 }}
+                animate={{
+                  opacity: [0.1, 0.5, 0.1],
+                  width: ["0%", "100%", "0%"],
+                  left: ["0%", "0%", "100%"]
+                }}
+                transition={{
+                  duration: 8,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+              />
+              
+              <div className="flex justify-center">
+                <div className="w-full max-w-4xl">
+                  <DisplayCards cards={[
+                    {
+                      icon: <span className="text-white text-xl font-mono">01</span>,
+                      title: "AI MODERATION",
+                      description: "Advanced AI algorithms for content moderation",
+                      date: "Real-time",
+                      iconClassName: "text-white",
+                      titleClassName: "text-white",
+                      className: "[grid-area:stack] hover:-translate-y-10 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration:700 hover:grayscale-0 before:left-0 before:top-0",
+                    },
+                    {
+                      icon: <span className="text-white text-xl font-mono">02</span>,
+                      title: "ANALYTICS DASHBOARD",
+                      description: "Comprehensive community metrics",
+                      date: "Real-time data",
+                      iconClassName: "text-white",
+                      titleClassName: "text-white",
+                      className: "[grid-area:stack] translate-x-12 translate-y-10 hover:-translate-y-1 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration:700 hover:grayscale-0 before:left-0 before:top-0",
+                    },
+                    {
+                      icon: <span className="text-white text-xl font-mono">03</span>,
+                      title: "SMART NOTIFICATIONS",
+                      description: "Intelligent alert system",
+                      date: "Personalized",
+                      iconClassName: "text-white",
+                      titleClassName: "text-white",
+                      className: "[grid-area:stack] translate-x-24 translate-y-20 hover:translate-y-10",
+                    }
+                  ]} />
+                </div>
+              </div>
+            </motion.div>
           </div>
           
           {/* Simple status indicator */}
           <div className="mt-16 flex justify-center">
             <motion.div 
-              className="inline-flex items-center space-x-2 px-4 py-2 border border-gray-800 bg-[#0a0a0a]"
+              className="inline-flex items-center space-x-2 px-4 py-2 border border-gray-800 bg-[#0a0a0a] relative overflow-hidden"
               animate={{
                 boxShadow: [
                   '0 0 0px rgba(255, 255, 255, 0)',
@@ -1473,6 +1515,28 @@ export default function Home() {
                 ease: "easeInOut"
               }}
             >
+              {/* Tech frame */}
+              <div className="absolute top-0 left-0 w-[5px] h-[5px] border-t border-l border-white opacity-70"></div>
+              <div className="absolute top-0 right-0 w-[5px] h-[5px] border-t border-r border-white opacity-70"></div>
+              <div className="absolute bottom-0 left-0 w-[5px] h-[5px] border-b border-l border-white opacity-70"></div>
+              <div className="absolute bottom-0 right-0 w-[5px] h-[5px] border-b border-r border-white opacity-70"></div>
+              
+              {/* Scan line */}
+              <motion.div 
+                className="absolute left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white to-transparent"
+                style={{ top: '50%', opacity: 0.3 }}
+                animate={{
+                  opacity: [0.1, 0.5, 0.1],
+                  width: ["0%", "100%", "0%"],
+                  left: ["0%", "0%", "100%"]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+              />
+              
               <span className="w-2 h-2 rounded-full bg-white opacity-70"></span>
               <span className="text-xs text-gray-400 font-mono tracking-widest">SYSTEM OPERATIONAL</span>
             </motion.div>

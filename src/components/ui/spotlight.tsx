@@ -5,77 +5,87 @@ import { cn } from '@/lib/utils';
 
 type SpotlightProps = {
   className?: string;
+  children: React.ReactNode;
   size?: number;
-  springOptions?: SpringOptions;
+  strength?: number;
+  color?: string;
+  springConfig?: SpringOptions;
 };
 
 export function Spotlight({
+  children,
   className,
-  size = 200,
-  springOptions = { bounce: 0 },
+  size = 400,
+  strength = 0.3,
+  color = "white",
+  springConfig = {
+    stiffness: 400,
+    damping: 50,
+  },
 }: SpotlightProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
-  const [parentElement, setParentElement] = useState<HTMLElement | null>(null);
-
-  const mouseX = useSpring(0, springOptions);
-  const mouseY = useSpring(0, springOptions);
-
-  const spotlightLeft = useTransform(mouseX, (x) => `${x - size / 2}px`);
-  const spotlightTop = useTransform(mouseY, (y) => `${y - size / 2}px`);
-
-  useEffect(() => {
-    if (containerRef.current) {
-      const parent = containerRef.current.parentElement;
-      if (parent) {
-        parent.style.position = 'relative';
-        parent.style.overflow = 'hidden';
-        setParentElement(parent);
-      }
-    }
-  }, []);
 
   const handleMouseMove = useCallback(
-    (event: MouseEvent) => {
-      if (!parentElement) return;
-      const { left, top } = parentElement.getBoundingClientRect();
-      mouseX.set(event.clientX - left);
-      mouseY.set(event.clientY - top);
+    (e: React.MouseEvent<HTMLDivElement> | MouseEvent) => {
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      setMousePosition({ x, y });
     },
-    [mouseX, mouseY, parentElement]
+    []
   );
 
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
+  // Add window mousemove event to track mouse position even when moving fast
   useEffect(() => {
-    if (!parentElement) return;
-
-    parentElement.addEventListener('mousemove', handleMouseMove);
-    parentElement.addEventListener('mouseenter', () => setIsHovered(true));
-    parentElement.addEventListener('mouseleave', () => setIsHovered(false));
-
-    return () => {
-      parentElement.removeEventListener('mousemove', handleMouseMove);
-      parentElement.removeEventListener('mouseenter', () => setIsHovered(true));
-      parentElement.removeEventListener('mouseleave', () =>
-        setIsHovered(false)
-      );
+    const handleWindowMouseMove = (e: MouseEvent) => {
+      if (isHovered) {
+        handleMouseMove(e);
+      }
     };
-  }, [parentElement, handleMouseMove]);
+
+    window.addEventListener('mousemove', handleWindowMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleWindowMouseMove);
+    };
+  }, [isHovered, handleMouseMove]);
+
+  // Spring animations for smooth spotlight following
+  const springX = useSpring(mousePosition.x, springConfig);
+  const springY = useSpring(mousePosition.y, springConfig);
+
+  const spotlightOpacity = useTransform(
+    springX,
+    [0, 1],
+    [isHovered ? strength : 0, isHovered ? strength : 0]
+  );
 
   return (
-    <motion.div
+    <div
       ref={containerRef}
-      className={cn(
-        'pointer-events-none absolute rounded-full bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops),transparent_80%)] blur-xl transition-opacity duration-200',
-        'from-zinc-50 via-zinc-100 to-zinc-200',
-        isHovered ? 'opacity-100' : 'opacity-0',
-        className
-      )}
-      style={{
-        width: size,
-        height: size,
-        left: typeof window !== 'undefined' ? spotlightLeft : '50%',
-        top: typeof window !== 'undefined' ? spotlightTop : '50%',
-      }}
-    />
+      className={cn("relative overflow-hidden", className)}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <motion.div
+        className="pointer-events-none absolute -inset-px z-10 opacity-0"
+        style={{
+          opacity: spotlightOpacity,
+          background: `radial-gradient(${size}px circle at ${springX}px ${springY}px, ${color}, transparent)`,
+        }}
+      />
+      {children}
+    </div>
   );
 } 
