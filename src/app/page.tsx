@@ -610,7 +610,7 @@ export default function Home() {
   const roadmapData = [
     {
       quarter: "Q1",
-      year: "2023",
+      year: "2025",
       title: "Platform Foundation",
       items: [
         "Initial AI model training on Web3 and crypto concepts",
@@ -623,7 +623,7 @@ export default function Home() {
     },
     {
       quarter: "Q2",
-      year: "2023",
+      year: "2025",
       title: "Beta Launch",
       items: [
         "Public beta release with basic persona templates",
@@ -636,7 +636,7 @@ export default function Home() {
     },
     {
       quarter: "Q3",
-      year: "2023",
+      year: "2025",
       title: "Advanced Features",
       items: [
         "Enhanced AI training with community-specific data",
@@ -649,7 +649,7 @@ export default function Home() {
     },
     {
       quarter: "Q4",
-      year: "2023",
+      year: "2025",
       title: "Ecosystem Expansion",
       items: [
         "Integration with additional platforms (Twitter, Slack)",
@@ -1809,7 +1809,7 @@ export default function Home() {
       </section>
 
       {/* Roadmap Section */}
-      <section ref={roadmapRef} id="roadmap" className="py-20 relative bg-[#050505]">
+      <section ref={roadmapRef} id="roadmap" className="py-20 relative bg-black">
         {/* Background Effects */}
         <div className="absolute inset-0 z-0">
           {/* Animated blobs */}
@@ -1821,18 +1821,22 @@ export default function Home() {
           
           {/* Stars Background */}
           <StarsBackground
-            starDensity={0.00008}
+            starDensity={0.0002}
             allStarsTwinkle={true}
             minTwinkleSpeed={0.5}
             maxTwinkleSpeed={2}
-            className="opacity-30"
+            className="opacity-60"
           />
           
-          {/* Grid background */}
-          <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] bg-repeat opacity-5"></div>
+          {/* Dot pattern */}
+          <div className="absolute inset-0" style={{ 
+            backgroundImage: `radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px)`,
+            backgroundSize: '20px 20px',
+            opacity: 0.2
+          }}></div>
           
           {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#050505] via-transparent to-[#050505]"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black"></div>
         </div>
         
         {/* Content */}
@@ -1855,7 +1859,7 @@ export default function Home() {
           {/* Timeline */}
           <div className="relative max-w-5xl mx-auto">
             {/* Timeline center line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-gray-700 via-gray-500 to-gray-700 rounded-full hidden md:block"></div>
+            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-white via-gray-400 to-gray-700 rounded-full hidden md:block"></div>
             
             {/* Milestone cards */}
             <div className="space-y-12 md:space-y-0 relative">
@@ -1868,7 +1872,10 @@ export default function Home() {
                   <div 
                     className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full border-2 border-white"
                     style={{
-                      background: 'linear-gradient(90deg, #333333 0%, #666666 100%)',
+                      background: index === 0 ? 'linear-gradient(90deg, #ffffff 0%, #dddddd 100%)' :
+                                 index === 1 ? 'linear-gradient(90deg, #cccccc 0%, #aaaaaa 100%)' :
+                                 index === 2 ? 'linear-gradient(90deg, #999999 0%, #777777 100%)' :
+                                 'linear-gradient(90deg, #666666 0%, #444444 100%)',
                       boxShadow: '0 0 15px 0 rgba(255, 255, 255, 0.3)',
                       top: `calc(${index * 25}% + 1.5rem)`
                     }}
