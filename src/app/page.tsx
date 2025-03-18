@@ -8,6 +8,7 @@ import React, { useRef, useState, useEffect } from "react";
 import AboutHeader from "@/components/about/AboutHeader";
 import DisplayCards from "@/components/ui/display-cards";
 import StarsBackground from "@/components/ui/stars-background";
+import { PricingBasic } from "@/components/blocks/pricing-demo";
 
 // Feature card component
 const FeatureCard = ({ 
@@ -1906,42 +1907,12 @@ export default function Home() {
       </section>
 
       {/* Sale Section */}
-      <section ref={saleRef} id="sale" className="py-24 min-h-screen relative bg-black flex items-center justify-center">
-        {/* Background Effects */}
-        <div className="absolute inset-0 z-0">
-          {/* Dot pattern */}
-          <div className="absolute inset-0" style={{ 
-            backgroundImage: `radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px)`,
-            backgroundSize: '20px 20px',
-            opacity: 0.2
-          }}></div>
-          
-          {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black"></div>
-        </div>
-        
-        {/* Content */}
-        <div className="container mx-auto px-4 relative z-10">
-          {/* Section title */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 font-orbitron uppercase tracking-wider">SALE</h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-gray-700 via-white to-gray-700 mx-auto mb-6"></div>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Choose the plan that best fits your community needs.
-            </p>
-          </motion.div>
-          
-          {/* Pricing cards will be added here */}
-          <div className="flex flex-col lg:flex-row justify-center gap-8">
-            {/* Pricing cards placeholder */}
-            <div className="w-full h-64 border border-gray-800 rounded-xl flex items-center justify-center">
-              <p className="text-gray-500 font-orbitron">Pricing Cards Coming Soon</p>
-            </div>
+      <section ref={saleRef} id="sale" className="h-screen w-full relative bg-black flex items-center justify-center">
+        <div className="container mx-auto h-full flex items-center justify-center z-10 relative">
+          <div className="w-full max-w-6xl">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 font-orbitron uppercase tracking-wider text-center">SALE</h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-6"></div>
+            <PricingBasic />
           </div>
         </div>
       </section>
