@@ -128,7 +128,7 @@ const MilestoneCard = ({
       
       {/* Quarter badge */}
       <div 
-        className="absolute -top-3 -left-3 px-3 py-1 rounded-full text-xs font-semibold"
+        className="absolute -top-3 -left-3 px-3 py-1 rounded-full text-xs font-semibold font-orbitron"
         style={{
           background: 'linear-gradient(90deg, #333333 0%, #666666 100%)',
           boxShadow: '0 0 15px 0 rgba(200, 200, 200, 0.3)',
@@ -137,7 +137,7 @@ const MilestoneCard = ({
         {quarter} {year}
       </div>
       
-      <h3 className="text-xl font-bold mb-4 mt-2 text-white">{title}</h3>
+      <h3 className="text-xl font-bold mb-4 mt-2 text-white font-orbitron uppercase tracking-wider">{title}</h3>
       
       <ul className="space-y-2">
         {items.map((item, index) => (
@@ -453,6 +453,7 @@ export default function Home() {
   const aboutRef = useRef<HTMLElement>(null);
   const featuresRef = useRef<HTMLElement>(null);
   const roadmapRef = useRef<HTMLElement>(null);
+  const saleRef = useRef<HTMLElement>(null);
   const teamRef = useRef<HTMLElement>(null);
   const faqRef = useRef<HTMLElement>(null);
   
@@ -704,6 +705,13 @@ export default function Home() {
               className="text-base font-medium text-gray-300 hover:text-white transition-colors font-orbitron uppercase"
             >
               Roadmap
+            </motion.button>
+            <motion.button
+              whileHover={{ y: -2, color: '#fff' }}
+              onClick={() => saleRef.current?.scrollIntoView({ behavior: 'smooth' })}
+              className="text-base font-medium text-gray-300 hover:text-white transition-colors font-orbitron uppercase"
+            >
+              Sale
             </motion.button>
             <motion.button
               whileHover={{ y: -2, color: '#fff' }}
@@ -1848,7 +1856,7 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 font-orbitron uppercase tracking-wider">Roadmap</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 font-orbitron uppercase tracking-wider">ROADMAP</h2>
             <div className="w-24 h-1 bg-gradient-to-r from-gray-700 via-white to-gray-700 mx-auto mb-6"></div>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Our vision for the Hedgehog AI Army is ambitious and clearly defined. 
@@ -1859,7 +1867,9 @@ export default function Home() {
           {/* Timeline */}
           <div className="relative max-w-5xl mx-auto">
             {/* Timeline center line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-white via-gray-400 to-gray-700 rounded-full hidden md:block"></div>
+            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1.5 bg-gradient-to-b from-white via-gray-400 to-gray-900 rounded-full hidden md:block" style={{
+              boxShadow: '0 0 8px rgba(255, 255, 255, 0.5)'
+            }}></div>
             
             {/* Milestone cards */}
             <div className="space-y-12 md:space-y-0 relative">
@@ -1872,11 +1882,11 @@ export default function Home() {
                   <div 
                     className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full border-2 border-white"
                     style={{
-                      background: index === 0 ? 'linear-gradient(90deg, #ffffff 0%, #dddddd 100%)' :
-                                 index === 1 ? 'linear-gradient(90deg, #cccccc 0%, #aaaaaa 100%)' :
-                                 index === 2 ? 'linear-gradient(90deg, #999999 0%, #777777 100%)' :
-                                 'linear-gradient(90deg, #666666 0%, #444444 100%)',
-                      boxShadow: '0 0 15px 0 rgba(255, 255, 255, 0.3)',
+                      background: index === 0 ? 'linear-gradient(90deg, #ffffff 0%, #e0e0e0 100%)' :
+                                 index === 1 ? 'linear-gradient(90deg, #c0c0c0 0%, #909090 100%)' :
+                                 index === 2 ? 'linear-gradient(90deg, #707070 0%, #505050 100%)' :
+                                 'linear-gradient(90deg, #404040 0%, #202020 100%)',
+                      boxShadow: '0 0 10px 0 rgba(255, 255, 255, 0.5)',
                       top: `calc(${index * 25}% + 1.5rem)`
                     }}
                   ></div>
@@ -1890,6 +1900,47 @@ export default function Home() {
                   <div className="md:w-1/2"></div>
                 </div>
               ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Sale Section */}
+      <section ref={saleRef} id="sale" className="py-24 min-h-screen relative bg-black flex items-center justify-center">
+        {/* Background Effects */}
+        <div className="absolute inset-0 z-0">
+          {/* Dot pattern */}
+          <div className="absolute inset-0" style={{ 
+            backgroundImage: `radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px)`,
+            backgroundSize: '20px 20px',
+            opacity: 0.2
+          }}></div>
+          
+          {/* Gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black"></div>
+        </div>
+        
+        {/* Content */}
+        <div className="container mx-auto px-4 relative z-10">
+          {/* Section title */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 font-orbitron uppercase tracking-wider">SALE</h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-gray-700 via-white to-gray-700 mx-auto mb-6"></div>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Choose the plan that best fits your community needs.
+            </p>
+          </motion.div>
+          
+          {/* Pricing cards will be added here */}
+          <div className="flex flex-col lg:flex-row justify-center gap-8">
+            {/* Pricing cards placeholder */}
+            <div className="w-full h-64 border border-gray-800 rounded-xl flex items-center justify-center">
+              <p className="text-gray-500 font-orbitron">Pricing Cards Coming Soon</p>
             </div>
           </div>
         </div>
