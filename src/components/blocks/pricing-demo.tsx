@@ -1,6 +1,7 @@
 "use client";
 
 import { Pricing } from "@/components/ui/pricing";
+import { motion } from "framer-motion";
 
 const demoPlans = [
   {
@@ -61,12 +62,68 @@ const demoPlans = [
   },
 ];
 
+function AnimatedTitle() {
+  return (
+    <motion.h2 
+      className="text-4xl sm:text-5xl font-bold mb-6 relative"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+    >
+      <div className="relative inline-block">
+        <motion.span 
+          className="absolute inset-0 bg-clip-text text-transparent bg-gradient-to-r"
+          style={{
+            backgroundImage: "linear-gradient(90deg, #FFFFFF, #CCCCCC, #666666, #CCCCCC, #FFFFFF)"
+          }}
+          animate={{ 
+            backgroundPosition: ["0% center", "100% center"]
+          }}
+          transition={{ 
+            duration: 3, 
+            repeat: Infinity,
+            repeatType: "mirror",
+            ease: "linear"
+          }}
+        >
+          Simple, Transparent Pricing
+        </motion.span>
+        
+        {/* Glow effect */}
+        <motion.span 
+          className="absolute inset-0 text-transparent"
+          animate={{
+            textShadow: [
+              "0 0 5px rgba(255,255,255,0.1)",
+              "0 0 20px rgba(255,255,255,0.6)",
+              "0 0 5px rgba(255,255,255,0.1)"
+            ]
+          }}
+          transition={{
+            duration: 2.5,
+            repeat: Infinity,
+            repeatType: "mirror",
+            ease: "easeInOut"
+          }}
+        >
+          Simple, Transparent Pricing
+        </motion.span>
+        
+        {/* Base text for spacing and SEO */}
+        <span className="relative text-transparent">
+          Simple, Transparent Pricing
+        </span>
+      </div>
+    </motion.h2>
+  );
+}
+
 function PricingBasic() {
   return (
     <div className="h-auto overflow-y-auto rounded-lg">
       <Pricing 
         plans={demoPlans}
-        title="Simple, Transparent Pricing"
+        title={<AnimatedTitle />}
         description="Choose the plan that works for you
 All plans include access to our platform, lead generation tools, and dedicated support."
       />

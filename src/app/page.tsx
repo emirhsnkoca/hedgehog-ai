@@ -1910,49 +1910,52 @@ export default function Home() {
       <section ref={saleRef} id="sale" className="h-screen w-full relative bg-black flex items-center justify-center">
         <div className="container mx-auto h-full flex items-center justify-center z-10 relative">
           <div className="w-full max-w-6xl">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 font-orbitron uppercase tracking-wider text-center">SALE</h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-6"></div>
             <PricingBasic />
           </div>
         </div>
       </section>
 
       {/* Team Section */}
-      <section ref={teamRef} className="py-24 relative">
+      <section ref={teamRef} className="h-screen w-full relative bg-black flex items-center justify-center">
         {/* Background effects */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-full bg-[url('/grid.svg')] bg-repeat opacity-10"></div>
-          <div className="absolute top-0 left-0 w-full h-full">
-            <div className="absolute top-1/3 left-1/3 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob"></div>
-            <div className="absolute bottom-1/3 right-1/3 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob animation-delay-2000"></div>
-          </div>
+        <div className="absolute inset-0 z-0">
+          {/* Dot pattern */}
+          <div className="absolute inset-0" style={{ 
+            backgroundImage: `radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px)`,
+            backgroundSize: '20px 20px',
+            opacity: 0.2
+          }}></div>
+          
+          {/* Gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black"></div>
         </div>
 
         {/* Section title */}
-        <div className="relative z-10 w-full max-w-6xl mx-auto mb-16 text-center">
-          <motion.h2 
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500"
-          >
-            Meet Our Team
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto"
-          >
-            Tanışın, Hedgehog AI Army'nin arkasındaki yenilikçi ekip
-          </motion.p>
-        </div>
-
-        {/* Team members grid */}
         <div className="relative z-10 w-full max-w-6xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="text-center mb-12">
+            <motion.h2 
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="text-4xl md:text-5xl font-bold mb-4 font-orbitron uppercase tracking-wider text-white"
+            >
+              Meet Our Team
+            </motion.h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-6"></div>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto"
+            >
+              Tanışın, Hedgehog AI Army'nin arkasındaki yenilikçi ekip
+            </motion.p>
+          </div>
+
+          {/* Team members grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <TeamMemberCard 
               name="Emir Solana" 
               title="Founder & CEO" 

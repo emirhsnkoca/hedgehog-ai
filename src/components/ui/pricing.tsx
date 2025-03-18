@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { Check, Star } from "lucide-react";
 import Link from "next/link";
-import { useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import confetti from "canvas-confetti";
 import NumberFlow from "@number-flow/react";
 
@@ -26,7 +26,7 @@ interface PricingPlan {
 
 interface PricingProps {
   plans: PricingPlan[];
-  title?: string;
+  title?: React.ReactNode;
   description?: string;
 }
 
@@ -71,9 +71,13 @@ export function Pricing({
   return (
     <div className="container py-20">
       <div className="text-center space-y-4 mb-12">
-        <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">
-          {title}
-        </h2>
+        {typeof title === 'string' ? (
+          <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">
+            {title}
+          </h2>
+        ) : (
+          title
+        )}
         <p className="text-muted-foreground text-lg whitespace-pre-line">
           {description}
         </p>
