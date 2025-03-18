@@ -1,36 +1,54 @@
 "use client";
 
+import React, { useState, useEffect } from "react";
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 
-function TeamTestimonials() {
+export function TeamTestimonials() {
+  // Client-side rendering için kontrol
+  const [mounted, setMounted] = useState(false);
+
+  // Mount olduğunda client tarafında olduğumuzu belirt
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Team member information with real photo paths and updated Twitter links
   const teamMembers = [
     {
-      quote:
-        "Hedgehog AI Army ile Web3 ve kripto topluluklarına yapay zeka destekli çözümler sunmaktan gurur duyuyoruz. Vizyonumuz, topluluk etkileşimlerini daha anlamlı ve verimli hale getirmektir.",
-      name: "Emir Solana",
-      designation: "Founder & CEO",
-      src: "/team/member1.jpg",
+      quote: "I'm shaping the future with AI and creating solutions that make people's lives easier.",
+      name: "Caner Yakupoğlu",
+      designation: "Founder",
+      src: "/caner pp.jpg",
+      twitter: "https://x.com/CanerYakupoglu",
     },
     {
-      quote:
-        "Teknoloji altyapımızı her zaman en güncel ve güvenli standartlarda tutarak, kullanıcılarımıza kesintisiz bir deneyim sağlıyoruz. İnovasyon ve güvenlik, ekibimizin temel prensipleridir.",
-      name: "Ege Crypto",
-      designation: "Lead Developer",
-      src: "/team/member2.jpg",
+      quote: "I prioritize user experience while solving complex backend challenges.",
+      name: "Ege Hidayet Koca",
+      designation: "CEO & Backend Developer",
+      src: "/ege pp.jpg",
+      twitter: "https://x.com/EgeCrypto",
     },
     {
-      quote:
-        "Pazarlama stratejilerimiz, kullanıcı dostu arayüzler ve etkili iletişim yöntemleriyle topluluklarınıza değer katmayı hedefliyor. Başarınız, bizim başarımızdır.",
-      name: "Caner Yakupoglu",
-      designation: "Marketing Lead",
-      src: "/team/member3.jpg",
+      quote: "I transform digital experiences by developing modern and user-friendly interfaces.",
+      name: "Emir Hasan Koca",
+      designation: "CEO & Frontend Developer",
+      src: "/emir pp.jpg",
+      twitter: "https://x.com/EmirSolanaTR",
     },
   ];
+
+  // Client-side render öncesi yükleme göstergesi
+  if (!mounted) {
+    return (
+      <div className="w-full flex justify-center py-20">
+        <div className="w-12 h-12 border-4 border-gray-400 border-t-gray-600 rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
   return (
     <div className="w-full">
-      <AnimatedTestimonials testimonials={teamMembers} autoplay={true} />
+      <AnimatedTestimonials testimonials={teamMembers} />
     </div>
   );
-}
-
-export { TeamTestimonials }; 
+} 

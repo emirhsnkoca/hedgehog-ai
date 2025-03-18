@@ -1937,44 +1937,44 @@ export default function Home() {
         {/* Content Container */}
         <div className="relative z-10 w-full max-w-6xl mx-auto px-4 flex flex-col">
           {/* Section title - Moved higher */}
-          <div className="text-center mb-10 mt-[-200px]">
-            <motion.h2 
-              initial={{ opacity: 0, y: -20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="text-4xl md:text-5xl font-bold mb-4 font-orbitron uppercase tracking-wider relative overflow-hidden"
-            >
-              <motion.span
-                className="inline-block relative"
+          <div className="mt-[-200px] mb-32">
+            <div className="container mx-auto px-4 text-center">
+              <motion.h2 
+                initial={{ opacity: 0, y: -20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 overflow-hidden relative"
               >
-                <motion.span 
-                  className="absolute inset-0"
-                  style={{
-                    backgroundImage: "linear-gradient(to right, #FFFFFF, #FFFFFF, #666666, #FFFFFF, #FFFFFF)",
-                    backgroundSize: "200% 100%",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text"
-                  }}
-                  animate={{
-                    backgroundPosition: ["0% center", "100% center", "0% center"]
-                  }}
-                  transition={{
-                    duration: 3,
-                    ease: "linear",
-                    repeat: Infinity
-                  }}
-                >
-                  Meet Our Team
+                <motion.span className="relative inline-block">
+                  <motion.span 
+                    className="absolute inset-0"
+                    style={{
+                      backgroundImage: "linear-gradient(to right, #FFFFFF, #FFFFFF, #666666, #FFFFFF, #FFFFFF)",
+                      backgroundSize: "200% 100%",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text"
+                    }}
+                    animate={{
+                      backgroundPosition: ["0% center", "100% center", "0% center"]
+                    }}
+                    transition={{
+                      duration: 3,
+                      ease: "linear",
+                      repeat: Infinity
+                    }}
+                  >
+                    MEET OUR TEAM
+                  </motion.span>
+                  <span className="opacity-0">MEET OUR TEAM</span>
                 </motion.span>
-                <span className="opacity-0">Meet Our Team</span>
-              </motion.span>
-            </motion.h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-6"></div>
-            <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
-              Tanışın, Hedgehog AI Army'nin arkasındaki yenilikçi ekip
-            </p>
+              </motion.h2>
+              <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-6"></div>
+              <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
+                Meet the innovative team behind Hedgehog AI Army
+              </p>
+            </div>
           </div>
 
           {/* Team Testimonials */}
