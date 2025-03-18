@@ -7,6 +7,7 @@ import Link from "next/link";
 import React, { useRef, useState, useEffect } from "react";
 import AboutHeader from "@/components/about/AboutHeader";
 import DisplayCards from "@/components/ui/display-cards";
+import StarsBackground from "@/components/ui/stars-background";
 
 // Feature card component
 const FeatureCard = ({ 
@@ -111,17 +112,17 @@ const MilestoneCard = ({
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay }}
       viewport={{ once: true }}
-      className="relative p-6 rounded-xl backdrop-blur-sm border border-gray-800 hover:border-gray-700 transition-all duration-300 group"
+      className="relative p-6 rounded-xl backdrop-blur-sm border border-gray-800 hover:border-gray-600 transition-all duration-300 group"
       style={{
         background: 'rgba(13, 14, 18, 0.8)',
-        boxShadow: `0 0 20px 0 rgba(${color === 'blue' ? '56, 189, 248' : color === 'purple' ? '168, 85, 247' : color === 'green' ? '52, 211, 153' : '249, 115, 22'}, 0.15)`,
+        boxShadow: '0 0 20px 0 rgba(200, 200, 200, 0.15)',
       }}
     >
       {/* Glow effect */}
       <div 
         className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"
         style={{
-          background: `radial-gradient(circle at 50% 50%, rgba(${color === 'blue' ? '56, 189, 248' : color === 'purple' ? '168, 85, 247' : color === 'green' ? '52, 211, 153' : '249, 115, 22'}, 0.15) 0%, transparent 70%)`,
+          background: 'radial-gradient(circle at 50% 50%, rgba(200, 200, 200, 0.15) 0%, transparent 70%)',
         }}
       />
       
@@ -129,11 +130,8 @@ const MilestoneCard = ({
       <div 
         className="absolute -top-3 -left-3 px-3 py-1 rounded-full text-xs font-semibold"
         style={{
-          background: color === 'blue' ? 'linear-gradient(90deg, #0ea5e9 0%, #38bdf8 100%)' :
-                    color === 'purple' ? 'linear-gradient(90deg, #8b5cf6 0%, #a855f7 100%)' :
-                    color === 'green' ? 'linear-gradient(90deg, #10b981 0%, #34d399 100%)' :
-                    'linear-gradient(90deg, #f59e0b 0%, #f97316 100%)',
-          boxShadow: `0 0 15px 0 rgba(${color === 'blue' ? '56, 189, 248' : color === 'purple' ? '168, 85, 247' : color === 'green' ? '52, 211, 153' : '249, 115, 22'}, 0.5)`,
+          background: 'linear-gradient(90deg, #333333 0%, #666666 100%)',
+          boxShadow: '0 0 15px 0 rgba(200, 200, 200, 0.3)',
         }}
       >
         {quarter} {year}
@@ -152,13 +150,7 @@ const MilestoneCard = ({
             className="flex items-start"
           >
             <span 
-              className="mr-2 mt-1 text-lg"
-              style={{
-                color: color === 'blue' ? '#38bdf8' :
-                      color === 'purple' ? '#a855f7' :
-                      color === 'green' ? '#34d399' :
-                      '#f97316'
-              }}
+              className="mr-2 mt-1 text-lg text-gray-300"
             >
               ▸
             </span>
@@ -613,6 +605,62 @@ export default function Home() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Roadmap data
+  const roadmapData = [
+    {
+      quarter: "Q1",
+      year: "2023",
+      title: "Platform Foundation",
+      items: [
+        "Initial AI model training on Web3 and crypto concepts",
+        "Development of core AI persona framework",
+        "Alpha testing with select communities",
+        "Infrastructure setup for scalability"
+      ],
+      color: "gray",
+      delay: 0.1
+    },
+    {
+      quarter: "Q2",
+      year: "2023",
+      title: "Beta Launch",
+      items: [
+        "Public beta release with basic persona templates",
+        "Integration with Telegram and Discord",
+        "Implementation of basic analytics dashboard",
+        "Community feedback collection and iteration"
+      ],
+      color: "gray",
+      delay: 0.2
+    },
+    {
+      quarter: "Q3",
+      year: "2023",
+      title: "Advanced Features",
+      items: [
+        "Enhanced AI training with community-specific data",
+        "Launch of custom persona creation tools",
+        "Advanced moderation and FUD detection capabilities",
+        "Multi-language support expansion"
+      ],
+      color: "gray",
+      delay: 0.3
+    },
+    {
+      quarter: "Q4",
+      year: "2023",
+      title: "Ecosystem Expansion",
+      items: [
+        "Integration with additional platforms (Twitter, Slack)",
+        "Launch of API for developer ecosystem",
+        "Advanced analytics and reporting features",
+        "Enterprise-grade security enhancements"
+      ],
+      color: "gray",
+      delay: 0.4
+    }
+  ];
 
   return (
     <main className="relative bg-[#000000] text-white">
@@ -1311,25 +1359,65 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section ref={featuresRef} id="features" className="relative min-h-screen flex flex-col justify-center bg-[#050505] overflow-hidden">
-        {/* Simple subtle gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#050505] to-[#0a0a0a] opacity-80"></div>
+      <section ref={featuresRef} id="features" className="relative min-h-screen flex flex-col justify-center items-center bg-black overflow-hidden">
+        {/* Siyah arka plan */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black to-[#0a0a0a] opacity-95"></div>
+        
+        {/* Siyah doku */}
+        <div className="absolute inset-0 opacity-10" 
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.3'/%3E%3C/svg%3E")`,
+            backgroundSize: '100px 100px'
+          }}
+        ></div>
+        
+        {/* Metalik çizgiler */}
+        <div className="absolute inset-0 opacity-5">
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={`metal-line-${i}`}
+              className="absolute bg-gradient-to-r from-transparent via-gray-800 to-transparent"
+              style={{
+                height: '1px',
+                width: '100%',
+                left: '0',
+                top: `${(i * 5)}%`,
+                opacity: 0.05 + (i % 5) * 0.01
+              }}
+            />
+          ))}
+        </div>
+        
+        {/* Metalik parlaklık efekti */}
+        <motion.div 
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-900 to-transparent opacity-0"
+          animate={{
+            opacity: [0, 0.03, 0],
+            left: ['-100%', '100%', '100%']
+          }}
+          transition={{
+            duration: 7,
+            repeat: Infinity,
+            ease: "easeInOut",
+            repeatDelay: 7
+          }}
+        />
         
         {/* Animated circuit lines */}
-        <div className="absolute inset-0 opacity-20">
-          {[...Array(10)].map((_, i) => (
+        <div className="absolute inset-0 opacity-10">
+          {[...Array(15)].map((_, i) => (
             <motion.div
               key={`circuit-${i}`}
-              className="absolute bg-gradient-to-r from-transparent via-gray-500 to-transparent"
+              className="absolute bg-gradient-to-r from-transparent via-gray-800 to-transparent"
               style={{
                 height: '1px',
                 width: `${50 + i * 5}%`,
                 left: `${(i * 5) % 50}%`,
-                top: `${(i * 10) % 100}%`,
+                top: `${(i * 7) % 100}%`,
               }}
               animate={{
                 x: [0, 100, 0],
-                opacity: [0.1, 0.5, 0.1],
+                opacity: [0.03, 0.1, 0.03],
               }}
               transition={{
                 duration: 10 + i,
@@ -1339,19 +1427,19 @@ export default function Home() {
               }}
             />
           ))}
-          {[...Array(10)].map((_, i) => (
+          {[...Array(15)].map((_, i) => (
             <motion.div
               key={`circuit-v-${i}`}
-              className="absolute bg-gradient-to-b from-transparent via-gray-500 to-transparent"
+              className="absolute bg-gradient-to-b from-transparent via-gray-800 to-transparent"
               style={{
                 width: '1px',
                 height: `${30 + i * 5}%`,
-                left: `${(i * 10) % 100}%`,
+                left: `${(i * 7) % 100}%`,
                 top: `${(i * 5) % 70}%`,
               }}
               animate={{
                 y: [0, 50, 0],
-                opacity: [0.1, 0.3, 0.1],
+                opacity: [0.03, 0.08, 0.03],
               }}
               transition={{
                 duration: 8 + i,
@@ -1363,20 +1451,32 @@ export default function Home() {
           ))}
         </div>
         
+        {/* Metalik köşe süslemeleri */}
+        <div className="absolute top-0 left-0 w-[150px] h-[150px] border-t-2 border-l-2 border-gray-900 opacity-40"></div>
+        <div className="absolute top-0 right-0 w-[150px] h-[150px] border-t-2 border-r-2 border-gray-900 opacity-40"></div>
+        <div className="absolute bottom-0 left-0 w-[150px] h-[150px] border-b-2 border-l-2 border-gray-900 opacity-40"></div>
+        <div className="absolute bottom-0 right-0 w-[150px] h-[150px] border-b-2 border-r-2 border-gray-900 opacity-40"></div>
+        
+        {/* Metalik vida efektleri */}
+        <div className="absolute top-5 left-5 w-3 h-3 rounded-full bg-gradient-to-br from-gray-800 to-black shadow-inner"></div>
+        <div className="absolute top-5 right-5 w-3 h-3 rounded-full bg-gradient-to-br from-gray-800 to-black shadow-inner"></div>
+        <div className="absolute bottom-5 left-5 w-3 h-3 rounded-full bg-gradient-to-br from-gray-800 to-black shadow-inner"></div>
+        <div className="absolute bottom-5 right-5 w-3 h-3 rounded-full bg-gradient-to-br from-gray-800 to-black shadow-inner"></div>
+        
         {/* Floating particles */}
-        <div className="absolute inset-0 opacity-30">
+        <div className="absolute inset-0 opacity-20">
           {[...Array(20)].map((_, i) => (
             <motion.div
               key={`particle-${i}`}
-              className="absolute w-1 h-1 bg-white rounded-full"
+              className="absolute w-1 h-1 bg-gray-700 rounded-full"
               style={{
                 left: `${(i * 5) % 100}%`,
                 top: `${(i * 5) % 100}%`,
-                boxShadow: '0 0 2px rgba(255, 255, 255, 0.8)'
+                boxShadow: '0 0 2px rgba(150, 150, 150, 0.5)'
               }}
               animate={{
                 y: [0, -30, 0],
-                opacity: [0.3, 0.8, 0.3],
+                opacity: [0.1, 0.3, 0.1],
               }}
               transition={{
                 duration: 2 + (i % 3),
@@ -1388,15 +1488,9 @@ export default function Home() {
           ))}
         </div>
         
-        {/* Corner decorations */}
-        <div className="absolute top-0 left-0 w-[100px] h-[100px] border-t-2 border-l-2 border-gray-700 opacity-50"></div>
-        <div className="absolute top-0 right-0 w-[100px] h-[100px] border-t-2 border-r-2 border-gray-700 opacity-50"></div>
-        <div className="absolute bottom-0 left-0 w-[100px] h-[100px] border-b-2 border-l-2 border-gray-700 opacity-50"></div>
-        <div className="absolute bottom-0 right-0 w-[100px] h-[100px] border-b-2 border-r-2 border-gray-700 opacity-50"></div>
-        
-        <div className="container mx-auto px-4 relative z-10 py-20">
+        <div className="container mx-auto px-4 relative z-10 py-10 flex flex-col h-full justify-between">
           {/* Section header */}
-          <div className="text-center mb-16 relative">
+          <div className="text-center mb-8 relative">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -1404,14 +1498,110 @@ export default function Home() {
               viewport={{ once: true }}
               className="inline-block relative"
             >
-              <h2 
-                className="text-4xl md:text-5xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500"
+              <motion.h2 
+                className="text-5xl md:text-6xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-b from-gray-300 to-gray-700"
                 style={{ fontFamily: 'Space Mono, monospace' }}
+                animate={{
+                  textShadow: [
+                    '0 0 5px rgba(255,255,255,0.1)',
+                    '0 0 15px rgba(255,255,255,0.2)',
+                    '0 0 5px rgba(255,255,255,0.1)'
+                  ]
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
               >
-                SYSTEM CAPABILITIES
-              </h2>
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.2, delay: 0.1 }}
+                >A</motion.span>
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.2, delay: 0.2 }}
+                >R</motion.span>
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.2, delay: 0.3 }}
+                >M</motion.span>
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.2, delay: 0.4 }}
+                >Y</motion.span>
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.2, delay: 0.5 }}
+                > </motion.span>
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.2, delay: 0.6 }}
+                >C</motion.span>
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.2, delay: 0.7 }}
+                >A</motion.span>
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.2, delay: 0.8 }}
+                >P</motion.span>
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.2, delay: 0.9 }}
+                >A</motion.span>
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.2, delay: 1.0 }}
+                >B</motion.span>
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.2, delay: 1.1 }}
+                >I</motion.span>
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.2, delay: 1.2 }}
+                >L</motion.span>
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.2, delay: 1.3 }}
+                >I</motion.span>
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.2, delay: 1.4 }}
+                >T</motion.span>
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.2, delay: 1.5 }}
+                >I</motion.span>
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.2, delay: 1.6 }}
+                >E</motion.span>
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.2, delay: 1.7 }}
+                >S</motion.span>
+              </motion.h2>
               <motion.div 
-                className="absolute -bottom-2 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-white to-transparent"
+                className="absolute -bottom-2 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gray-700 to-transparent"
                 animate={{
                   opacity: [0.3, 0.7, 0.3],
                   width: ["0%", "100%", "0%"],
@@ -1430,82 +1620,21 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true }}
-              className="text-gray-400 max-w-2xl mx-auto mt-6"
+              className="text-gray-500 max-w-2xl mx-auto mt-6 text-lg"
               style={{ fontFamily: 'Roboto Mono, monospace' }}
             >
-              Advanced AI-powered tools designed to optimize and enhance your Web3 community management experience.
+              Advanced AI-powered Telegram bot army for strategic project promotion
             </motion.p>
           </div>
           
-          {/* DisplayCards bileşeni */}
-          <div className="mb-20">
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 1 }}
-              viewport={{ once: true }}
-              className="relative"
-            >
-              {/* Horizontal scan line */}
-              <motion.div 
-                className="absolute left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white to-transparent"
-                style={{ top: '50%', opacity: 0.2, zIndex: 20 }}
-                animate={{
-                  opacity: [0.1, 0.5, 0.1],
-                  width: ["0%", "100%", "0%"],
-                  left: ["0%", "0%", "100%"]
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "linear"
-                }}
-              />
-              
-              <div className="flex justify-center">
-                <div className="w-full max-w-4xl">
-                  <DisplayCards cards={[
-                    {
-                      icon: <span className="text-white text-xl font-mono">01</span>,
-                      title: "AI MODERATION",
-                      description: "Advanced AI algorithms for content moderation",
-                      date: "Real-time",
-                      iconClassName: "text-white",
-                      titleClassName: "text-white",
-                      className: "[grid-area:stack] hover:-translate-y-10 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration:700 hover:grayscale-0 before:left-0 before:top-0",
-                    },
-                    {
-                      icon: <span className="text-white text-xl font-mono">02</span>,
-                      title: "ANALYTICS DASHBOARD",
-                      description: "Comprehensive community metrics",
-                      date: "Real-time data",
-                      iconClassName: "text-white",
-                      titleClassName: "text-white",
-                      className: "[grid-area:stack] translate-x-12 translate-y-10 hover:-translate-y-1 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration:700 hover:grayscale-0 before:left-0 before:top-0",
-                    },
-                    {
-                      icon: <span className="text-white text-xl font-mono">03</span>,
-                      title: "SMART NOTIFICATIONS",
-                      description: "Intelligent alert system",
-                      date: "Personalized",
-                      iconClassName: "text-white",
-                      titleClassName: "text-white",
-                      className: "[grid-area:stack] translate-x-24 translate-y-20 hover:translate-y-10",
-                    }
-                  ]} />
-                </div>
-              </div>
-            </motion.div>
-          </div>
-          
-          {/* Simple status indicator */}
-          <div className="mt-16 flex justify-center">
+          {/* System status indicator - moved up */}
+          <div className="flex justify-center mb-8">
             <motion.div 
-              className="inline-flex items-center space-x-2 px-4 py-2 border border-gray-800 bg-[#0a0a0a] relative overflow-hidden"
+              className="inline-flex items-center space-x-2 px-4 py-2 border border-gray-900 bg-black relative overflow-hidden"
               animate={{
                 boxShadow: [
                   '0 0 0px rgba(255, 255, 255, 0)',
-                  '0 0 5px rgba(255, 255, 255, 0.1)',
+                  '0 0 5px rgba(255, 255, 255, 0.05)',
                   '0 0 0px rgba(255, 255, 255, 0)'
                 ]
               }}
@@ -1516,17 +1645,17 @@ export default function Home() {
               }}
             >
               {/* Tech frame */}
-              <div className="absolute top-0 left-0 w-[5px] h-[5px] border-t border-l border-white opacity-70"></div>
-              <div className="absolute top-0 right-0 w-[5px] h-[5px] border-t border-r border-white opacity-70"></div>
-              <div className="absolute bottom-0 left-0 w-[5px] h-[5px] border-b border-l border-white opacity-70"></div>
-              <div className="absolute bottom-0 right-0 w-[5px] h-[5px] border-b border-r border-white opacity-70"></div>
+              <div className="absolute top-0 left-0 w-[5px] h-[5px] border-t border-l border-gray-700 opacity-70"></div>
+              <div className="absolute top-0 right-0 w-[5px] h-[5px] border-t border-r border-gray-700 opacity-70"></div>
+              <div className="absolute bottom-0 left-0 w-[5px] h-[5px] border-b border-l border-gray-700 opacity-70"></div>
+              <div className="absolute bottom-0 right-0 w-[5px] h-[5px] border-b border-r border-gray-700 opacity-70"></div>
               
               {/* Scan line */}
               <motion.div 
-                className="absolute left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white to-transparent"
+                className="absolute left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-700 to-transparent"
                 style={{ top: '50%', opacity: 0.3 }}
                 animate={{
-                  opacity: [0.1, 0.5, 0.1],
+                  opacity: [0.1, 0.3, 0.1],
                   width: ["0%", "100%", "0%"],
                   left: ["0%", "0%", "100%"]
                 }}
@@ -1537,80 +1666,224 @@ export default function Home() {
                 }}
               />
               
-              <span className="w-2 h-2 rounded-full bg-white opacity-70"></span>
-              <span className="text-xs text-gray-400 font-mono tracking-widest">SYSTEM OPERATIONAL</span>
+              <span className="w-2 h-2 rounded-full bg-gray-700 opacity-70"></span>
+              <span className="text-xs text-gray-500 font-mono tracking-widest">MAA OPERATIONAL</span>
+            </motion.div>
+          </div>
+          
+          {/* Features cards in a more modern layout */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            {/* Feature 1 */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="relative overflow-hidden bg-black border border-gray-900 p-8 group hover:bg-gray-900/10 transition-all duration-300"
+            >
+              {/* Tech corners */}
+              <div className="absolute top-0 left-0 w-[20px] h-[20px] border-t border-l border-gray-700 opacity-70 group-hover:border-white group-hover:opacity-100 transition-all duration-300"></div>
+              <div className="absolute top-0 right-0 w-[20px] h-[20px] border-t border-r border-gray-700 opacity-70 group-hover:border-white group-hover:opacity-100 transition-all duration-300"></div>
+              <div className="absolute bottom-0 left-0 w-[20px] h-[20px] border-b border-l border-gray-700 opacity-70 group-hover:border-white group-hover:opacity-100 transition-all duration-300"></div>
+              <div className="absolute bottom-0 right-0 w-[20px] h-[20px] border-b border-r border-gray-700 opacity-70 group-hover:border-white group-hover:opacity-100 transition-all duration-300"></div>
+              
+              {/* Scanning line */}
+              <motion.div
+                className="absolute left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-70"
+                style={{ top: '30%' }}
+                animate={{
+                  y: [0, 100, 0],
+                  opacity: [0, 0.7, 0],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+              ></motion.div>
+              
+              <div className="flex items-center mb-4">
+                <span className="inline-block text-3xl mr-3 bg-gray-900 p-2 px-3 font-mono text-white">01</span>
+                <h3 className="text-2xl font-bold text-white" style={{ fontFamily: 'Space Mono, monospace' }}>HUMAN-LIKE CONVERSATIONS</h3>
+              </div>
+              
+              <p className="text-gray-400 mb-4" style={{ fontFamily: 'Roboto Mono, monospace' }}>
+                Our AI bots engage in natural, contextual conversations that mimic real human interactions. They maintain consistent personalities, respond appropriately to questions, and create authentic discussion flow.
+              </p>
+              
+              <div className="flex items-center mt-4">
+                <span className="inline-block h-1 w-5 bg-gray-700 mr-2"></span>
+                <span className="text-gray-500 font-mono text-xs">AI-POWERED NATURAL LANGUAGE PROCESSING</span>
+              </div>
+            </motion.div>
+            
+            {/* Feature 2 */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="relative overflow-hidden bg-black border border-gray-900 p-8 group hover:bg-gray-900/10 transition-all duration-300"
+            >
+              {/* Tech corners */}
+              <div className="absolute top-0 left-0 w-[20px] h-[20px] border-t border-l border-gray-700 opacity-70 group-hover:border-white group-hover:opacity-100 transition-all duration-300"></div>
+              <div className="absolute top-0 right-0 w-[20px] h-[20px] border-t border-r border-gray-700 opacity-70 group-hover:border-white group-hover:opacity-100 transition-all duration-300"></div>
+              <div className="absolute bottom-0 left-0 w-[20px] h-[20px] border-b border-l border-gray-700 opacity-70 group-hover:border-white group-hover:opacity-100 transition-all duration-300"></div>
+              <div className="absolute bottom-0 right-0 w-[20px] h-[20px] border-b border-r border-gray-700 opacity-70 group-hover:border-white group-hover:opacity-100 transition-all duration-300"></div>
+              
+              {/* Scanning line */}
+              <motion.div
+                className="absolute left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-70"
+                style={{ top: '30%' }}
+                animate={{
+                  y: [0, 100, 0],
+                  opacity: [0, 0.7, 0],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+              ></motion.div>
+              
+              <div className="flex items-center mb-4">
+                <span className="inline-block text-3xl mr-3 bg-gray-900 p-2 px-3 font-mono text-white">02</span>
+                <h3 className="text-2xl font-bold text-white" style={{ fontFamily: 'Space Mono, monospace' }}>PROJECT PROMOTION</h3>
+              </div>
+              
+              <p className="text-gray-400 mb-4" style={{ fontFamily: 'Roboto Mono, monospace' }}>
+                Strategic discussion threads that organically highlight project benefits, features, and advantages. Creates authentic buzz without obvious promotional language that might trigger skepticism.
+              </p>
+              
+              <div className="flex items-center mt-4">
+                <span className="inline-block h-1 w-5 bg-gray-700 mr-2"></span>
+                <span className="text-gray-500 font-mono text-xs">TELEGRAM-BASED STRATEGIC COMMUNICATION</span>
+              </div>
+            </motion.div>
+            
+            {/* Feature 3 */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="relative overflow-hidden bg-black border border-gray-900 p-8 group hover:bg-gray-900/10 transition-all duration-300 md:col-span-2"
+            >
+              {/* Tech corners */}
+              <div className="absolute top-0 left-0 w-[20px] h-[20px] border-t border-l border-gray-700 opacity-70 group-hover:border-white group-hover:opacity-100 transition-all duration-300"></div>
+              <div className="absolute top-0 right-0 w-[20px] h-[20px] border-t border-r border-gray-700 opacity-70 group-hover:border-white group-hover:opacity-100 transition-all duration-300"></div>
+              <div className="absolute bottom-0 left-0 w-[20px] h-[20px] border-b border-l border-gray-700 opacity-70 group-hover:border-white group-hover:opacity-100 transition-all duration-300"></div>
+              <div className="absolute bottom-0 right-0 w-[20px] h-[20px] border-b border-r border-gray-700 opacity-70 group-hover:border-white group-hover:opacity-100 transition-all duration-300"></div>
+              
+              {/* Scanning line */}
+              <motion.div
+                className="absolute left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-70"
+                style={{ top: '30%' }}
+                animate={{
+                  y: [0, 100, 0],
+                  opacity: [0, 0.7, 0],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+              ></motion.div>
+              
+              <div className="flex items-center mb-4">
+                <span className="inline-block text-3xl mr-3 bg-gray-900 p-2 px-3 font-mono text-white">03</span>
+                <h3 className="text-2xl font-bold text-white" style={{ fontFamily: 'Space Mono, monospace' }}>COORDINATED DEPLOYMENT</h3>
+              </div>
+              
+              <p className="text-gray-400 mb-4" style={{ fontFamily: 'Roboto Mono, monospace' }}>
+                Multiple AI-powered accounts working in perfect synchronization to create authentic conversation flows. Each bot has a unique personality and communication style while maintaining a cohesive narrative around your project.
+              </p>
+              
+              <div className="flex items-center mt-4">
+                <span className="inline-block h-1 w-5 bg-gray-700 mr-2"></span>
+                <span className="text-gray-500 font-mono text-xs">AUTOMATED MULTI-ACCOUNT ORCHESTRATION</span>
+              </div>
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* Roadmap Section */}
-      <section ref={roadmapRef} className="py-24 relative">
-        {/* Arka plan efektleri */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-full bg-[url('/grid.svg')] bg-repeat opacity-10"></div>
-          <div className="absolute top-0 left-0 w-full h-full">
-            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob"></div>
-            <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob animation-delay-2000"></div>
-            <div className="absolute bottom-1/4 right-1/3 w-96 h-96 bg-green-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob animation-delay-4000"></div>
+      <section ref={roadmapRef} id="roadmap" className="py-20 relative bg-[#050505]">
+        {/* Background Effects */}
+        <div className="absolute inset-0 z-0">
+          {/* Animated blobs */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="opacity-10 absolute w-[800px] h-[800px] rounded-full filter blur-[50px] top-1/4 left-1/4 transform -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-gray-900 to-gray-700"></div>
+            <div className="opacity-10 absolute w-[600px] h-[600px] rounded-full filter blur-[50px] top-3/4 right-1/4 transform translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-gray-700 to-gray-800"></div>
+            <div className="opacity-10 absolute w-[300px] h-[300px] rounded-full filter blur-[30px] top-1/2 right-1/3 transform translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-gray-800 to-gray-900"></div>
           </div>
+          
+          {/* Stars Background */}
+          <StarsBackground
+            starDensity={0.00008}
+            allStarsTwinkle={true}
+            minTwinkleSpeed={0.5}
+            maxTwinkleSpeed={2}
+            className="opacity-30"
+          />
+          
+          {/* Grid background */}
+          <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] bg-repeat opacity-5"></div>
+          
+          {/* Gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#050505] via-transparent to-[#050505]"></div>
         </div>
-
-        {/* Başlık */}
-        <div className="relative z-10 w-full max-w-6xl mx-auto mb-16 text-center">
-          <motion.h2 
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500"
-          >
-            Roadmap
-          </motion.h2>
-          <motion.p 
+        
+        {/* Content */}
+        <div className="container mx-auto px-4 relative z-10">
+          {/* Section title */}
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto"
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-center mb-16"
           >
-            Hedgehog AI Army'nin gelecek vizyonu ve kilometre taşları
-          </motion.p>
-        </div>
-
-        {/* Zaman çizelgesi */}
-        <div className="relative z-10 w-full max-w-6xl mx-auto px-4">
-          {/* Zaman çizgisi çizgisi */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-blue-500 via-purple-500 to-green-500 rounded-full hidden md:block"></div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 font-orbitron uppercase tracking-wider">Roadmap</h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-gray-700 via-white to-gray-700 mx-auto mb-6"></div>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Our vision for the Hedgehog AI Army is ambitious and clearly defined. 
+              Here are our key milestones as we revolutionize community management.
+            </p>
+          </motion.div>
           
-          {/* Milestone kartları */}
-          <div className="space-y-12 md:space-y-0 relative">
-            {milestones.map((milestone, index) => (
-              <div 
-                key={index} 
-                className={`md:flex items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} mb-16`}
-              >
-                {/* Zaman çizgisi noktası */}
-                <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full border-2 border-white"
-                  style={{
-                    background: milestone.color === 'blue' ? 'linear-gradient(90deg, #0ea5e9 0%, #38bdf8 100%)' :
-                              milestone.color === 'purple' ? 'linear-gradient(90deg, #8b5cf6 0%, #a855f7 100%)' :
-                              milestone.color === 'green' ? 'linear-gradient(90deg, #10b981 0%, #34d399 100%)' :
-                              'linear-gradient(90deg, #f59e0b 0%, #f97316 100%)',
-                    boxShadow: `0 0 15px 0 rgba(${milestone.color === 'blue' ? '56, 189, 248' : milestone.color === 'purple' ? '168, 85, 247' : milestone.color === 'green' ? '52, 211, 153' : '249, 115, 22'}, 0.7)`,
-                    top: `calc(${index * 25}% + 1.5rem)`
-                  }}
-                ></div>
-                
-                {/* Milestone kartı */}
-                <div className={`md:w-1/2 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`}>
-                  <MilestoneCard {...milestone} />
+          {/* Timeline */}
+          <div className="relative max-w-5xl mx-auto">
+            {/* Timeline center line */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-gray-700 via-gray-500 to-gray-700 rounded-full hidden md:block"></div>
+            
+            {/* Milestone cards */}
+            <div className="space-y-12 md:space-y-0 relative">
+              {roadmapData.map((milestone, index) => (
+                <div 
+                  key={index} 
+                  className={`md:flex items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} mb-16`}
+                >
+                  {/* Timeline dot */}
+                  <div 
+                    className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full border-2 border-white"
+                    style={{
+                      background: 'linear-gradient(90deg, #333333 0%, #666666 100%)',
+                      boxShadow: '0 0 15px 0 rgba(255, 255, 255, 0.3)',
+                      top: `calc(${index * 25}% + 1.5rem)`
+                    }}
+                  ></div>
+                  
+                  {/* Milestone card */}
+                  <div className={`md:w-1/2 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`}>
+                    <MilestoneCard {...milestone} />
+                  </div>
+                  
+                  {/* Empty space */}
+                  <div className="md:w-1/2"></div>
                 </div>
-                
-                {/* Boş alan */}
-                <div className="md:w-1/2"></div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
