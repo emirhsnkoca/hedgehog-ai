@@ -9,6 +9,7 @@ import AboutHeader from "@/components/about/AboutHeader";
 import DisplayCards from "@/components/ui/display-cards";
 import StarsBackground from "@/components/ui/stars-background";
 import { PricingBasic } from "@/components/blocks/pricing-demo";
+import { TeamTestimonials } from "@/components/blocks/testimonials-demo";
 
 // Feature card component
 const FeatureCard = ({ 
@@ -1919,6 +1920,9 @@ export default function Home() {
       <section ref={teamRef} className="h-screen w-full relative bg-black flex items-center justify-center">
         {/* Background effects */}
         <div className="absolute inset-0 z-0">
+          {/* Grid background */}
+          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-repeat opacity-5"></div>
+          
           {/* Dot pattern */}
           <div className="absolute inset-0" style={{ 
             backgroundImage: `radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px)`,
@@ -1930,51 +1934,52 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black"></div>
         </div>
 
-        {/* Section title */}
-        <div className="relative z-10 w-full max-w-6xl mx-auto px-4">
-          <div className="text-center mb-12">
+        {/* Content Container */}
+        <div className="relative z-10 w-full max-w-6xl mx-auto px-4 flex flex-col">
+          {/* Section title - Moved higher */}
+          <div className="text-center mb-10 mt-[-200px]">
             <motion.h2 
               initial={{ opacity: 0, y: -20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="text-4xl md:text-5xl font-bold mb-4 font-orbitron uppercase tracking-wider text-white"
+              className="text-4xl md:text-5xl font-bold mb-4 font-orbitron uppercase tracking-wider relative overflow-hidden"
             >
-              Meet Our Team
+              <motion.span
+                className="inline-block relative"
+              >
+                <motion.span 
+                  className="absolute inset-0"
+                  style={{
+                    backgroundImage: "linear-gradient(to right, #FFFFFF, #FFFFFF, #666666, #FFFFFF, #FFFFFF)",
+                    backgroundSize: "200% 100%",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text"
+                  }}
+                  animate={{
+                    backgroundPosition: ["0% center", "100% center", "0% center"]
+                  }}
+                  transition={{
+                    duration: 3,
+                    ease: "linear",
+                    repeat: Infinity
+                  }}
+                >
+                  Meet Our Team
+                </motion.span>
+                <span className="opacity-0">Meet Our Team</span>
+              </motion.span>
             </motion.h2>
             <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-6"></div>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto"
-            >
+            <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
               Tanışın, Hedgehog AI Army'nin arkasındaki yenilikçi ekip
-            </motion.p>
+            </p>
           </div>
 
-          {/* Team members grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <TeamMemberCard 
-              name="Emir Solana" 
-              title="Founder & CEO" 
-              twitter="@EmirSolana" 
-              delay={0.1}
-            />
-            <TeamMemberCard 
-              name="Ege Crypto" 
-              title="Lead Developer" 
-              twitter="@EgeCrypto" 
-              delay={0.2}
-            />
-            <TeamMemberCard 
-              name="Caner Yakupoglu" 
-              title="Marketing Lead" 
-              twitter="@CanerYakupoglu" 
-              isHighlighted={true}
-              delay={0.3}
-            />
+          {/* Team Testimonials */}
+          <div className="mt-12">
+            <TeamTestimonials />
           </div>
         </div>
       </section>
