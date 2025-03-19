@@ -15,21 +15,21 @@ export function TeamTestimonials() {
   // Team member information with real photo paths and updated Twitter links
   const teamMembers = [
     {
-      quote: "I&apos;m shaping the future with AI and creating solutions that make people&apos;s lives easier.",
+      quote: "",
       name: "Caner Yakupoğlu",
       designation: "Founder",
       src: "/caner pp.jpg",
       twitter: "https://x.com/CanerYakupoglu",
     },
     {
-      quote: "I prioritize user experience while solving complex backend challenges.",
+      quote: "",
       name: "Ege Hidayet Koca",
       designation: "CEO & Backend Developer",
       src: "/ege pp.jpg",
       twitter: "https://x.com/EgeCrypto",
     },
     {
-      quote: "I transform digital experiences by developing modern and user-friendly interfaces.",
+      quote: "",
       name: "Emir Hasan Koca",
       designation: "CEO & Frontend Developer",
       src: "/emir pp.jpg",

@@ -288,7 +288,7 @@ const FAQItem = ({
             viewBox="0 0 24 24" 
             fill="none" 
             xmlns="http://www.w3.org/2000/svg"
-            className="text-blue-500"
+            className="text-gray-400"
           >
             <path 
               d="M19 9L12 16L5 9" 
@@ -534,24 +534,24 @@ export default function Home() {
   // FAQ data
   const faqs = [
     {
-      question: "Meta AI Army nedir?",
-      answer: "Meta AI Army, Web3 ve kripto topluluklarınız için özel olarak tasarlanmış, yapay zeka destekli bir topluluk yönetim platformudur. Platformumuz, topluluğunuzu canlandırmak, moderasyon sağlamak ve üyelerinizle anlamlı etkileşimler oluşturmak için özelleştirilebilir AI personaları kullanır."
+      question: "What is Meta AI Army?",
+      answer: "Meta AI Army is an AI-powered community management platform specifically designed for Web3 and crypto communities. Our platform utilizes customizable AI personas to revitalize your community, provide moderation, and create meaningful interactions with your members."
     },
     {
-      question: "AI personaları nasıl çalışır?",
-      answer: "AI personalarımız, doğal dil işleme ve makine öğrenimi teknolojilerini kullanarak topluluk sohbetlerine katılır. Her persona, belirli bir rol için tasarlanmıştır - örneğin, yeni üyeleri karşılayan bir Hoş Geldin Elçisi, teknik sorulara yanıt veren bir Bilgi Uzmanı veya tartışmaları canlandıran bir Topluluk Katalizörü. Bu personalar, kullanıcıları isimleriyle anabilir, sorular sorabilir ve gerçek zamanlı olarak yanıt verebilir."
+      question: "How do AI personas work?",
+      answer: "Our AI personas engage in community chats using natural language processing and machine learning technologies. Each persona is designed for a specific role - for example, a Welcome Ambassador greeting new members, a Knowledge Expert answering technical questions, or a Community Catalyst stimulating discussions. These personas can address users by name, ask questions, and respond in real-time."
     },
     {
-      question: "Hangi platformları destekliyorsunuz?",
-      answer: "Şu anda Telegram ve Discord platformlarını tam entegrasyonla destekliyoruz. Twitter, Slack ve diğer popüler topluluk platformları için entegrasyonlar geliştirme aşamasındadır ve yakında kullanıma sunulacaktır."
+      question: "Which platforms do you support?",
+      answer: "We currently support Telegram and Discord platforms with full integration. Integrations for Twitter, Slack, and other popular community platforms are in development and will be available soon."
     },
     {
-      question: "Meta AI Army&apos;yi kendi topluluğuma nasıl entegre edebilirim?",
-      answer: "Entegrasyon süreci basittir. Platformumuza kaydolduktan sonra, size bir API anahtarı ve kolay kurulum talimatları sağlayacağız. Telegram veya Discord topluluğunuza bir bot eklemek kadar kolaydır. Daha sonra, yönetim panelimizi kullanarak personalarınızı özelleştirebilir ve davranışlarını yapılandırabilirsiniz."
+      question: "How can I integrate Meta AI Army into my community?",
+      answer: "The integration process is simple. After registering on our platform, we'll provide you with an API key and easy setup instructions. It's as simple as adding a bot to your Telegram or Discord community. You can then customize your personas and configure their behavior using our management panel."
     },
     {
-      question: "Fiyatlandırma nasıl çalışır?",
-      answer: "Farklı topluluk boyutları ve ihtiyaçları için tasarlanmış çeşitli fiyatlandırma planları sunuyoruz. Ücretsiz bir deneme sürümü, küçük topluluklar için uygun fiyatlı bir başlangıç planı ve daha büyük, daha aktif topluluklar için ölçeklenebilir premium planlar mevcuttur. Tam fiyatlandırma ayrıntıları için lütfen Fiyatlandırma sayfamızı ziyaret edin."
+      question: "How does pricing work?",
+      answer: "We offer various pricing plans designed for different community sizes and needs. A free trial version, an affordable starter plan for small communities, and scalable premium plans for larger, more active communities are available. Please visit our Pricing page for full pricing details."
     }
   ];
 
@@ -1936,19 +1936,20 @@ export default function Home() {
                   <motion.span
                     className="text-center text-4xl sm:text-5xl md:text-6xl font-bold relative z-10 py-6 block text-transparent bg-clip-text"
                     style={{
-                      backgroundImage: "linear-gradient(to right, #FFFFFF, #AAAAAA, #666666, #FFFFFF, #AAAAAA, #666666)",
-                      backgroundSize: "200% 100%",
+                      backgroundImage: "linear-gradient(to right, #FFFFFF, #AAAAAA, #666666, #AAAAAA, #FFFFFF, #AAAAAA, #666666)",
+                      backgroundSize: "300% 100%",
                       backgroundClip: "text",
                       WebkitBackgroundClip: "text",
                       WebkitTextFillColor: "transparent"
                     }}
                     animate={{
-                      backgroundPosition: ["0% center", "100% center"]
+                      backgroundPosition: ["0% center", "100% center", "0% center"]
                     }}
                     transition={{
-                      duration: 3,
-                      ease: "linear",
-                      repeat: Infinity
+                      duration: 5,
+                      ease: "easeInOut",
+                      repeat: Infinity,
+                      repeatType: "mirror"
                     }}
                   >
                     MEET OUR TEAM
@@ -1970,48 +1971,89 @@ export default function Home() {
       </section>
 
       {/* FAQ Section */}
-      <section ref={faqRef} className="py-24 relative">
-        {/* Background effects */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-full bg-[url('/grid.svg')] bg-repeat opacity-10"></div>
-          <div className="absolute top-0 left-0 w-full h-full">
-            <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-10 animate-blob"></div>
-            <div className="absolute bottom-1/3 left-1/3 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-10 animate-blob animation-delay-2000"></div>
-          </div>
+      <section ref={faqRef} className="py-24 relative bg-[#050505]">
+        {/* Robot gif - sol alt köşede */}
+        <div className="absolute bottom-0 left-0 z-10">
+          <img 
+            src="/robot gif.gif" 
+            alt="Robot Animation" 
+            className="w-32 h-32 md:w-48 md:h-48 object-contain"
+          />
+        </div>
+        
+        {/* Grid arka plan */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black"></div>
         </div>
 
-        {/* Section title */}
+        {/* Section title - Simple FAQ title */}
         <div className="relative z-10 w-full max-w-4xl mx-auto mb-16 text-center px-4">
           <motion.h2 
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-500"
+            className="text-5xl md:text-7xl font-bold mb-6"
+            style={{ 
+              fontFamily: 'Space Mono, monospace',
+              letterSpacing: '3px',
+              textShadow: '0 0 10px rgba(255, 255, 255, 0.2)'
+            }}
           >
-            Sık Sorulan Sorular
+            FAQ
           </motion.h2>
+          <motion.div 
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            transition={{ duration: 0.7, delay: 0.5 }}
+            viewport={{ once: true }}
+            className="w-24 h-1 bg-gray-400 mx-auto mb-6"
+          ></motion.div>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
             viewport={{ once: true }}
             className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto"
+            style={{ fontFamily: 'Roboto Mono, monospace' }}
           >
-            Hedgehog AI Army hakkında merak ettiğiniz her şey
+            All about Meta AI Army technology
           </motion.p>
         </div>
 
-        {/* FAQ accordion */}
-        <div className="relative z-10 w-full max-w-4xl mx-auto px-4">
-          <div className="bg-[#0D0E12]/80 backdrop-blur-sm border border-gray-800 rounded-xl p-2 md:p-6">
+        {/* FAQ accordion with robotic style */}
+        <motion.div 
+          className="relative z-10 w-full max-w-4xl mx-auto px-4"
+          initial="hidden"
+          whileInView="visible"
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.1
+              }
+            }
+          }}
+          viewport={{ once: true }}
+        >
+          <div className="space-y-4">
             {faqs.map((faq, index) => (
-              <FAQItem 
+              <motion.div
                 key={index}
-                question={faq.question}
-                answer={faq.answer}
-                delay={0.1 * index}
-              />
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+                }}
+                className="bg-black/40 backdrop-blur-sm border border-gray-800 rounded-md overflow-hidden"
+              >
+                <FAQItem 
+                  question={faq.question}
+                  answer={faq.answer}
+                  delay={0.1 * index}
+                />
+              </motion.div>
             ))}
           </div>
           
@@ -2019,25 +2061,28 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
+            transition={{ duration: 0.5, delay: 0.8 }}
             viewport={{ once: true }}
-            className="mt-12 text-center"
+            className="mt-16 text-center"
           >
-            <p className="text-gray-400 mb-6">Başka sorularınız mı var? Bizimle iletişime geçin</p>
+            <p className="text-gray-400 mb-6" style={{ fontFamily: 'Roboto Mono, monospace' }}>
+              More questions? Connect with us
+            </p>
             <Link href="/contact">
               <motion.button
                 whileHover={{ 
                   scale: 1.05, 
-                  boxShadow: "0 0 20px rgba(56, 189, 248, 0.3)",
+                  boxShadow: "0 0 20px rgba(100, 100, 100, 0.3)",
                 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full font-medium transition-all"
+                className="px-8 py-3 bg-transparent border border-gray-500 rounded-sm transition-all"
+                style={{ fontFamily: 'Space Mono, monospace' }}
               >
-                İletişime Geçin
+                CONTACT US
               </motion.button>
             </Link>
           </motion.div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Call to Action */}
