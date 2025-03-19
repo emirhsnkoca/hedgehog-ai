@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
+import { useEffect, useState } from "react";
 
 export function TeamTestimonials() {
   // Client-side rendering için kontrol
@@ -15,7 +15,7 @@ export function TeamTestimonials() {
   // Team member information with real photo paths and updated Twitter links
   const teamMembers = [
     {
-      quote: "I'm shaping the future with AI and creating solutions that make people's lives easier.",
+      quote: "I&apos;m shaping the future with AI and creating solutions that make people&apos;s lives easier.",
       name: "Caner Yakupoğlu",
       designation: "Founder",
       src: "/caner pp.jpg",

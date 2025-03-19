@@ -1,28 +1,26 @@
 "use client"
 
-import { SplineSceneBasic } from "@/components/ui/code.demo";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { Squares } from "@/components/ui/squares-background";
-import Link from "next/link";
-import React, { useRef, useState, useEffect } from "react";
 import AboutHeader from "@/components/about/AboutHeader";
-import DisplayCards from "@/components/ui/display-cards";
-import StarsBackground from "@/components/ui/stars-background";
 import { PricingBasic } from "@/components/blocks/pricing-demo";
 import { TeamTestimonials } from "@/components/blocks/testimonials-demo";
+import { SplineSceneBasic } from "@/components/ui/code.demo";
+import DisplayCards from "@/components/ui/display-cards";
+import StarsBackground from "@/components/ui/stars-background";
+import { motion } from "framer-motion";
+import { MessageCircle, Rocket, Shield, Star } from "lucide-react";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 
 // Feature card component
 const FeatureCard = ({ 
   icon, 
   title, 
   description, 
-  color, 
   delay = 0 
 }: { 
   icon: string; 
   title: string; 
   description: string; 
-  color: string; 
   delay?: number;
 }) => {
   return (
@@ -98,14 +96,12 @@ const MilestoneCard = ({
   year, 
   title, 
   items, 
-  color, 
   delay = 0 
 }: { 
   quarter: string; 
   year: string; 
   title: string; 
   items: string[]; 
-  color: string; 
   delay?: number;
 }) => {
   return (
@@ -462,28 +458,24 @@ export default function Home() {
   // Features data
   const features = [
     {
-      icon: "🎭",
+      icon: Star,
       title: "Custom AI Personas",
-      description: "Create unique AI personalities for your community - from enthusiastic Hype Generators to analytical Skeptics and vigilant Moderators. Each persona is designed to engage your community in different ways.",
-      color: "gray"
+      description: "Create unique AI personalities for your community - from enthusiastic Hype Generators to analytical Skeptics and vigilant Moderators. Each persona is designed to engage your community in different ways."
     },
     {
-      icon: "💬",
+      icon: MessageCircle,
       title: "Real-Time Engagement",
-      description: "Our AI bots respond dynamically to community discussions, mentioning users by name, asking follow-up questions, and sparking meaningful conversations.",
-      color: "gray"
+      description: "Our AI bots respond dynamically to community discussions, mentioning users by name, asking follow-up questions, and sparking meaningful conversations."
     },
     {
-      icon: "🛡️",
+      icon: Shield,
       title: "Automated Moderation & FUD Control",
-      description: "Protect your community with AI-driven moderation that detects and addresses misinformation in real-time. Our system identifies potential FUD and responds with accurate information.",
-      color: "gray"
+      description: "Protect your community with AI-driven moderation that detects and addresses misinformation in real-time. Our system identifies potential FUD and responds with accurate information."
     },
     {
-      icon: "🚀",
+      icon: Rocket,
       title: "Web3 & Crypto-Specific AI",
-      description: "Our AI is specifically trained on Web3 and cryptocurrency concepts, capable of discussing tokenomics, project roadmaps, technical implementations, and investment strategies.",
-      color: "gray"
+      description: "Our AI is specifically trained on Web3 and cryptocurrency concepts, capable of discussing tokenomics, project roadmaps, technical implementations, and investment strategies."
     }
   ];
   
@@ -499,7 +491,6 @@ export default function Home() {
         "Alpha testing with select communities",
         "Infrastructure setup for scalability"
       ],
-      color: "blue",
       delay: 0.1
     },
     {
@@ -512,7 +503,6 @@ export default function Home() {
         "Implementation of basic analytics dashboard",
         "Community feedback collection and iteration"
       ],
-      color: "purple",
       delay: 0.2
     },
     {
@@ -525,7 +515,6 @@ export default function Home() {
         "Advanced moderation and FUD detection capabilities",
         "Multi-language support expansion"
       ],
-      color: "green",
       delay: 0.3
     },
     {
@@ -538,7 +527,6 @@ export default function Home() {
         "Advanced analytics and reporting features",
         "Enterprise-grade security enhancements"
       ],
-      color: "orange",
       delay: 0.4
     }
   ];
@@ -558,7 +546,7 @@ export default function Home() {
       answer: "Şu anda Telegram ve Discord platformlarını tam entegrasyonla destekliyoruz. Twitter, Slack ve diğer popüler topluluk platformları için entegrasyonlar geliştirme aşamasındadır ve yakında kullanıma sunulacaktır."
     },
     {
-      question: "Meta AI Army'yi kendi topluluğuma nasıl entegre edebilirim?",
+      question: "Meta AI Army&apos;yi kendi topluluğuma nasıl entegre edebilirim?",
       answer: "Entegrasyon süreci basittir. Platformumuza kaydolduktan sonra, size bir API anahtarı ve kolay kurulum talimatları sağlayacağız. Telegram veya Discord topluluğunuza bir bot eklemek kadar kolaydır. Daha sonra, yönetim panelimizi kullanarak personalarınızı özelleştirebilir ve davranışlarını yapılandırabilirsiniz."
     },
     {
@@ -580,18 +568,10 @@ export default function Home() {
     useRef<HTMLDivElement>(null)
   ];
   
-  // Function to scroll to a specific about section
-  const scrollToAboutSection = (index: number) => {
-    aboutSectionRefs[index]?.current?.scrollIntoView({ 
-      behavior: 'smooth',
-      block: 'start'
-    });
-  };
-  
   // Check which about section is in view
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + window.innerHeight / 2;
+      const scrollPosition = window.scrollY;
       
       aboutSectionRefs.forEach((ref, index) => {
         if (ref.current) {
@@ -607,7 +587,7 @@ export default function Home() {
     
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [aboutSectionRefs, setActiveAboutSection]);
 
   // Roadmap data
   const roadmapData = [

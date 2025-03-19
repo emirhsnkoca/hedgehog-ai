@@ -9,18 +9,18 @@ interface DisplayCardProps {
   title?: string;
   description?: string;
   date?: string;
-  iconClassName?: string;
   titleClassName?: string;
+  iconClassName?: string;
 }
 
-function DisplayCard({
+export function DisplayCard({
   className,
   icon = <Sparkles className="size-4 text-white" />,
   title = "Featured",
   description = "Discover amazing content",
   date = "Just now",
-  iconClassName = "text-white",
   titleClassName = "text-white",
+  iconClassName = "text-white",
 }: DisplayCardProps) {
   return (
     <div
@@ -30,7 +30,7 @@ function DisplayCard({
       )}
     >
       <div>
-        <span className="relative inline-block rounded-full bg-gray-900 p-1">
+        <span className={cn("relative inline-block rounded-full bg-gray-900 p-1", iconClassName)}>
           {icon}
         </span>
         <p className={cn("text-lg font-medium", titleClassName)}>{title}</p>
@@ -42,18 +42,44 @@ function DisplayCard({
 }
 
 interface DisplayCardsProps {
-  cards?: DisplayCardProps[];
+  cards?: {
+    className?: string;
+    icon?: React.ReactNode;
+    title?: string;
+    description?: string;
+    date?: string;
+    titleClassName?: string;
+    iconClassName?: string;
+  }[];
 }
 
 export default function DisplayCards({ cards }: DisplayCardsProps) {
   const defaultCards = [
     {
+      icon: <span className="text-white">01</span>,
+      title: "FEATURE ONE",
+      description: "A fantastic feature that will amaze you",
+      date: "Coming soon",
+      iconClassName: "text-white",
+      titleClassName: "text-white",
       className: "[grid-area:stack] hover:-translate-y-10 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration:700 hover:grayscale-0 before:left-0 before:top-0",
     },
     {
+      icon: <span className="text-white">02</span>,
+      title: "FEATURE TWO",
+      description: "Another amazing feature you'll love",
+      date: "New release",
+      iconClassName: "text-white",
+      titleClassName: "text-white",
       className: "[grid-area:stack] translate-x-16 translate-y-10 hover:-translate-y-1 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration:700 hover:grayscale-0 before:left-0 before:top-0",
     },
     {
+      icon: <span className="text-white">03</span>,
+      title: "FEATURE THREE",
+      description: "The best feature you've ever seen",
+      date: "Premium",
+      iconClassName: "text-white",
+      titleClassName: "text-white",
       className: "[grid-area:stack] translate-x-32 translate-y-20 hover:translate-y-10",
     },
   ];

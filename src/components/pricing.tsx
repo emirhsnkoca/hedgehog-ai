@@ -5,12 +5,12 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { cn } from "@/lib/utils";
+import NumberFlow from "@number-flow/react";
+import confetti from "canvas-confetti";
 import { motion } from "framer-motion";
 import { Check, Star } from "lucide-react";
 import Link from "next/link";
-import { useState, useRef } from "react";
-import confetti from "canvas-confetti";
-import NumberFlow from "@number-flow/react";
+import { useRef, useState } from "react";
 
 interface PricingPlan {
   name: string;
@@ -46,6 +46,7 @@ export function Pricing({
       const x = rect.left + rect.width / 2;
       const y = rect.top + rect.height / 2;
 
+      // @ts-ignore
       confetti({
         particleCount: 50,
         spread: 60,
@@ -83,7 +84,7 @@ export function Pricing({
         <label className="relative inline-flex items-center cursor-pointer">
           <Label>
             <Switch
-              ref={switchRef as any}
+              ref={switchRef}
               checked={!isMonthly}
               onCheckedChange={handleToggle}
               className="relative"
@@ -154,8 +155,9 @@ export function Pricing({
                       currency: "USD",
                       minimumFractionDigits: 0,
                       maximumFractionDigits: 0,
+                      notation: "standard",
+                      compactDisplay: "short"
                     }}
-                    formatter={(value) => `$${value}`}
                     transformTiming={{
                       duration: 500,
                       easing: "ease-out",

@@ -1,15 +1,12 @@
 'use client'
 
-import React, { useEffect, useState } from 'react';
-import styles from './AboutHeader.module.css';
 import { motion } from 'framer-motion';
+import React, { useEffect } from 'react';
+import styles from './AboutHeader.module.css';
 
 const AboutHeader: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
   useEffect(() => {
-    // Component mount olduğunda animasyonu başlat
-    setIsVisible(true);
+    // Boş useEffect, gerektiğinde kullanılabilir
   }, []);
 
   // Robotik animasyon varyantları

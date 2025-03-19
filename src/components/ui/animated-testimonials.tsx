@@ -1,10 +1,10 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { cn } from "@/lib/utils";
 
 type Testimonial = {
   quote: string;
@@ -45,7 +45,7 @@ export const AnimatedTestimonials = ({
       const interval = setInterval(handleNext, 5000);
       return () => clearInterval(interval);
     }
-  }, [autoplay]);
+  }, [autoplay, handleNext]);
 
   const randomRotateY = () => {
     return Math.floor(Math.random() * 21) - 10;
@@ -71,35 +71,35 @@ export const AnimatedTestimonials = ({
                 const isCurrentlyActive = isActive(index);
                 
                 return (
-                  <motion.div
-                    key={testimonial.src}
-                    initial={{
-                      opacity: 0,
-                      scale: 0.9,
-                      z: -100,
-                      rotate: randomRotateY(),
-                    }}
-                    animate={{
+                <motion.div
+                  key={testimonial.src}
+                  initial={{
+                    opacity: 0,
+                    scale: 0.9,
+                    z: -100,
+                    rotate: randomRotateY(),
+                  }}
+                  animate={{
                       opacity: isCurrentlyActive ? 1 : 0.7,
                       scale: isCurrentlyActive ? 1 : 0.95,
                       z: isCurrentlyActive ? 0 : -100,
                       rotate: isCurrentlyActive ? 0 : randomRotateY(),
                       zIndex: isCurrentlyActive
-                        ? 999
-                        : testimonials.length + 2 - index,
+                      ? 999
+                      : testimonials.length + 2 - index,
                       y: isCurrentlyActive ? [0, -80, 0] : 0,
-                    }}
-                    exit={{
-                      opacity: 0,
-                      scale: 0.9,
-                      z: 100,
-                      rotate: randomRotateY(),
-                    }}
-                    transition={{
-                      duration: 0.4,
-                      ease: "easeInOut",
-                    }}
-                    className="absolute inset-0 origin-bottom"
+                  }}
+                  exit={{
+                    opacity: 0,
+                    scale: 0.9,
+                    z: 100,
+                    rotate: randomRotateY(),
+                  }}
+                  transition={{
+                    duration: 0.4,
+                    ease: "easeInOut",
+                  }}
+                  className="absolute inset-0 origin-bottom"
                     onClick={() => {
                       if (isCurrentlyActive && testimonial.twitter) {
                         window.open(testimonial.twitter, "_blank");
@@ -115,10 +115,13 @@ export const AnimatedTestimonials = ({
                         "hover:scale-[1.02] hover:shadow-lg hover:shadow-gray-500/20" : ""
                       }`}
                     >
-                      <img 
-                        src={testimonial.src} 
+                      <Image 
+                        src={testimonial.src}
                         alt={testimonial.name}
                         className="w-full h-full object-cover"
+                        width={300}
+                        height={400}
+                        unoptimized
                       />
                       
                       {/* Hover overlay with gradient effect */}
@@ -151,7 +154,7 @@ export const AnimatedTestimonials = ({
                         </div>
                       )}
                     </div>
-                  </motion.div>
+                </motion.div>
                 );
               })}
             </AnimatePresence>
@@ -210,7 +213,7 @@ export const AnimatedTestimonials = ({
                     backgroundSize: '200% auto',
                   }}
                 >
-                  {testimonials[active].name}
+              {testimonials[active].name}
                 </motion.h3>
                 
                 <motion.div 
