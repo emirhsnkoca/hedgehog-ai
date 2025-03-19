@@ -2086,12 +2086,22 @@ export default function Home() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-24 relative overflow-hidden bg-[#060611]">
-        <div className="absolute inset-0 z-0 opacity-20">
+      <section className="py-24 relative overflow-hidden bg-black">
+        {/* Robotik arka plan efektleri */}
+        <div className="absolute inset-0 z-0">
+          {/* Grid arka plan */}
+          <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5"></div>
+          
+          {/* Nokta paterni */}
           <div className="absolute inset-0" style={{ 
-            backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.1) 0%, transparent 50%)',
-            backgroundSize: '100% 100%'
+            backgroundImage: `radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px)`,
+            backgroundSize: '20px 20px',
+            opacity: 0.1
           }}></div>
+          
+          {/* Üst ve alt çizgiler */}
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gray-500/20 to-transparent"></div>
+          <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-gray-500/20 to-transparent"></div>
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
@@ -2102,11 +2112,11 @@ export default function Home() {
             viewport={{ once: true }}
             className="max-w-3xl mx-auto text-center"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
-              Ready to <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">transform</span> your Web3 community?
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight font-mono tracking-tighter">
+              READY TO <span className="text-white border-b border-white pb-1">TRANSFORM</span> YOUR WEB3 COMMUNITY?
             </h2>
             
-            <p className="text-xl text-gray-400 mb-10 leading-relaxed">
+            <p className="text-lg text-gray-400 mb-10 font-mono">
               Experience the power of AI-driven community management with Meta AI Army
             </p>
             
@@ -2115,12 +2125,12 @@ export default function Home() {
                 <motion.button
                   whileHover={{ 
                     scale: 1.05, 
-                    boxShadow: "0 0 20px rgba(56, 189, 248, 0.3)",
+                    boxShadow: "0 0 20px rgba(255, 255, 255, 0.2)",
                   }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-md font-medium transition-all"
+                  className="px-8 py-4 bg-white text-black rounded-none font-mono font-bold transition-all hover:bg-gray-200"
                 >
-                  Try Demo
+                  TRY_DEMO.exe
                 </motion.button>
               </Link>
               
@@ -2128,12 +2138,12 @@ export default function Home() {
                 <motion.button
                   whileHover={{ 
                     scale: 1.05, 
-                    boxShadow: "0 0 20px rgba(168, 85, 247, 0.3)",
+                    boxShadow: "0 0 20px rgba(255, 255, 255, 0.1)",
                   }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 bg-transparent border border-purple-500 rounded-md font-medium text-lg transition-all"
+                  className="px-8 py-4 bg-transparent border border-white/30 rounded-none font-mono font-bold text-lg transition-all hover:border-white"
                 >
-                  View Pricing
+                  VIEW_PRICING.exe
                 </motion.button>
               </Link>
             </div>
