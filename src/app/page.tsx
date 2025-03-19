@@ -2130,11 +2130,11 @@ export default function Home() {
                   whileTap={{ scale: 0.95 }}
                   className="px-8 py-4 bg-white text-black rounded-none font-mono font-bold transition-all hover:bg-gray-200"
                 >
-                  TRY_DEMO.exe
+                  TRY DEMO
                 </motion.button>
               </Link>
               
-              <Link href="/pricing">
+              <Link href="#sale">
                 <motion.button
                   whileHover={{ 
                     scale: 1.05, 
@@ -2143,7 +2143,7 @@ export default function Home() {
                   whileTap={{ scale: 0.95 }}
                   className="px-8 py-4 bg-transparent border border-white/30 rounded-none font-mono font-bold text-lg transition-all hover:border-white"
                 >
-                  VIEW_PRICING.exe
+                  VIEW PRICING
                 </motion.button>
               </Link>
             </div>
