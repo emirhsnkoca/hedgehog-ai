@@ -1977,7 +1977,7 @@ export default function Home() {
           <img 
             src="/robot gif.gif" 
             alt="Robot Animation" 
-            className="w-32 h-32 md:w-48 md:h-48 object-contain"
+            className="w-60 h-60 md:w-96 md:h-96 object-contain"
           />
         </div>
         
