@@ -1915,29 +1915,35 @@ export default function Home() {
         </div>
 
         {/* Content Container */}
-        <div className="relative z-10 w-full max-w-6xl mx-auto px-4 flex flex-col">
-          {/* Section title - Moved higher */}
-          <div className="mt-[-200px] mb-32">
+        <div className="relative z-10 w-full max-w-6xl mx-auto px-4 flex flex-col items-center justify-center">
+          {/* Section title */}
+          <div className="mb-10 w-full">
             <div className="container mx-auto px-4 text-center">
               <motion.h2 
                 initial={{ opacity: 0, y: -20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
-                className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 overflow-hidden relative"
+                className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 overflow-hidden relative"
               >
-                <motion.span className="relative inline-block">
-                  <motion.span 
-                    className="absolute inset-0"
+                <motion.span 
+                  className="relative inline-block"
+                  initial={{ y: 20, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                  viewport={{ once: true }}
+                >
+                  <motion.span
+                    className="text-center text-4xl sm:text-5xl md:text-6xl font-bold relative z-10 py-6 block text-transparent bg-clip-text"
                     style={{
-                      backgroundImage: "linear-gradient(to right, #FFFFFF, #FFFFFF, #666666, #FFFFFF, #FFFFFF)",
+                      backgroundImage: "linear-gradient(to right, #FFFFFF, #AAAAAA, #666666, #FFFFFF, #AAAAAA, #666666)",
                       backgroundSize: "200% 100%",
+                      backgroundClip: "text",
                       WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text"
+                      WebkitTextFillColor: "transparent"
                     }}
                     animate={{
-                      backgroundPosition: ["0% center", "100% center", "0% center"]
+                      backgroundPosition: ["0% center", "100% center"]
                     }}
                     transition={{
                       duration: 3,
@@ -1947,18 +1953,17 @@ export default function Home() {
                   >
                     MEET OUR TEAM
                   </motion.span>
-                  <span className="opacity-0">MEET OUR TEAM</span>
                 </motion.span>
               </motion.h2>
               <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-6"></div>
               <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
-                Meet the innovative team behind Hedgehog AI Army
+                Meet the innovative team behind Meta AI Army
               </p>
             </div>
           </div>
 
           {/* Team Testimonials */}
-          <div className="mt-12">
+          <div className="w-full">
             <TeamTestimonials />
           </div>
         </div>
@@ -1989,7 +1994,7 @@ export default function Home() {
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
             className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto"
           >
