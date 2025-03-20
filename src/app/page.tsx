@@ -707,7 +707,7 @@ export default function Home() {
               onClick={() => faqRef.current?.scrollIntoView({ behavior: 'smooth' })}
               className="text-base font-medium text-gray-300 hover:text-white transition-colors font-orbitron uppercase"
             >
-              SSS
+              FAQ
             </motion.button>
           </div>
           
@@ -1972,15 +1972,6 @@ export default function Home() {
 
       {/* FAQ Section */}
       <section ref={faqRef} className="py-24 relative bg-[#050505]">
-        {/* Robot gif - sol alt köşede */}
-        <div className="absolute bottom-0 left-0 z-10">
-          <img 
-            src="/robot gif.gif" 
-            alt="Robot Animation" 
-            className="w-60 h-60 md:w-96 md:h-96 object-contain"
-          />
-        </div>
-        
         {/* Grid arka plan */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5"></div>
@@ -2102,6 +2093,15 @@ export default function Home() {
           {/* Üst ve alt çizgiler */}
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gray-500/20 to-transparent"></div>
           <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-gray-500/20 to-transparent"></div>
+        </div>
+
+        {/* Robot gif - sol alt köşede */}
+        <div className="absolute bottom-0 left-0 z-10">
+          <img 
+            src="/robot gif.gif" 
+            alt="Robot Animation" 
+            className="w-60 h-60 md:w-96 md:h-96 object-contain"
+          />
         </div>
         
         <div className="container mx-auto px-4 relative z-10">

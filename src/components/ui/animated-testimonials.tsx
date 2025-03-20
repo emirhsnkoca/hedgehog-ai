@@ -114,10 +114,10 @@ export const AnimatedTestimonials = ({
                         isCurrentlyActive && testimonial.twitter ? 
                         "hover:scale-[1.02] hover:shadow-lg hover:shadow-gray-500/20" : ""
                       }`}
-                    >
-                      <Image 
-                        src={testimonial.src}
-                        alt={testimonial.name}
+                >
+                  <Image
+                    src={testimonial.src}
+                    alt={testimonial.name}
                         className="w-full h-full object-cover"
                         width={300}
                         height={400}
