@@ -736,19 +736,6 @@ export default function Home() {
           
           {/* CTA Buttons - Right aligned */}
           <div className="flex items-center gap-3 pr-4">
-            <Link href="https://t.me/hedgehogaibot" target="_blank" rel="noopener noreferrer">
-              <motion.button
-                whileHover={{ 
-                  scale: 1.03, 
-                  boxShadow: "0 0 15px rgba(200, 200, 200, 0.3)" 
-                }}
-                whileTap={{ scale: 0.97 }}
-                className="px-5 py-2.5 bg-[#1a1a1a] border border-gray-700 text-gray-300 rounded-md text-base font-medium transition-all hover:text-white font-orbitron uppercase"
-              >
-                JOIN DEMO
-              </motion.button>
-            </Link>
-            
             <Link href="/pricing">
               <motion.button
                 whileHover={{ 
@@ -758,7 +745,7 @@ export default function Home() {
                 whileTap={{ scale: 0.95 }}
                 className="px-5 py-2.5 bg-[#2a2a2a] text-white rounded-md text-base font-medium transition-all font-orbitron uppercase"
               >
-                Start Now
+                Launch App
               </motion.button>
             </Link>
           </div>
