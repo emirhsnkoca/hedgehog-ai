@@ -455,6 +455,29 @@ export default function Home() {
   const teamRef = useRef<HTMLElement>(null);
   const faqRef = useRef<HTMLElement>(null);
   
+  // Robot bölümü görünürlüğünü kontrol etmek için ref
+  const robotSectionRef = useRef<HTMLDivElement>(null);
+  
+  // Scroll olayını dinleyerek robot bölümünün görünürlüğünü kontrol et
+  useEffect(() => {
+    const handleScroll = () => {
+      if (robotSectionRef.current) {
+        const robotSection = robotSectionRef.current;
+        const rect = robotSection.getBoundingClientRect();
+        
+        // Robot bölümü ekrandan çıktığında içindeki 3D robot bileşenini gizle
+        if (rect.bottom <= 0) {
+          robotSection.style.visibility = 'hidden';
+        } else {
+          robotSection.style.visibility = 'visible';
+        }
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+  
   // Features data
   const features = [
     {
@@ -799,7 +822,7 @@ export default function Home() {
         </div>
         
         {/* 3D Robot with effects */}
-        <div className="w-full h-[60vh] relative mt-16">
+        <div id="robot-section" ref={robotSectionRef} className="w-full h-[60vh] relative mt-16">
           {/* Shadow robots effect */}
           <div className="absolute inset-0 flex items-center justify-center">
             <motion.div 
@@ -854,7 +877,7 @@ export default function Home() {
           </div>
           
           {/* Main 3D Robot */}
-      <SplineSceneBasic />
+          <SplineSceneBasic />
           
           {/* Holographic shadow robots */}
           <div className="absolute inset-0 pointer-events-none">

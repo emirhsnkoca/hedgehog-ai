@@ -1,8 +1,8 @@
 'use client'
 
+import { Card } from "@/components/ui/card";
 import { SplineScene } from "@/components/ui/splite";
-import { Card } from "@/components/ui/card"
-import { useEffect, useState, lazy, Suspense } from 'react'
+import { lazy, Suspense, useEffect, useState } from 'react';
 
 // Spotlight bileşenini dinamik olarak import ediyoruz
 const Spotlight = lazy(() => import('@/components/ui/spotlight').then(mod => ({ default: mod.Spotlight })));
@@ -46,8 +46,8 @@ export function SplineSceneBasic() {
 
   return (
     <Card className="w-full min-h-screen bg-black relative overflow-hidden border-0">
-      {/* 3D Scene container - positioned absolutely to cover entire viewport */}
-      <div className="fixed inset-0 w-full h-full">
+      {/* 3D Scene container - changing from fixed to absolute positioning */}
+      <div className="absolute inset-0 w-full h-full">
         <SplineScene 
           scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
           className="w-full h-full pointer-events-auto"
@@ -80,8 +80,8 @@ export function SplineSceneBasic() {
         </div>
       </div>
 
-      {/* AI Assistant text behind the robot */}
-      <div className="fixed inset-0 z-0 flex items-center justify-center pointer-events-none">
+      {/* AI Assistant text behind the robot - changing from fixed to absolute */}
+      <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
         <div 
           className="text-2xl md:text-3xl font-mono tracking-wide text-[#e02acd]"
           style={{
