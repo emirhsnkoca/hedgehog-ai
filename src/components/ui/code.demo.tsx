@@ -54,18 +54,33 @@ export function SplineSceneBasic() {
         />
       </div>
 
+      {/* AI Assistant text behind the robot - changing from fixed to absolute */}
+      <div className="absolute inset-0 z-[1] flex items-center justify-center pointer-events-none">
+        <div 
+          className="text-2xl md:text-3xl font-mono tracking-wide text-[#e02acd]"
+          style={{
+            lineHeight: '1.4',
+            paddingBottom: '0.1em'
+          }}
+        >
+          {subText}
+        </div>
+      </div>
+
       {/* Content layer - positioned above the 3D scene */}
-      <div className="relative z-[1] flex flex-col h-screen items-center justify-start pt-32 text-center pointer-events-none">
+      <div className="relative z-[2] flex flex-col h-screen items-center justify-start pt-0 text-center pointer-events-none">
         {/* Spotlight sadece istemci tarafında render edilmeli */}
         {isClient && (
           <Suspense fallback={null}>
             <Spotlight
               className="-top-40 left-0 md:left-60 md:-top-20"
               size={400}
-            />
+            >
+              <></>
+            </Spotlight>
           </Suspense>
         )}
-        <div className="relative mb-4 py-8">
+        <div className="relative mt-10 py-4">
           <h1 
             className="text-6xl md:text-8xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-[#ff1b6b] via-[#e02acd] to-[#7928ca] animate-gradient-x"
             style={{
@@ -77,19 +92,6 @@ export function SplineSceneBasic() {
           >
             {mainText}
           </h1>
-        </div>
-      </div>
-
-      {/* AI Assistant text behind the robot - changing from fixed to absolute */}
-      <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
-        <div 
-          className="text-2xl md:text-3xl font-mono tracking-wide text-[#e02acd]"
-          style={{
-            lineHeight: '1.4',
-            paddingBottom: '0.1em'
-          }}
-        >
-          {subText}
         </div>
       </div>
 
